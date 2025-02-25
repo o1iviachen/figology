@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		589FADF42D6E34DA007890AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FADF32D6E34DA007890AB /* AppDelegate.swift */; };
 		589FADF62D6E34DA007890AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FADF52D6E34DA007890AB /* SceneDelegate.swift */; };
-		589FADF82D6E34DA007890AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FADF72D6E34DA007890AB /* ViewController.swift */; };
+		589FADF82D6E34DA007890AB /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FADF72D6E34DA007890AB /* WelcomeViewController.swift */; };
 		589FADFB2D6E34DA007890AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 589FADF92D6E34DA007890AB /* Main.storyboard */; };
 		589FADFE2D6E34DA007890AB /* figology_v2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 589FADFC2D6E34DA007890AB /* figology_v2.xcdatamodeld */; };
 		589FAE002D6E34DB007890AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 589FADFF2D6E34DB007890AB /* Assets.xcassets */; };
@@ -20,7 +20,7 @@
 		589FADF02D6E34DA007890AB /* figology-v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "figology-v2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		589FADF32D6E34DA007890AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		589FADF52D6E34DA007890AB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		589FADF72D6E34DA007890AB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		589FADF72D6E34DA007890AB /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		589FADFA2D6E34DA007890AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		589FADFD2D6E34DA007890AB /* figology_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = figology_v2.xcdatamodel; sourceTree = "<group>"; };
 		589FADFF2D6E34DB007890AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,16 +58,32 @@
 		589FADF22D6E34DA007890AB /* figology-v2 */ = {
 			isa = PBXGroup;
 			children = (
+				589FAE0B2D6E363C007890AB /* View */,
+				589FAE0A2D6E3631007890AB /* Controller */,
 				589FADF32D6E34DA007890AB /* AppDelegate.swift */,
 				589FADF52D6E34DA007890AB /* SceneDelegate.swift */,
-				589FADF72D6E34DA007890AB /* ViewController.swift */,
-				589FADF92D6E34DA007890AB /* Main.storyboard */,
 				589FADFF2D6E34DB007890AB /* Assets.xcassets */,
 				589FAE012D6E34DB007890AB /* LaunchScreen.storyboard */,
 				589FAE042D6E34DB007890AB /* Info.plist */,
 				589FADFC2D6E34DA007890AB /* figology_v2.xcdatamodeld */,
 			);
 			path = "figology-v2";
+			sourceTree = "<group>";
+		};
+		589FAE0A2D6E3631007890AB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				589FADF92D6E34DA007890AB /* Main.storyboard */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		589FAE0B2D6E363C007890AB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				589FADF72D6E34DA007890AB /* WelcomeViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,7 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				589FADF82D6E34DA007890AB /* ViewController.swift in Sources */,
+				589FADF82D6E34DA007890AB /* WelcomeViewController.swift in Sources */,
 				589FADF42D6E34DA007890AB /* AppDelegate.swift in Sources */,
 				589FADF62D6E34DA007890AB /* SceneDelegate.swift in Sources */,
 				589FADFE2D6E34DA007890AB /* figology_v2.xcdatamodeld in Sources */,
