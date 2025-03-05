@@ -15,6 +15,7 @@
 		589FADFE2D6E34DA007890AB /* figology_v2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 589FADFC2D6E34DA007890AB /* figology_v2.xcdatamodeld */; };
 		589FAE002D6E34DB007890AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 589FADFF2D6E34DB007890AB /* Assets.xcassets */; };
 		589FAE032D6E34DB007890AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 589FAE012D6E34DB007890AB /* LaunchScreen.storyboard */; };
+		90E424722D78D0D900EF8B8C /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E424712D78D0A400EF8B8C /* FoodViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		589FADFF2D6E34DB007890AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		589FAE022D6E34DB007890AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		589FAE042D6E34DB007890AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90E424712D78D0A400EF8B8C /* FoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
 		9E88174711C81B0C4DE8B49D /* Pods_figology_v2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_figology_v2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A619491DA545C473B161A1F4 /* Pods-figology-v2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-figology-v2.release.xcconfig"; path = "Target Support Files/Pods-figology-v2/Pods-figology-v2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,6 +82,7 @@
 		589FAE0A2D6E3631007890AB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				90E424712D78D0A400EF8B8C /* FoodViewController.swift */,
 				589FADF72D6E34DA007890AB /* WelcomeViewController.swift */,
 			);
 			path = Controller;
@@ -99,7 +102,6 @@
 				0CF3D52F4EE9277E57D45AC7 /* Pods-figology-v2.debug.xcconfig */,
 				A619491DA545C473B161A1F4 /* Pods-figology-v2.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -227,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				589FADF82D6E34DA007890AB /* WelcomeViewController.swift in Sources */,
+				90E424722D78D0D900EF8B8C /* FoodViewController.swift in Sources */,
 				589FADF42D6E34DA007890AB /* AppDelegate.swift in Sources */,
 				589FADF62D6E34DA007890AB /* SceneDelegate.swift in Sources */,
 				589FADFE2D6E34DA007890AB /* figology_v2.xcdatamodeld in Sources */,
