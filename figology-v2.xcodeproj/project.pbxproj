@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		108A5EF48070FB76746CEEE7 /* Pods_figology_v2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E88174711C81B0C4DE8B49D /* Pods_figology_v2.framework */; };
+		5892A8712D7B5BB400304BF0 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5892A8702D7B5BB400304BF0 /* Food.swift */; };
+		5892A8732D7B5F3A00304BF0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5892A8722D7B5F3A00304BF0 /* GoogleService-Info.plist */; };
 		589FADF42D6E34DA007890AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FADF32D6E34DA007890AB /* AppDelegate.swift */; };
 		589FADF62D6E34DA007890AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FADF52D6E34DA007890AB /* SceneDelegate.swift */; };
 		589FADF82D6E34DA007890AB /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FADF72D6E34DA007890AB /* WelcomeViewController.swift */; };
@@ -20,6 +22,8 @@
 
 /* Begin PBXFileReference section */
 		0CF3D52F4EE9277E57D45AC7 /* Pods-figology-v2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-figology-v2.debug.xcconfig"; path = "Target Support Files/Pods-figology-v2/Pods-figology-v2.debug.xcconfig"; sourceTree = "<group>"; };
+		5892A8702D7B5BB400304BF0 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		5892A8722D7B5F3A00304BF0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		589FADF02D6E34DA007890AB /* figology-v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "figology-v2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		589FADF32D6E34DA007890AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		589FADF52D6E34DA007890AB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +50,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5892A86F2D7B5BA800304BF0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5892A8702D7B5BB400304BF0 /* Food.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		589FADE72D6E34DA007890AB = {
 			isa = PBXGroup;
 			children = (
@@ -67,13 +79,15 @@
 		589FADF22D6E34DA007890AB /* figology-v2 */ = {
 			isa = PBXGroup;
 			children = (
-				589FAE0B2D6E363C007890AB /* View */,
-				589FAE0A2D6E3631007890AB /* Controller */,
 				589FADF32D6E34DA007890AB /* AppDelegate.swift */,
 				589FADF52D6E34DA007890AB /* SceneDelegate.swift */,
+				5892A86F2D7B5BA800304BF0 /* Model */,
+				589FAE0B2D6E363C007890AB /* View */,
+				589FAE0A2D6E3631007890AB /* Controller */,
 				589FADFF2D6E34DB007890AB /* Assets.xcassets */,
 				589FAE012D6E34DB007890AB /* LaunchScreen.storyboard */,
 				589FAE042D6E34DB007890AB /* Info.plist */,
+				5892A8722D7B5F3A00304BF0 /* GoogleService-Info.plist */,
 				589FADFC2D6E34DA007890AB /* figology_v2.xcdatamodeld */,
 			);
 			path = "figology-v2";
@@ -174,6 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				589FAE032D6E34DB007890AB /* LaunchScreen.storyboard in Resources */,
+				5892A8732D7B5F3A00304BF0 /* GoogleService-Info.plist in Resources */,
 				589FAE002D6E34DB007890AB /* Assets.xcassets in Resources */,
 				589FADFB2D6E34DA007890AB /* Main.storyboard in Resources */,
 			);
@@ -233,6 +248,7 @@
 				589FADF42D6E34DA007890AB /* AppDelegate.swift in Sources */,
 				589FADF62D6E34DA007890AB /* SceneDelegate.swift in Sources */,
 				589FADFE2D6E34DA007890AB /* figology_v2.xcdatamodeld in Sources */,
+				5892A8712D7B5BB400304BF0 /* Food.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
