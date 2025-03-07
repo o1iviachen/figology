@@ -18,6 +18,8 @@
 		589FAE002D6E34DB007890AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 589FADFF2D6E34DB007890AB /* Assets.xcassets */; };
 		589FAE032D6E34DB007890AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 589FAE012D6E34DB007890AB /* LaunchScreen.storyboard */; };
 		90E424722D78D0D900EF8B8C /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E424712D78D0A400EF8B8C /* FoodViewController.swift */; };
+		9F1A2B4C2D7B661600A432CF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A2B4B2D7B661600A432CF /* Constants.swift */; };
+		9F1A2B4E2D7B678D00A432CF /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A2B4D2D7B678D00A432CF /* LogInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		589FAE042D6E34DB007890AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90E424712D78D0A400EF8B8C /* FoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
 		9E88174711C81B0C4DE8B49D /* Pods_figology_v2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_figology_v2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F1A2B4B2D7B661600A432CF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9F1A2B4D2D7B678D00A432CF /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		A619491DA545C473B161A1F4 /* Pods-figology-v2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-figology-v2.release.xcconfig"; path = "Target Support Files/Pods-figology-v2/Pods-figology-v2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +89,7 @@
 				589FAE0B2D6E363C007890AB /* View */,
 				589FAE0A2D6E3631007890AB /* Controller */,
 				589FADFF2D6E34DB007890AB /* Assets.xcassets */,
+				9F1A2B4B2D7B661600A432CF /* Constants.swift */,
 				589FAE012D6E34DB007890AB /* LaunchScreen.storyboard */,
 				589FAE042D6E34DB007890AB /* Info.plist */,
 				5892A8722D7B5F3A00304BF0 /* GoogleService-Info.plist */,
@@ -98,6 +103,7 @@
 			children = (
 				90E424712D78D0A400EF8B8C /* FoodViewController.swift */,
 				589FADF72D6E34DA007890AB /* WelcomeViewController.swift */,
+				9F1A2B4D2D7B678D00A432CF /* LogInViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -246,7 +252,9 @@
 				589FADF82D6E34DA007890AB /* WelcomeViewController.swift in Sources */,
 				90E424722D78D0D900EF8B8C /* FoodViewController.swift in Sources */,
 				589FADF42D6E34DA007890AB /* AppDelegate.swift in Sources */,
+				9F1A2B4E2D7B678D00A432CF /* LogInViewController.swift in Sources */,
 				589FADF62D6E34DA007890AB /* SceneDelegate.swift in Sources */,
+				9F1A2B4C2D7B661600A432CF /* Constants.swift in Sources */,
 				589FADFE2D6E34DA007890AB /* figology_v2.xcdatamodeld in Sources */,
 				5892A8712D7B5BB400304BF0 /* Food.swift in Sources */,
 			);
