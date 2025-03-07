@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CxL-a4-MBH">
-                                <rect key="frame" x="114" y="236" width="164" height="46"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CxL-a4-MBH">
+                                <rect key="frame" x="114.66666666666669" y="236" width="164" height="46"/>
                                 <attributedString key="attributedText">
                                     <fragment content="figology.">
                                         <attributes>
@@ -30,9 +30,8 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlJ-x0-unl">
-                                <rect key="frame" x="159" y="451" width="76" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlJ-x0-unl">
+                                <rect key="frame" x="158.66666666666666" y="408.66666666666669" width="76" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign In"/>
                             </button>
@@ -46,7 +45,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="AccentColor"/>
                         <constraints>
+                            <constraint firstItem="nlJ-x0-unl" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="37P-Bv-NMm"/>
                             <constraint firstItem="CxL-a4-MBH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="177" id="8vr-86-EoG"/>
+                            <constraint firstItem="nlJ-x0-unl" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="9o5-lS-2SJ"/>
+                            <constraint firstItem="nlJ-x0-unl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RvR-X9-wWa"/>
+                            <constraint firstItem="nlJ-x0-unl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YSS-hk-nRJ"/>
+                            <constraint firstItem="CxL-a4-MBH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lC5-s7-ebJ"/>
                         </constraints>
                     </view>
                     <connections>
@@ -58,10 +62,10 @@
             </objects>
             <point key="canvasLocation" x="66" y="-2"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="e18-jn-gXG">
             <objects>
-                <viewController id="CWC-4b-Nch" sceneMemberID="viewController">
+                <viewController id="CWC-4b-Nch" customClass="LoginViewController" customModule="figology_v2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1qr-2r-pp1">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -70,6 +74,9 @@
                                 <rect key="frame" x="76" y="528" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <action selector="googleSignInPressed:" destination="CWC-4b-Nch" eventType="valueChanged" id="V4o-IG-a08"/>
+                                </connections>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nFO-j1-5Ls"/>
