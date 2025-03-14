@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		108A5EF48070FB76746CEEE7 /* Pods_figology_v2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E88174711C81B0C4DE8B49D /* Pods_figology_v2.framework */; };
+		582934A62D84D708000033C7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5892A8722D7B5F3A00304BF0 /* GoogleService-Info.plist */; };
 		5892A8712D7B5BB400304BF0 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5892A8702D7B5BB400304BF0 /* Food.swift */; };
-		5892A8732D7B5F3A00304BF0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5892A8722D7B5F3A00304BF0 /* GoogleService-Info.plist */; };
-		5892A8752D7B645900304BF0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5892A8742D7B645900304BF0 /* LoginViewController.swift */; };
+		5892A8752D7B645900304BF0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5892A8742D7B645900304BF0 /* LogInViewController.swift */; };
 		589FADF42D6E34DA007890AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FADF32D6E34DA007890AB /* AppDelegate.swift */; };
 		589FADF62D6E34DA007890AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FADF52D6E34DA007890AB /* SceneDelegate.swift */; };
 		589FADF82D6E34DA007890AB /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FADF72D6E34DA007890AB /* WelcomeViewController.swift */; };
@@ -20,14 +20,13 @@
 		589FAE032D6E34DB007890AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 589FAE012D6E34DB007890AB /* LaunchScreen.storyboard */; };
 		90E424722D78D0D900EF8B8C /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E424712D78D0A400EF8B8C /* FoodViewController.swift */; };
 		9F1A2B4C2D7B661600A432CF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A2B4B2D7B661600A432CF /* Constants.swift */; };
-		9F1A2B4E2D7B678D00A432CF /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A2B4D2D7B678D00A432CF /* LogInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0CF3D52F4EE9277E57D45AC7 /* Pods-figology-v2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-figology-v2.debug.xcconfig"; path = "Target Support Files/Pods-figology-v2/Pods-figology-v2.debug.xcconfig"; sourceTree = "<group>"; };
 		5892A8702D7B5BB400304BF0 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		5892A8722D7B5F3A00304BF0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		5892A8742D7B645900304BF0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5892A8742D7B645900304BF0 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		589FADF02D6E34DA007890AB /* figology-v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "figology-v2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		589FADF32D6E34DA007890AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		589FADF52D6E34DA007890AB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		582934A52D84D26D000033C7 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				9F1A2B4D2D7B678D00A432CF /* LogInViewController.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		5892A86F2D7B5BA800304BF0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +78,7 @@
 				589FADF12D6E34DA007890AB /* Products */,
 				846CE356C5EB6AFAB1D2EF6D /* Pods */,
 				BA38A4B0D21F80661938B25B /* Frameworks */,
+				582934A52D84D26D000033C7 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,7 +113,7 @@
 			children = (
 				90E424712D78D0A400EF8B8C /* FoodViewController.swift */,
 				589FADF72D6E34DA007890AB /* WelcomeViewController.swift */,
-				5892A8742D7B645900304BF0 /* LoginViewController.swift */,
+				5892A8742D7B645900304BF0 /* LogInViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -195,8 +203,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				582934A62D84D708000033C7 /* GoogleService-Info.plist in Resources */,
 				589FAE032D6E34DB007890AB /* LaunchScreen.storyboard in Resources */,
-				5892A8732D7B5F3A00304BF0 /* GoogleService-Info.plist in Resources */,
 				589FAE002D6E34DB007890AB /* Assets.xcassets in Resources */,
 				589FADFB2D6E34DA007890AB /* Main.storyboard in Resources */,
 			);
@@ -253,9 +261,8 @@
 			files = (
 				589FADF82D6E34DA007890AB /* WelcomeViewController.swift in Sources */,
 				90E424722D78D0D900EF8B8C /* FoodViewController.swift in Sources */,
-				5892A8752D7B645900304BF0 /* LoginViewController.swift in Sources */,
+				5892A8752D7B645900304BF0 /* LogInViewController.swift in Sources */,
 				589FADF42D6E34DA007890AB /* AppDelegate.swift in Sources */,
-				9F1A2B4E2D7B678D00A432CF /* LogInViewController.swift in Sources */,
 				589FADF62D6E34DA007890AB /* SceneDelegate.swift in Sources */,
 				9F1A2B4C2D7B661600A432CF /* Constants.swift in Sources */,
 				589FADFE2D6E34DA007890AB /* figology_v2.xcdatamodeld in Sources */,

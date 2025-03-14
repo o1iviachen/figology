@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XwU-Ek-gYW">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CxL-a4-MBH">
-                                <rect key="frame" x="114.66666666666669" y="236" width="164" height="46"/>
+                                <rect key="frame" x="114.66666666666669" y="280" width="164" height="46"/>
                                 <attributedString key="attributedText">
                                     <fragment content="figology.">
                                         <attributes>
@@ -31,15 +31,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlJ-x0-unl">
-                                <rect key="frame" x="158.66666666666666" y="408.66666666666669" width="76" height="35"/>
+                                <rect key="frame" x="161.33333333333334" y="408.66666666666669" width="70.333333333333343" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Sign In"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Log In">
+                                    <color key="baseForegroundColor" name="Dark Purple"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="CWC-4b-Nch" kind="show" id="TIc-ee-Wn3"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKC-iF-8iP">
-                                <rect key="frame" x="160" y="502" width="75" height="35"/>
+                                <rect key="frame" x="154" y="502" width="87" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Register">
+                                    <color key="baseForegroundColor" name="Dark Purple"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="1CK-Va-YbC" kind="show" id="RoL-GK-HGl"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -53,21 +63,21 @@
                             <constraint firstItem="CxL-a4-MBH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lC5-s7-ebJ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="tOK-6G-iUi"/>
                     <connections>
                         <outlet property="SignedIn" destination="nlJ-x0-unl" id="Vnv-fh-3zk"/>
-                        <segue destination="CWC-4b-Nch" kind="show" id="Jdd-KQ-QRG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="66" y="-2"/>
+            <point key="canvasLocation" x="991.60305343511448" y="-2.1126760563380285"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Log In View Controller-->
         <scene sceneID="e18-jn-gXG">
             <objects>
-                <viewController id="CWC-4b-Nch" customClass="LoginViewController" customModule="figology_v2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="CWC-4b-Nch" customClass="LogInViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1qr-2r-pp1">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Q4-VH-RcY" customClass="GIDSignInButton">
@@ -75,7 +85,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
-                                    <action selector="googleSignInPressed:" destination="CWC-4b-Nch" eventType="valueChanged" id="V4o-IG-a08"/>
+                                    <action selector="googleLogInPressed:" destination="CWC-4b-Nch" eventType="touchUpInside" id="1Yx-yv-HfZ"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -86,7 +96,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UrZ-3e-QUc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="758" y="366"/>
+            <point key="canvasLocation" x="1666.4122137404579" y="-199.29577464788733"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="vRi-lt-AFt">
@@ -146,15 +156,37 @@
                         <viewLayoutGuide key="safeArea" id="7gR-mC-MUW"/>
                         <color key="backgroundColor" name="AccentColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Kv2-yb-ITV"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XB7-Wg-5Ke" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1437" y="-186"/>
+            <point key="canvasLocation" x="1782.4427480916029" y="456.33802816901408"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="A1Y-Xw-C9D">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XwU-Ek-gYW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="o5H-Xh-Me2">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="tDs-XK-6w6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mNl-pp-dXI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="64.885496183206101" y="-2.1126760563380285"/>
         </scene>
     </scenes>
     <resources>
         <namedColor name="AccentColor">
             <color red="0.94901960784313721" green="0.88235294117647056" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Dark Purple">
+            <color red="0.31764705882352939" green="0.18823529411764706" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="LabelColor">
             <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
