@@ -75,7 +75,7 @@
         <!--Log In View Controller-->
         <scene sceneID="e18-jn-gXG">
             <objects>
-                <viewController id="CWC-4b-Nch" customClass="LogInViewController" sceneMemberID="viewController">
+                <viewController id="CWC-4b-Nch" customClass="LogInViewController" customModule="figology_v2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1qr-2r-pp1">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -85,23 +85,24 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
-                                    <action selector="googleLogInPressed:" destination="CWC-4b-Nch" eventType="touchUpInside" id="1Yx-yv-HfZ"/>
+                                    <action selector="googleLogInPressed:" destination="CWC-4b-Nch" eventType="touchUpInside" id="CIN-jb-xCX"/>
                                 </connections>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nFO-j1-5Ls"/>
                         <color key="backgroundColor" name="AccentColor"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ez7-hp-EGF"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UrZ-3e-QUc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1666.4122137404579" y="-199.29577464788733"/>
+            <point key="canvasLocation" x="1782" y="-217"/>
         </scene>
-        <!--View Controller-->
+        <!--Sign Up View Controller-->
         <scene sceneID="vRi-lt-AFt">
             <objects>
-                <viewController id="1CK-Va-YbC" sceneMemberID="viewController">
+                <viewController id="1CK-Va-YbC" customClass="SignUpViewController" customModule="figology_v2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Z7-Yy-ETR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -129,7 +130,7 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="equalSpacing" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gnE-5F-rMl">
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="equalSpacing" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gnE-5F-rMl">
                                 <rect key="frame" x="77" y="347" width="238" height="59.333333333333314"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANs-3z-tfq">
@@ -152,9 +153,20 @@
                                     </textField>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9TL-Dr-2wn" customClass="GIDSignInButton">
+                                <rect key="frame" x="77" y="535" width="240" height="128"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <action selector="googleSignUpPressed:" destination="1CK-Va-YbC" eventType="touchUpInside" id="TT6-dX-tu9"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7gR-mC-MUW"/>
                         <color key="backgroundColor" name="AccentColor"/>
+                        <constraints>
+                            <constraint firstItem="9TL-Dr-2wn" firstAttribute="centerX" secondItem="8Z7-Yy-ETR" secondAttribute="centerX" id="ALp-0P-hkR"/>
+                            <constraint firstItem="9TL-Dr-2wn" firstAttribute="top" secondItem="gnE-5F-rMl" secondAttribute="bottom" constant="60" id="Z1m-4h-Z5k"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Kv2-yb-ITV"/>
                 </viewController>
