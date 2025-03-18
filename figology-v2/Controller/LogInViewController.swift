@@ -77,7 +77,7 @@ class LogInViewController: UIViewController {
                                         }
                                     }
                                 } else {
-                                    // self.performSegue(withIdentifier: K.mainLogInSegue, sender: self)
+                                    self.performSegue(withIdentifier: K.mainLogInSegue, sender: self)
                                     print("yay!")
                                 }
                             }
