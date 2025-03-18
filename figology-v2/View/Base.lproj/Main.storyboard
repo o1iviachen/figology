@@ -198,10 +198,10 @@
             </objects>
             <point key="canvasLocation" x="1780.916030534351" y="-217.60563380281693"/>
         </scene>
-        <!--View Controller-->
+        <!--Food View Controller-->
         <scene sceneID="AUz-Iq-qsL">
             <objects>
-                <viewController id="pWb-v8-cQy" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FoodViewController" id="pWb-v8-cQy" customClass="FoodViewController" customModule="figology_v2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q6g-18-mSQ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -291,7 +291,7 @@
         <!--Navigation Controller-->
         <scene sceneID="A1Y-Xw-C9D">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XwU-Ek-gYW" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="XwU-Ek-gYW" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="o5H-Xh-Me2">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
