@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+struct Food: Decodable {
+    let food: String
+    var brandName: String
+    let fibre: Int
+    var measures: [Measure]
+    var selectedMeasure: Measure
+    
+    
+    let mealType: String
+}

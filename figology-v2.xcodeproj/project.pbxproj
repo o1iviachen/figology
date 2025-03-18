@@ -11,6 +11,7 @@
 		582934AA2D851215000033C7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 582934A92D851215000033C7 /* GoogleService-Info.plist */; };
 		582934AC2D8514E2000033C7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582934AB2D8514E2000033C7 /* SignUpViewController.swift */; };
 		582934AE2D851A4B000033C7 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582934AD2D851A4B000033C7 /* LogInViewController.swift */; };
+		582934B02D89E195000033C7 /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582934AF2D89E195000033C7 /* Measure.swift */; };
 		5892A8712D7B5BB400304BF0 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5892A8702D7B5BB400304BF0 /* Food.swift */; };
 		589FADF42D6E34DA007890AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FADF32D6E34DA007890AB /* AppDelegate.swift */; };
 		589FADF62D6E34DA007890AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FADF52D6E34DA007890AB /* SceneDelegate.swift */; };
@@ -28,6 +29,7 @@
 		582934A92D851215000033C7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		582934AB2D8514E2000033C7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		582934AD2D851A4B000033C7 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		582934AF2D89E195000033C7 /* Measure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
 		5892A8702D7B5BB400304BF0 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		589FADF02D6E34DA007890AB /* figology-v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "figology-v2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		589FADF32D6E34DA007890AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				5892A8702D7B5BB400304BF0 /* Food.swift */,
+				582934AF2D89E195000033C7 /* Measure.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			files = (
 				589FADF82D6E34DA007890AB /* WelcomeViewController.swift in Sources */,
 				90E424722D78D0D900EF8B8C /* FoodViewController.swift in Sources */,
+				582934B02D89E195000033C7 /* Measure.swift in Sources */,
 				582934AE2D851A4B000033C7 /* LogInViewController.swift in Sources */,
 				589FADF42D6E34DA007890AB /* AppDelegate.swift in Sources */,
 				589FADF62D6E34DA007890AB /* SceneDelegate.swift in Sources */,
