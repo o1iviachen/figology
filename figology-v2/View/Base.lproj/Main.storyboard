@@ -191,11 +191,27 @@
                     <connections>
                         <outlet property="emailTextField" destination="SaZ-XH-p2y" id="DgA-UX-5lW"/>
                         <outlet property="passwordTextField" destination="Vzq-8w-KxL" id="Uwq-bd-vgD"/>
+                        <segue destination="pWb-v8-cQy" kind="show" identifier="LogInToMain" id="WRm-FH-wBV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UrZ-3e-QUc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1780.916030534351" y="-217.60563380281693"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="AUz-Iq-qsL">
+            <objects>
+                <viewController id="pWb-v8-cQy" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Q6g-18-mSQ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="3up-Nv-Xp0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n59-5L-tC4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2676" y="-218"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="vRi-lt-AFt">
@@ -327,6 +343,7 @@
             <point key="canvasLocation" x="2553" y="-1006"/>
         </scene>
     </scenes>
+    <color key="tintColor" name="Dark Purple"/>
     <resources>
         <namedColor name="AccentColor">
             <color red="0.94901960784313721" green="0.88235294117647056" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
