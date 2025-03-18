@@ -55,7 +55,7 @@ class SignUpViewController: UIViewController {
                                                         if let err = err {
                                                             self.showError(errorMessage: err.localizedDescription)
                                                         } else {
-                                                            self.performSegue(withIdentifier: K.signUpCalculatorSegue, sender: self)
+                                                            // self.performSegue(withIdentifier: K.signUpCalculatorSegue, sender: self)
                                                         }
                                                     }
                                                 }
