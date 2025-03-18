@@ -80,7 +80,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Q4-VH-RcY" customClass="GIDSignInButton">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Q4-VH-RcY" customClass="GIDSignInButton">
                                 <rect key="frame" x="76" y="528" width="240" height="128"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
@@ -163,6 +163,8 @@
                             <constraint firstItem="nFO-j1-5Ls" firstAttribute="trailing" secondItem="g0Y-X4-I4j" secondAttribute="trailing" constant="162" id="Hsq-rF-43d"/>
                             <constraint firstItem="4k5-bu-URE" firstAttribute="top" secondItem="gSB-dF-IfW" secondAttribute="bottom" constant="70.670000000000002" id="Hva-Ug-gCW"/>
                             <constraint firstItem="4k5-bu-URE" firstAttribute="leading" secondItem="nFO-j1-5Ls" secondAttribute="leading" constant="78" id="Igx-qI-Yw8"/>
+                            <constraint firstItem="nFO-j1-5Ls" firstAttribute="trailing" secondItem="4Q4-VH-RcY" secondAttribute="trailing" constant="77" id="NJH-L8-dm3"/>
+                            <constraint firstItem="nFO-j1-5Ls" firstAttribute="bottom" secondItem="4Q4-VH-RcY" secondAttribute="bottom" constant="162" id="QCZ-Xj-6ag"/>
                             <constraint firstItem="ubx-Eg-SSw" firstAttribute="top" secondItem="g0Y-X4-I4j" secondAttribute="bottom" constant="19.670000000000002" id="VPn-ia-76F"/>
                             <constraint firstItem="4Q4-VH-RcY" firstAttribute="top" secondItem="ubx-Eg-SSw" secondAttribute="bottom" constant="30.670000000000002" id="W9i-Qd-IF7"/>
                             <constraint firstItem="g0Y-X4-I4j" firstAttribute="top" secondItem="4k5-bu-URE" secondAttribute="bottom" constant="27.670000000000002" id="b5V-f0-ogJ"/>
@@ -171,7 +173,9 @@
                             <constraint firstItem="g0Y-X4-I4j" firstAttribute="leading" secondItem="nFO-j1-5Ls" secondAttribute="leading" constant="161" id="gSv-5L-Ybk"/>
                             <constraint firstItem="ubx-Eg-SSw" firstAttribute="leading" secondItem="nFO-j1-5Ls" secondAttribute="leading" constant="124" id="gaA-Wa-cd0"/>
                             <constraint firstItem="g0Y-X4-I4j" firstAttribute="top" secondItem="4k5-bu-URE" secondAttribute="bottom" constant="27.670000000000002" id="kfU-yG-dqG"/>
+                            <constraint firstItem="4Q4-VH-RcY" firstAttribute="leading" secondItem="nFO-j1-5Ls" secondAttribute="leading" constant="76" id="kmY-V8-17N"/>
                             <constraint firstItem="nFO-j1-5Ls" firstAttribute="trailing" secondItem="ubx-Eg-SSw" secondAttribute="trailing" constant="124" id="mmF-Tg-Tmw"/>
+                            <constraint firstItem="4Q4-VH-RcY" firstAttribute="top" secondItem="ubx-Eg-SSw" secondAttribute="bottom" constant="30.670000000000002" id="rVa-0G-Ne0"/>
                             <constraint firstItem="nFO-j1-5Ls" firstAttribute="trailing" secondItem="4k5-bu-URE" secondAttribute="trailing" constant="77" id="tPt-Tg-kX8"/>
                             <constraint firstItem="4k5-bu-URE" firstAttribute="top" secondItem="gSB-dF-IfW" secondAttribute="bottom" constant="70.670000000000002" id="zgI-4n-xPF"/>
                         </constraints>
