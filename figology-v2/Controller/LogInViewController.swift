@@ -14,9 +14,31 @@ class LogInViewController: UIViewController {
     
     let db = Firestore.firestore()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.logInPasswordSegue {
+            //let destinationVC = segue.destination as! PasswordViewController
+            let email = emailTextField.text
+            //{
+            //    destinationVC.email = email
+            //}
+        }
+    }
+    
+    
+    @IBAction func loginPressed(_ sender: UIButton) {
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            
+            Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+                if let e = error {
+                    self.showError(errorMessage: e.localizedDescription)
+                } else {
+                    self.performSegue(withIdentifier: K.mainLogInSegue, sender: self)
+                }
+            }
+        }
     }
     
     @IBAction func googleLogInPressed(_ sender: GIDSignInButton) {

@@ -22,6 +22,7 @@
 		589FAE032D6E34DB007890AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 589FAE012D6E34DB007890AB /* LaunchScreen.storyboard */; };
 		90E424722D78D0D900EF8B8C /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E424712D78D0A400EF8B8C /* FoodViewController.swift */; };
 		9F1A2B4C2D7B661600A432CF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A2B4B2D7B661600A432CF /* Constants.swift */; };
+		9F8594A52D88F40200E21AE2 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		9E88174711C81B0C4DE8B49D /* Pods_figology_v2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_figology_v2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F1A2B4B2D7B661600A432CF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9F1A2B4D2D7B678D00A432CF /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		A619491DA545C473B161A1F4 /* Pods-figology-v2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-figology-v2.release.xcconfig"; path = "Target Support Files/Pods-figology-v2/Pods-figology-v2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +122,7 @@
 				589FADF72D6E34DA007890AB /* WelcomeViewController.swift */,
 				582934AB2D8514E2000033C7 /* SignUpViewController.swift */,
 				582934AD2D851A4B000033C7 /* LogInViewController.swift */,
+				9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				589FADF82D6E34DA007890AB /* WelcomeViewController.swift in Sources */,
+				9F8594A52D88F40200E21AE2 /* PasswordViewController.swift in Sources */,
 				90E424722D78D0D900EF8B8C /* FoodViewController.swift in Sources */,
 				582934B02D89E195000033C7 /* Measure.swift in Sources */,
 				582934AE2D851A4B000033C7 /* LogInViewController.swift in Sources */,
