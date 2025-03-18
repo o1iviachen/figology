@@ -191,14 +191,14 @@
                     <connections>
                         <outlet property="emailTextField" destination="SaZ-XH-p2y" id="DgA-UX-5lW"/>
                         <outlet property="passwordTextField" destination="Vzq-8w-KxL" id="Uwq-bd-vgD"/>
-                        <segue destination="pWb-v8-cQy" kind="show" identifier="LogInToMain" id="WRm-FH-wBV"/>
+                        <segue destination="yR5-F8-941" kind="show" identifier="LogInToMain" id="WRm-FH-wBV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UrZ-3e-QUc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1780.916030534351" y="-217.60563380281693"/>
         </scene>
-        <!--Food View Controller-->
+        <!--Item-->
         <scene sceneID="AUz-Iq-qsL">
             <objects>
                 <viewController storyboardIdentifier="FoodViewController" id="pWb-v8-cQy" customClass="FoodViewController" customModule="figology_v2" customModuleProvider="target" sceneMemberID="viewController">
@@ -208,10 +208,11 @@
                         <viewLayoutGuide key="safeArea" id="3up-Nv-Xp0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Szc-Uh-DbG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n59-5L-tC4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2676" y="-218"/>
+            <point key="canvasLocation" x="3602.2900763358775" y="-218.3098591549296"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="vRi-lt-AFt">
@@ -341,6 +342,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R5G-PZ-Mew" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2553" y="-1006"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="OmX-gB-A5t">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="yR5-F8-941" customClass="TabBarController" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="USd-ad-NvM"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SGt-Pd-kgD">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="pWb-v8-cQy" kind="relationship" relationship="viewControllers" id="tg7-uv-GPa"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LOS-s1-2a0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2675.5725190839694" y="-218.3098591549296"/>
         </scene>
     </scenes>
     <color key="tintColor" name="Dark Purple"/>

@@ -11,10 +11,12 @@ import Firebase
 
 class FoodViewController: UIViewController {
     
+    let fibreCallManager = FibreCallManager()
     override func viewDidLoad() {
 
 
         super.viewDidLoad()
-        self.navigationItem.setHidesBackButton(true, animated: true)
+        var request = fibreCallManager.prepareFoodRequest(foodSearch: "banana")
+        fibreCallManager.performFoodRequest(request: request)
     }
 }

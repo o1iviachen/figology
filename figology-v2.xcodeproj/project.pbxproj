@@ -12,6 +12,8 @@
 		582934AC2D8514E2000033C7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582934AB2D8514E2000033C7 /* SignUpViewController.swift */; };
 		582934AE2D851A4B000033C7 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582934AD2D851A4B000033C7 /* LogInViewController.swift */; };
 		582934B02D89E195000033C7 /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582934AF2D89E195000033C7 /* Measure.swift */; };
+		582934B22D8A1B9B000033C7 /* FibreCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582934B12D8A1B9B000033C7 /* FibreCallManager.swift */; };
+		582934B42D8A1D3B000033C7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582934B32D8A1D3B000033C7 /* TabBarController.swift */; };
 		5892A8712D7B5BB400304BF0 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5892A8702D7B5BB400304BF0 /* Food.swift */; };
 		589FADF42D6E34DA007890AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FADF32D6E34DA007890AB /* AppDelegate.swift */; };
 		589FADF62D6E34DA007890AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FADF52D6E34DA007890AB /* SceneDelegate.swift */; };
@@ -31,6 +33,8 @@
 		582934AB2D8514E2000033C7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		582934AD2D851A4B000033C7 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		582934AF2D89E195000033C7 /* Measure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
+		582934B12D8A1B9B000033C7 /* FibreCallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FibreCallManager.swift; sourceTree = "<group>"; };
+		582934B32D8A1D3B000033C7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		5892A8702D7B5BB400304BF0 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		589FADF02D6E34DA007890AB /* figology-v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "figology-v2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		589FADF32D6E34DA007890AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +78,7 @@
 			children = (
 				5892A8702D7B5BB400304BF0 /* Food.swift */,
 				582934AF2D89E195000033C7 /* Measure.swift */,
+				582934B12D8A1B9B000033C7 /* FibreCallManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 				582934AB2D8514E2000033C7 /* SignUpViewController.swift */,
 				582934AD2D851A4B000033C7 /* LogInViewController.swift */,
 				9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */,
+				582934B32D8A1D3B000033C7 /* TabBarController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -268,6 +274,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				582934B22D8A1B9B000033C7 /* FibreCallManager.swift in Sources */,
+				582934B42D8A1D3B000033C7 /* TabBarController.swift in Sources */,
 				589FADF82D6E34DA007890AB /* WelcomeViewController.swift in Sources */,
 				9F8594A52D88F40200E21AE2 /* PasswordViewController.swift in Sources */,
 				90E424722D78D0D900EF8B8C /* FoodViewController.swift in Sources */,
