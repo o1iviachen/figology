@@ -19,11 +19,11 @@ class LogInViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.logInPasswordSegue {
-            //let destinationVC = segue.destination as! PasswordViewController
-            let email = emailTextField.text
-            //{
-            //    destinationVC.email = email
-            //}
+            let destinationVC = segue.destination as! PasswordViewController
+            if let email = emailTextField.text
+            {
+                destinationVC.email = email
+            }
         }
     }
     
