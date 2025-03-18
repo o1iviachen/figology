@@ -9,7 +9,5 @@ import Foundation
 
 struct Measure: Decodable {
     let measureExpression: String
-    var measureQuantity: Double
-    var measureUnit: String
-    var relativeWeight: Double
+    let measureMass: Double
 }

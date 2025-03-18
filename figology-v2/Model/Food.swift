@@ -9,11 +9,10 @@ import Foundation
 
 struct Food: Decodable {
     let food: String
-    var brandName: String
-    let fibre: Int
-    var measures: [Measure]
+    let fibrePerGram: Int
+    let brandName: String
+    let measures: [Measure]
     var selectedMeasure: Measure
-    
-    
-    let mealType: String
+    var multiplier: Double
+    var mealType: String
 }
