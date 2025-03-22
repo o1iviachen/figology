@@ -30,8 +30,13 @@ class FoodViewController: UIViewController {
                     self.parsedFoods.append(parsedFood)
                 }
             }
-            print(self.parsedFoods)
         }
         
+    }
+    
+    
+    
+    @IBAction func printFood(_ sender: UIButton) {
+        print(parsedFoods)
     }
 }

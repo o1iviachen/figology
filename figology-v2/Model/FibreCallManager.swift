@@ -74,9 +74,9 @@ struct FibreCallManager {
                     print(e.localizedDescription)
                 }
                 if let safeData = data {
+                    print(String(data: safeData, encoding: .utf8))
                     if let food = self.parseFibreJSON(fibreData: safeData) {
                         fibreFood = food
-                        
                     }
                 }
                 completion(fibreFood)
@@ -96,6 +96,9 @@ struct FibreCallManager {
             for food in decodedData.common {
                 foodList.append(food.food_name)
             }
+            for food in decodedData.branded {
+                foodList.append(food.food_name)
+            }
         } catch {
             print("error") // need to change
         }
@@ -110,12 +113,12 @@ struct FibreCallManager {
             let decodedData = try decoder.decode(FibreData.self, from: fibreData)
             let food = decodedData.foods[0]
             let foodName = food.food_name
-            let brandName = food.brand_name
+            let brandName = food.brand_name ?? "Unbranded"
             let servingFibre = food.nf_dietary_fiber
             let servingUnit = food.serving_unit
             let servingQuantity = food.serving_qty
             let servingGrams = food.serving_weight_grams
-            
+
             let servingExpression = "\(servingQuantity) \(servingUnit)"
             let servingMeasure = Measure(measureExpression: servingExpression, measureMass: servingGrams)
             
@@ -134,6 +137,7 @@ struct FibreCallManager {
             return parsedFood
             
         } catch {
+            print(error)
             return nil
         }
         
