@@ -14,7 +14,7 @@ struct K {
     static let mainLogInSegue = "LogInToMain"
     static let mainSignUpSegue = "SignUpToMain"
     static let systemCellIdentifier = "SystemCell"
-    static let foodCellIdentifier = "FoodCell"
+    static let foodCellIdentifier = "ReusableFoodCell"
     static let cellNibName = "SystemCell"
     static let cellFoodName = "FoodCell"
     static let logOutCellIdentifier = "LogOutCell"

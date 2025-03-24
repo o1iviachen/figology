@@ -74,7 +74,6 @@ struct FibreCallManager {
                     print(e.localizedDescription)
                 }
                 if let safeData = data {
-                    print(String(data: safeData, encoding: .utf8))
                     if let food = self.parseFibreJSON(fibreData: safeData) {
                         fibreFood = food
                     }
