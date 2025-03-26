@@ -17,9 +17,9 @@ class FoodViewController: UIViewController {
     var fibreRequests: [URLRequest?] = []
     var parsedFoods: [Food?] = []
     override func viewDidLoad() {
-        
+        tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName: K.cellFoodName, bundle: nil), forCellReuseIdentifier: K.foodCellIdentifier)
+        tableView.register(UINib(nibName: K.foodCellIdentifier, bundle: nil), forCellReuseIdentifier: K.foodCellIdentifier)
 
         super.viewDidLoad()
         let request = fibreCallManager.prepareFoodRequest(foodSearch: "banana")
@@ -38,29 +38,24 @@ class FoodViewController: UIViewController {
         
     }
     
-    
-    
-    @IBAction func printFood(_ sender: UIButton) {
-        print(parsedFoods)
-    }
 }
 
 extension FoodViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return parsedFoods.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellFoodName, for: indexPath) as! FoodCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.foodCellIdentifier, for: indexPath) as! FoodCell
         let cellFood = parsedFoods[indexPath.row]
         cell.foodNameLabel.text = cellFood!.food
         let descriptionString = "\( cellFood!.brandName), \( cellFood!.multiplier) g"
         cell.foodDescriptionLabel.text = descriptionString
         cell.fibreMassLabel.text = "\(String(format: "%.1f", cellFood!.fibrePerGram*cellFood!.multiplier)) g"
-        
+
         return cell
     }
-    
+
 }
 
 extension FoodViewController: UITableViewDelegate {
