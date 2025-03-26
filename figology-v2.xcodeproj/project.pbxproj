@@ -99,6 +99,37 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		582BE1052D94B5E10059A4D1 /* Welcome Flow View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				589FADF72D6E34DA007890AB /* WelcomeViewController.swift */,
+				582934AB2D8514E2000033C7 /* SignUpViewController.swift */,
+				582934AD2D851A4B000033C7 /* LogInViewController.swift */,
+				9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */,
+			);
+			path = "Welcome Flow View Controllers";
+			sourceTree = "<group>";
+		};
+		582BE1062D94B5FF0059A4D1 /* Profile View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				582BE0F12D9497B00059A4D1 /* ProfileViewController.swift */,
+				582BE0FD2D94A2B80059A4D1 /* SelectorViewController.swift */,
+				582BE0FF2D94A62D0059A4D1 /* ProfilePasswordViewController.swift */,
+				582BE1012D94A8340059A4D1 /* SupportViewController.swift */,
+				582BE1032D94A9D30059A4D1 /* CalculatorViewController.swift */,
+			);
+			path = "Profile View Controllers";
+			sourceTree = "<group>";
+		};
+		582BE1072D94B60B0059A4D1 /* Food View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				90E424712D78D0A400EF8B8C /* FoodViewController.swift */,
+			);
+			path = "Food View Controllers";
+			sourceTree = "<group>";
+		};
 		5892A86F2D7B5BA800304BF0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,18 +181,11 @@
 		589FAE0A2D6E3631007890AB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				90E424712D78D0A400EF8B8C /* FoodViewController.swift */,
-				589FADF72D6E34DA007890AB /* WelcomeViewController.swift */,
-				582934AB2D8514E2000033C7 /* SignUpViewController.swift */,
-				582934AD2D851A4B000033C7 /* LogInViewController.swift */,
-				9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */,
+				582BE1052D94B5E10059A4D1 /* Welcome Flow View Controllers */,
+				582BE1072D94B60B0059A4D1 /* Food View Controllers */,
+				582BE1062D94B5FF0059A4D1 /* Profile View Controllers */,
 				582934B32D8A1D3B000033C7 /* TabBarController.swift */,
 				9F2358AA2D942F3D001B3F1A /* CalendarViewController.swift */,
-				582BE0F12D9497B00059A4D1 /* ProfileViewController.swift */,
-				582BE0FD2D94A2B80059A4D1 /* SelectorViewController.swift */,
-				582BE0FF2D94A62D0059A4D1 /* ProfilePasswordViewController.swift */,
-				582BE1012D94A8340059A4D1 /* SupportViewController.swift */,
-				582BE1032D94A9D30059A4D1 /* CalculatorViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
