@@ -26,6 +26,7 @@
 		58FC741F2D91CF500007FC3E /* FoodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58FC741D2D91CF500007FC3E /* FoodCell.xib */; };
 		90E424722D78D0D900EF8B8C /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E424712D78D0A400EF8B8C /* FoodViewController.swift */; };
 		9F1A2B4C2D7B661600A432CF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A2B4B2D7B661600A432CF /* Constants.swift */; };
+		9F2358AB2D942F3D001B3F1A /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2358AA2D942F3D001B3F1A /* CalendarViewController.swift */; };
 		9F8594A52D88F40200E21AE2 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		9E88174711C81B0C4DE8B49D /* Pods_figology_v2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_figology_v2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F1A2B4B2D7B661600A432CF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9F1A2B4D2D7B678D00A432CF /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		9F2358AA2D942F3D001B3F1A /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		A619491DA545C473B161A1F4 /* Pods-figology-v2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-figology-v2.release.xcconfig"; path = "Target Support Files/Pods-figology-v2/Pods-figology-v2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +135,7 @@
 				582934AD2D851A4B000033C7 /* LogInViewController.swift */,
 				9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */,
 				582934B32D8A1D3B000033C7 /* TabBarController.swift */,
+				9F2358AA2D942F3D001B3F1A /* CalendarViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F2358AB2D942F3D001B3F1A /* CalendarViewController.swift in Sources */,
 				582934B22D8A1B9B000033C7 /* FibreCallManager.swift in Sources */,
 				582934B42D8A1D3B000033C7 /* TabBarController.swift in Sources */,
 				589FADF82D6E34DA007890AB /* WelcomeViewController.swift in Sources */,
