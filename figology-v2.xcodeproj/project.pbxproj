@@ -14,6 +14,16 @@
 		582934B02D89E195000033C7 /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582934AF2D89E195000033C7 /* Measure.swift */; };
 		582934B22D8A1B9B000033C7 /* FibreCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582934B12D8A1B9B000033C7 /* FibreCallManager.swift */; };
 		582934B42D8A1D3B000033C7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582934B32D8A1D3B000033C7 /* TabBarController.swift */; };
+		582BE0F22D9497B00059A4D1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582BE0F12D9497B00059A4D1 /* ProfileViewController.swift */; };
+		582BE0F42D9497BF0059A4D1 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582BE0F32D9497BF0059A4D1 /* Setting.swift */; };
+		582BE0F72D9499460059A4D1 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582BE0F52D9499460059A4D1 /* ProfileCell.swift */; };
+		582BE0F82D9499460059A4D1 /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 582BE0F62D9499460059A4D1 /* ProfileCell.xib */; };
+		582BE0FB2D949ADF0059A4D1 /* LogOutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582BE0F92D949ADF0059A4D1 /* LogOutCell.swift */; };
+		582BE0FC2D949ADF0059A4D1 /* LogOutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 582BE0FA2D949ADF0059A4D1 /* LogOutCell.xib */; };
+		582BE0FE2D94A2B80059A4D1 /* SelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582BE0FD2D94A2B80059A4D1 /* SelectorViewController.swift */; };
+		582BE1002D94A62D0059A4D1 /* ProfilePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582BE0FF2D94A62D0059A4D1 /* ProfilePasswordViewController.swift */; };
+		582BE1022D94A8340059A4D1 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582BE1012D94A8340059A4D1 /* SupportViewController.swift */; };
+		582BE1042D94A9D30059A4D1 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582BE1032D94A9D30059A4D1 /* CalculatorViewController.swift */; };
 		5892A8712D7B5BB400304BF0 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5892A8702D7B5BB400304BF0 /* Food.swift */; };
 		589FADF42D6E34DA007890AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FADF32D6E34DA007890AB /* AppDelegate.swift */; };
 		589FADF62D6E34DA007890AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FADF52D6E34DA007890AB /* SceneDelegate.swift */; };
@@ -38,6 +48,16 @@
 		582934AF2D89E195000033C7 /* Measure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
 		582934B12D8A1B9B000033C7 /* FibreCallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FibreCallManager.swift; sourceTree = "<group>"; };
 		582934B32D8A1D3B000033C7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		582BE0F12D9497B00059A4D1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		582BE0F32D9497BF0059A4D1 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		582BE0F52D9499460059A4D1 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		582BE0F62D9499460059A4D1 /* ProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
+		582BE0F92D949ADF0059A4D1 /* LogOutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutCell.swift; sourceTree = "<group>"; };
+		582BE0FA2D949ADF0059A4D1 /* LogOutCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogOutCell.xib; sourceTree = "<group>"; };
+		582BE0FD2D94A2B80059A4D1 /* SelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorViewController.swift; sourceTree = "<group>"; };
+		582BE0FF2D94A62D0059A4D1 /* ProfilePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePasswordViewController.swift; sourceTree = "<group>"; };
+		582BE1012D94A8340059A4D1 /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
+		582BE1032D94A9D30059A4D1 /* CalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
 		5892A8702D7B5BB400304BF0 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		589FADF02D6E34DA007890AB /* figology-v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "figology-v2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		589FADF32D6E34DA007890AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,12 +99,44 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		582BE1052D94B5E10059A4D1 /* Welcome Flow View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				589FADF72D6E34DA007890AB /* WelcomeViewController.swift */,
+				582934AB2D8514E2000033C7 /* SignUpViewController.swift */,
+				582934AD2D851A4B000033C7 /* LogInViewController.swift */,
+				9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */,
+			);
+			path = "Welcome Flow View Controllers";
+			sourceTree = "<group>";
+		};
+		582BE1062D94B5FF0059A4D1 /* Profile View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				582BE0F12D9497B00059A4D1 /* ProfileViewController.swift */,
+				582BE0FD2D94A2B80059A4D1 /* SelectorViewController.swift */,
+				582BE0FF2D94A62D0059A4D1 /* ProfilePasswordViewController.swift */,
+				582BE1012D94A8340059A4D1 /* SupportViewController.swift */,
+				582BE1032D94A9D30059A4D1 /* CalculatorViewController.swift */,
+			);
+			path = "Profile View Controllers";
+			sourceTree = "<group>";
+		};
+		582BE1072D94B60B0059A4D1 /* Food View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				90E424712D78D0A400EF8B8C /* FoodViewController.swift */,
+			);
+			path = "Food View Controllers";
+			sourceTree = "<group>";
+		};
 		5892A86F2D7B5BA800304BF0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				5892A8702D7B5BB400304BF0 /* Food.swift */,
 				582934AF2D89E195000033C7 /* Measure.swift */,
 				582934B12D8A1B9B000033C7 /* FibreCallManager.swift */,
+				582BE0F32D9497BF0059A4D1 /* Setting.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -129,11 +181,9 @@
 		589FAE0A2D6E3631007890AB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				90E424712D78D0A400EF8B8C /* FoodViewController.swift */,
-				589FADF72D6E34DA007890AB /* WelcomeViewController.swift */,
-				582934AB2D8514E2000033C7 /* SignUpViewController.swift */,
-				582934AD2D851A4B000033C7 /* LogInViewController.swift */,
-				9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */,
+				582BE1052D94B5E10059A4D1 /* Welcome Flow View Controllers */,
+				582BE1072D94B60B0059A4D1 /* Food View Controllers */,
+				582BE1062D94B5FF0059A4D1 /* Profile View Controllers */,
 				582934B32D8A1D3B000033C7 /* TabBarController.swift */,
 				9F2358AA2D942F3D001B3F1A /* CalendarViewController.swift */,
 			);
@@ -145,6 +195,10 @@
 			children = (
 				589FADF92D6E34DA007890AB /* Main.storyboard */,
 				58FC741D2D91CF500007FC3E /* FoodCell.xib */,
+				582BE0F52D9499460059A4D1 /* ProfileCell.swift */,
+				582BE0F62D9499460059A4D1 /* ProfileCell.xib */,
+				582BE0F92D949ADF0059A4D1 /* LogOutCell.swift */,
+				582BE0FA2D949ADF0059A4D1 /* LogOutCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -230,6 +284,8 @@
 				589FAE032D6E34DB007890AB /* LaunchScreen.storyboard in Resources */,
 				582934AA2D851215000033C7 /* GoogleService-Info.plist in Resources */,
 				58FC741F2D91CF500007FC3E /* FoodCell.xib in Resources */,
+				582BE0F82D9499460059A4D1 /* ProfileCell.xib in Resources */,
+				582BE0FC2D949ADF0059A4D1 /* LogOutCell.xib in Resources */,
 				589FAE002D6E34DB007890AB /* Assets.xcassets in Resources */,
 				589FADFB2D6E34DA007890AB /* Main.storyboard in Resources */,
 			);
@@ -286,19 +342,27 @@
 			files = (
 				9F2358AB2D942F3D001B3F1A /* CalendarViewController.swift in Sources */,
 				582934B22D8A1B9B000033C7 /* FibreCallManager.swift in Sources */,
+				582BE1022D94A8340059A4D1 /* SupportViewController.swift in Sources */,
 				582934B42D8A1D3B000033C7 /* TabBarController.swift in Sources */,
 				589FADF82D6E34DA007890AB /* WelcomeViewController.swift in Sources */,
 				9F8594A52D88F40200E21AE2 /* PasswordViewController.swift in Sources */,
 				90E424722D78D0D900EF8B8C /* FoodViewController.swift in Sources */,
+				582BE0F22D9497B00059A4D1 /* ProfileViewController.swift in Sources */,
 				582934B02D89E195000033C7 /* Measure.swift in Sources */,
 				582934AE2D851A4B000033C7 /* LogInViewController.swift in Sources */,
 				589FADF42D6E34DA007890AB /* AppDelegate.swift in Sources */,
+				582BE1002D94A62D0059A4D1 /* ProfilePasswordViewController.swift in Sources */,
 				589FADF62D6E34DA007890AB /* SceneDelegate.swift in Sources */,
 				58FC741E2D91CF500007FC3E /* FoodCell.swift in Sources */,
 				9F1A2B4C2D7B661600A432CF /* Constants.swift in Sources */,
 				582934AC2D8514E2000033C7 /* SignUpViewController.swift in Sources */,
 				589FADFE2D6E34DA007890AB /* figology_v2.xcdatamodeld in Sources */,
+				582BE0F72D9499460059A4D1 /* ProfileCell.swift in Sources */,
+				582BE0F42D9497BF0059A4D1 /* Setting.swift in Sources */,
+				582BE0FB2D949ADF0059A4D1 /* LogOutCell.swift in Sources */,
 				5892A8712D7B5BB400304BF0 /* Food.swift in Sources */,
+				582BE1042D94A9D30059A4D1 /* CalculatorViewController.swift in Sources */,
+				582BE0FE2D94A2B80059A4D1 /* SelectorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
