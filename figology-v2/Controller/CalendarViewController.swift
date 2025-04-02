@@ -39,7 +39,7 @@ struct CalendarScene: View {
     @State private var selectedDate: Date? // Selected date from the calendar
     @State private var selectedDateFromPicker = Date() // Selected date from the date picker
     @State private var selectedDateComponents = Set<DateComponents>() // Date components (day, month, year, etc.)
-    
+
     // Computed property to format and display the selected date as a string
     private var textDate: String {
         guard let selectedDate else { return "Date not selected" }
@@ -53,6 +53,8 @@ struct CalendarScene: View {
             calendars // Display only the calendar view
             Spacer() // Pushes content up, adding flexible space below
         }
+        .background(Color(red: 242/255, green: 225/255, blue: 246/255)) // Background applied to VStack
+
         .padding(.horizontal) // Adds horizontal padding for better layout
     }
     

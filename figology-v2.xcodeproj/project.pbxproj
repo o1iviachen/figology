@@ -24,6 +24,7 @@
 		582BE1002D94A62D0059A4D1 /* ProfilePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582BE0FF2D94A62D0059A4D1 /* ProfilePasswordViewController.swift */; };
 		582BE1022D94A8340059A4D1 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582BE1012D94A8340059A4D1 /* SupportViewController.swift */; };
 		582BE1042D94A9D30059A4D1 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582BE1032D94A9D30059A4D1 /* CalculatorViewController.swift */; };
+		58528F232D9D937700A107F0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58528F222D9D937700A107F0 /* SearchViewController.swift */; };
 		5892A8712D7B5BB400304BF0 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5892A8702D7B5BB400304BF0 /* Food.swift */; };
 		589FADF42D6E34DA007890AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FADF32D6E34DA007890AB /* AppDelegate.swift */; };
 		589FADF62D6E34DA007890AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FADF52D6E34DA007890AB /* SceneDelegate.swift */; };
@@ -58,6 +59,7 @@
 		582BE0FF2D94A62D0059A4D1 /* ProfilePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePasswordViewController.swift; sourceTree = "<group>"; };
 		582BE1012D94A8340059A4D1 /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		582BE1032D94A9D30059A4D1 /* CalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
+		58528F222D9D937700A107F0 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		5892A8702D7B5BB400304BF0 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		589FADF02D6E34DA007890AB /* figology-v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "figology-v2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		589FADF32D6E34DA007890AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				90E424712D78D0A400EF8B8C /* FoodViewController.swift */,
+				58528F222D9D937700A107F0 /* SearchViewController.swift */,
 			);
 			path = "Food View Controllers";
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				582934AC2D8514E2000033C7 /* SignUpViewController.swift in Sources */,
 				589FADFE2D6E34DA007890AB /* figology_v2.xcdatamodeld in Sources */,
 				582BE0F72D9499460059A4D1 /* ProfileCell.swift in Sources */,
+				58528F232D9D937700A107F0 /* SearchViewController.swift in Sources */,
 				582BE0F42D9497BF0059A4D1 /* Setting.swift in Sources */,
 				582BE0FB2D949ADF0059A4D1 /* LogOutCell.swift in Sources */,
 				5892A8712D7B5BB400304BF0 /* Food.swift in Sources */,
