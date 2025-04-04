@@ -12,7 +12,7 @@ struct FoodData: Decodable {
     let branded: [FoodRequest]
 }
 
-struct Food {
+struct Food: Codable {
     let food: String
     let fibrePerGram: Double
     let brandName: String
@@ -45,9 +45,5 @@ struct RawFood: Decodable {
     var serving_weight_grams: Double
 }
 
-struct RawMeasure: Decodable {
-    let serving_weight: Double
-    let measure: String
-    let qty: Int
-}
+
 

@@ -7,8 +7,14 @@
 
 import Foundation
 
-struct Measure: Decodable {
+struct Measure: Codable {
     let measureExpression: String
     let measureMass: Double
+    
 }
 
+struct RawMeasure: Decodable {
+    let serving_weight: Double
+    let measure: String
+    let qty: Int
+}

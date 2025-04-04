@@ -33,6 +33,9 @@
 		589FADFE2D6E34DA007890AB /* figology_v2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 589FADFC2D6E34DA007890AB /* figology_v2.xcdatamodeld */; };
 		589FAE002D6E34DB007890AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 589FADFF2D6E34DB007890AB /* Assets.xcassets */; };
 		589FAE032D6E34DB007890AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 589FAE012D6E34DB007890AB /* LaunchScreen.storyboard */; };
+		58B29EB92D9D9BEC002F6FA0 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B29EB82D9D9BEC002F6FA0 /* ResultViewController.swift */; };
+		58B29EBB2D9D9F96002F6FA0 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B29EBA2D9D9F96002F6FA0 /* FirebaseManager.swift */; };
+		58B29EBD2D9F5CEC002F6FA0 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B29EBC2D9F5CEC002F6FA0 /* PickerViewController.swift */; };
 		58FC741E2D91CF500007FC3E /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FC741C2D91CF500007FC3E /* FoodCell.swift */; };
 		58FC741F2D91CF500007FC3E /* FoodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58FC741D2D91CF500007FC3E /* FoodCell.xib */; };
 		90E424722D78D0D900EF8B8C /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E424712D78D0A400EF8B8C /* FoodViewController.swift */; };
@@ -70,6 +73,9 @@
 		589FADFF2D6E34DB007890AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		589FAE022D6E34DB007890AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		589FAE042D6E34DB007890AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		58B29EB82D9D9BEC002F6FA0 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		58B29EBA2D9D9F96002F6FA0 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		58B29EBC2D9F5CEC002F6FA0 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		58FC741C2D91CF500007FC3E /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		58FC741D2D91CF500007FC3E /* FoodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoodCell.xib; sourceTree = "<group>"; };
 		90E424712D78D0A400EF8B8C /* FoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +135,8 @@
 			children = (
 				90E424712D78D0A400EF8B8C /* FoodViewController.swift */,
 				58528F222D9D937700A107F0 /* SearchViewController.swift */,
+				58B29EB82D9D9BEC002F6FA0 /* ResultViewController.swift */,
+				58B29EBC2D9F5CEC002F6FA0 /* PickerViewController.swift */,
 			);
 			path = "Food View Controllers";
 			sourceTree = "<group>";
@@ -140,6 +148,7 @@
 				582934AF2D89E195000033C7 /* Measure.swift */,
 				582934B12D8A1B9B000033C7 /* FibreCallManager.swift */,
 				582BE0F32D9497BF0059A4D1 /* Setting.swift */,
+				58B29EBA2D9D9F96002F6FA0 /* FirebaseManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -343,8 +352,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58B29EBB2D9D9F96002F6FA0 /* FirebaseManager.swift in Sources */,
 				9F2358AB2D942F3D001B3F1A /* CalendarViewController.swift in Sources */,
 				582934B22D8A1B9B000033C7 /* FibreCallManager.swift in Sources */,
+				58B29EBD2D9F5CEC002F6FA0 /* PickerViewController.swift in Sources */,
 				582BE1022D94A8340059A4D1 /* SupportViewController.swift in Sources */,
 				582934B42D8A1D3B000033C7 /* TabBarController.swift in Sources */,
 				589FADF82D6E34DA007890AB /* WelcomeViewController.swift in Sources */,
@@ -353,6 +364,7 @@
 				582BE0F22D9497B00059A4D1 /* ProfileViewController.swift in Sources */,
 				582934B02D89E195000033C7 /* Measure.swift in Sources */,
 				582934AE2D851A4B000033C7 /* LogInViewController.swift in Sources */,
+				58B29EB92D9D9BEC002F6FA0 /* ResultViewController.swift in Sources */,
 				589FADF42D6E34DA007890AB /* AppDelegate.swift in Sources */,
 				582BE1002D94A62D0059A4D1 /* ProfilePasswordViewController.swift in Sources */,
 				589FADF62D6E34DA007890AB /* SceneDelegate.swift in Sources */,
