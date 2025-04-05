@@ -13,8 +13,8 @@ struct FibreCallManager {
     
     let headers = [
             "Content-Type": "application/x-www-form-urlencoded",
-            "x-app-id": "c1358ca9",
-            "x-app-key": "7ecc612b2d7418187f2187710a7da088",
+            "x-app-id": "94ea4728",
+            "x-app-key": "c86188b486f07e88de9cdc2c415a9432",
             "x-remote-user-id": "0"
     ]
     
@@ -131,6 +131,7 @@ struct FibreCallManager {
                 let parsedMeasure = Measure(measureExpression: altMeasureExpression, measureMass: measureMass)
                 altMeasures.append(parsedMeasure)
             }
+            altMeasures.append(servingMeasure)
             
             let parsedFood = Food(food: foodName, fibrePerGram: fibrePerGram, brandName: brandName, measures: altMeasures, selectedMeasure: servingMeasure, multiplier: servingGrams)
             return parsedFood

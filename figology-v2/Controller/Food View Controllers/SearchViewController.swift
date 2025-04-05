@@ -11,8 +11,8 @@ import FLAnimatedImage
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate, UITableViewDataSource {
     
-    var searchList: [Food?] = [Food(food: "banana", fibrePerGram: 3.2, brandName: "Common", measures: [Measure(measureExpression: "cup", measureMass: 234)], selectedMeasure: Measure(measureExpression: "cup", measureMass: 234), multiplier: 234)]
-    //var searchList: [Food?] = []
+    var searchList: [Food?] = [Food(food: "banana", fibrePerGram: 3.2, brandName: "Common", measures: [Measure(measureExpression: "cup", measureMass: 234)], selectedMeasure: Measure(measureExpression: "cup", measureMass: 234), multiplier: 234), Food(food: "cheese", fibrePerGram: 3.2, brandName: "not common", measures: [Measure(measureExpression: "cup", measureMass: 234)], selectedMeasure: Measure(measureExpression: "ml", measureMass: 234), multiplier: 23)]
+    // var searchList: [Food?] = []
     var selectedFood: Food? = nil
     var logoView: FLAnimatedImageView!
     let fibreCallManager = FibreCallManager()
@@ -88,39 +88,43 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITextFieldDe
     func textFieldDidEndEditing(_ textField: UITextField) {
         if let food = searchTextField.text {
             self.searchList.removeAll()
-            self.resultsTableView.reloadData()
-            let foodRequest = fibreCallManager.prepareFoodRequest(foodSearch: food)
-            fibreCallManager.performFoodRequest(request: foodRequest) { results in
-                var fibreRequests: [URLRequest?] = []
-                for result in results {
-                    let fibreRequest = self.fibreCallManager.prepareFibreRequest(foodRequest: result)
-                    fibreRequests.append(fibreRequest)
-                }
-                let dispatchGroup = DispatchGroup()
-
-                for fibreRequest in fibreRequests {
-                    dispatchGroup.enter()
-                    self.fibreCallManager.performFibreRequest(request: fibreRequest) { parsedFood in
-                        if let safeFood = parsedFood {
-                            self.searchList.append(safeFood)
-                        }
-                        dispatchGroup.leave()
-                    }
-
-                }
+            getFibreData(foodString: food) { 
                 DispatchQueue.main.async {
-                                        
                     self.resultsTableView.heightAnchor.constraint(equalToConstant: CGFloat(62*self.searchList.count)).isActive = true
                     self.logoView.isHidden = true
                     self.resultsTableView.reloadData()
-                    
-                    
-                    // let indexPath = IndexPath(row: self.searchList.count - 1, section: 0)
-                    // self.resultsTableView.scrollToRow(at: indexPath, at: .top, animated: false)
                 }
             }
         }
         searchTextField.text = ""
+    }
+
+    func getFibreData(foodString: String, completion: @escaping () -> Void) {
+        let foodRequest = fibreCallManager.prepareFoodRequest(foodSearch: foodString)
+        fibreCallManager.performFoodRequest(request: foodRequest) { results in
+            var fibreRequests: [URLRequest?] = []
+            for result in results {
+                let fibreRequest = self.fibreCallManager.prepareFibreRequest(foodRequest: result)
+                fibreRequests.append(fibreRequest)
+            }
+            
+            let dispatchGroup = DispatchGroup()
+            
+            for fibreRequest in fibreRequests {
+                dispatchGroup.enter()
+                
+                self.fibreCallManager.performFibreRequest(request: fibreRequest) { parsedFood in
+                    if let safeFood = parsedFood {
+                        self.searchList.append(safeFood)
+                    }
+                    dispatchGroup.leave()
+                }
+            }
+            
+            dispatchGroup.notify(queue: .main) {
+                completion()
+            }
+        }
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
@@ -137,7 +141,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITextFieldDe
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchList.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.foodCellIdentifier, for: indexPath) as! FoodCell
         let cellFood = searchList[indexPath.row]
@@ -145,7 +149,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         let descriptionString = "\(cellFood!.brandName), \(cellFood!.multiplier) g"
         cell.foodDescriptionLabel.text = descriptionString
         cell.fibreMassLabel.text = "\(String(format: "%.1f", cellFood!.fibrePerGram*cellFood!.multiplier)) g"
-
+        
         return cell
     }
     
@@ -157,12 +161,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITextFieldDe
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == K.searchResultSegue {
-                
-                let destinationVC = segue.destination as! ResultViewController
-                destinationVC.selectedFood = selectedFood
-            }
+        if segue.identifier == K.searchResultSegue {
+            
+            let destinationVC = segue.destination as! ResultViewController
+            destinationVC.selectedFood = selectedFood
         }
+    }
 }
 
 
