@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Firebase
+import SwiftUI
 
 class FoodViewController: UIViewController {
     
@@ -103,5 +104,28 @@ extension FoodViewController: UITableViewDelegate {
             print(tableData)
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
+    }
+}
+
+struct FoodView: UIViewControllerRepresentable {
+    let date: Date
+
+    func makeUIViewController(context: Context) -> FoodViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "FoodViewController") as! FoodViewController
+        
+        // Convert the Date to a String
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd" // Should match the format used in firebaseManager.formatDate()
+        let formattedDate = dateFormatter.string(from: date)
+        
+        // Pass the formatted date to the FoodViewController's dateString property
+        vc.dateString = formattedDate
+        
+        return vc
+    }
+
+    func updateUIViewController(_ uiViewController: FoodViewController, context: Context) {
+        // No updates needed
     }
 }
