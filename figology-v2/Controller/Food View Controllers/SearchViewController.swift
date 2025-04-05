@@ -62,29 +62,25 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITextFieldDe
     }
     
     @IBAction func searchPressed(_ sender: UIButton) {
-        
-        if searchTextField.text != "" {
-            searchTextField.endEditing(true)
-            logoView.isHidden = false
-            loadAnimatedGIF()
-            
-        } else {
-            searchTextField.placeholder = "Enter a food"
-        }
+        loadingUIUpdate()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        loadingUIUpdate()
+        return searchTextField.placeholder != "Enter a food"
+    }
+    
+    func loadingUIUpdate() {
         if searchTextField.text != "" {
+            searchList.removeAll()
+            resultsTableView.reloadData()
             searchTextField.endEditing(true)
             logoView.isHidden = false
             loadAnimatedGIF()
-            return true
         } else {
             searchTextField.placeholder = "Enter a food"
-            return false
         }
     }
-    
     func textFieldDidEndEditing(_ textField: UITextField) {
         if let food = searchTextField.text {
             self.searchList.removeAll()
