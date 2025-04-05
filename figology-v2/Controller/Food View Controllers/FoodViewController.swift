@@ -116,7 +116,7 @@ struct FoodView: UIViewControllerRepresentable {
         
         // Convert the Date to a String
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd" // Should match the format used in firebaseManager.formatDate()
+        dateFormatter.dateFormat = "yy_MM_dd" // Should match the format used in firebaseManager.formatDate()
         let formattedDate = dateFormatter.string(from: date)
         
         // Pass the formatted date to the FoodViewController's dateString property
