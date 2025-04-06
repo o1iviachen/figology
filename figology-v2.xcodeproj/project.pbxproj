@@ -209,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				589FADF92D6E34DA007890AB /* Main.storyboard */,
+				58FC741C2D91CF500007FC3E /* FoodCell.swift */,
 				58FC741D2D91CF500007FC3E /* FoodCell.xib */,
 				582BE0F52D9499460059A4D1 /* ProfileCell.swift */,
 				582BE0F62D9499460059A4D1 /* ProfileCell.xib */,
@@ -222,7 +223,6 @@
 			isa = PBXGroup;
 			children = (
 				0CF3D52F4EE9277E57D45AC7 /* Pods-figology-v2.debug.xcconfig */,
-				58FC741C2D91CF500007FC3E /* FoodCell.swift */,
 				A619491DA545C473B161A1F4 /* Pods-figology-v2.release.xcconfig */,
 			);
 			path = Pods;

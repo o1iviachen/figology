@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol PickerViewControllerDelegate: AnyObject {
+    func didSelectValue(value: Any)
+}
+
 class PickerViewController: UIViewController {
     
-    var options: [String] = []
+    weak var delegate: PickerViewControllerDelegate?
+    var options: [Any] = []
+    var modifiedOptions: [String] = []
     
     @IBOutlet weak var informationPicker: UIPickerView!
     
@@ -21,15 +27,26 @@ class PickerViewController: UIViewController {
             sheet.detents = [.medium()]
         }
         
+        if let checkedOptions = options as? [String] {
+            modifiedOptions = checkedOptions
+        } else {
+            modifiedOptions = options.map { ($0 as! Measure).measureExpression }
+        }
+        
         // picker need better positioning
-
+    
     }
 }
 
 extension PickerViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return options[row]
+        return modifiedOptions[row]
     }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let selectedValue = options[row]
+        delegate?.didSelectValue(value: selectedValue)
+    }
+    
 }
 
 extension PickerViewController: UIPickerViewDataSource {
@@ -38,7 +55,7 @@ extension PickerViewController: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return options.count
+        return modifiedOptions.count
     }
     
     

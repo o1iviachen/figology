@@ -10,7 +10,7 @@ import Firebase
 import FLAnimatedImage
 
 class ResultViewController: UIViewController, UITextFieldDelegate {
-    var pickerOptions: [String] = []
+    var rawPickerOptions: [Any] = []
     var measureQuantity = 0.0
     var fibreMass = 0.0
     var measureList: [Measure] = []
@@ -36,12 +36,21 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
         if dateString == nil {
             dateString = firebaseManager.formatDate()
         }
-        foodLabel.text = selectedFood!.food
-        fibreLabel.text = "\(String(format: "%.1f", selectedFood!.fibrePerGram*selectedFood!.multiplier)) g"
-        descriptionLabel.text = "\(selectedFood!.brandName), \(String(format: "%.1f", selectedFood!.selectedMeasure.measureMass*selectedFood!.multiplier))"
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(tapGesture)
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeGesture.direction = .down
+        view.addGestureRecognizer(swipeGesture)
         servingTextField.delegate = self
-        servingMeasureButton.setTitle(selectedFood!.selectedMeasure.measureExpression, for: .normal)
+        updateUI()
+    }
+    
+    func updateUI() {
+        foodLabel.text = selectedFood!.food
+        fibreLabel.text = "\(String(format: "%.1f", selectedFood!.fibrePerGram*selectedFood!.selectedMeasure.measureMass*selectedFood!.multiplier)) g"
+        descriptionLabel.text = "\(selectedFood!.brandName), \(String(format: "%.1f", selectedFood!.selectedMeasure.measureMass*selectedFood!.multiplier)) g"
         mealButton.setTitle(meal, for: .normal)
+        servingMeasureButton.setTitle(selectedFood!.selectedMeasure.measureExpression, for: .normal)
         //        if UserDefaults.standard.integer(forKey: "proteinGoal") != 0 {
         //            DispatchQueue.main.async {
         //                self.progressLabel.text = "This is \(Int((Float(self.proteinAmount)/Float(UserDefaults.standard.integer(forKey: "proteinGoal"))*100)))% of your daily goal!"
@@ -53,18 +62,17 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
         //                self.progressBar.isHidden = true
         //            }
         //        }
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        view.addGestureRecognizer(tapGesture)
-        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
-        swipeGesture.direction = .down
-        view.addGestureRecognizer(swipeGesture)
     }
     
     @objc func handleSwipe() {
+        selectedFood!.multiplier = Double(servingTextField.text!)!
+        updateUI()
         servingTextField.resignFirstResponder()
     }
     
     @objc func handleTap() {
+        selectedFood!.multiplier = Double(servingTextField.text!)!
+        updateUI()
         servingTextField.resignFirstResponder()
     }
     
@@ -77,15 +85,15 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
             return false
         }
         
-    } 
+    }
     
     @IBAction func mealButtonSelected(_ sender: UIButton) {
-        pickerOptions = ["breakfast", "lunch", "dinner", "snacks"]
+        rawPickerOptions = ["breakfast", "lunch", "dinner", "snacks"]
         performSegue(withIdentifier: K.resultPickerSegue, sender: self)
     }
     
     @IBAction func servingButtonSelected(_ sender: UIButton) {
-        pickerOptions = selectedFood!.measures.map { $0.measureExpression }
+        rawPickerOptions = selectedFood!.measures
         performSegue(withIdentifier: K.resultPickerSegue, sender: self)
         
     }
@@ -97,7 +105,7 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
             firebaseManager.removeFood(food: selectedFood!, meal: meal, dateString: dateString!)
             selectedFood!.multiplier = Double(servingTextField.text!)!
             firebaseManager.logFood(food: selectedFood!, meal: mealButton.currentTitle!, dateString: dateString!)
-           } else {
+        } else {
             selectedFood!.multiplier = Double(servingTextField.text!)!
             firebaseManager.logFood(food: selectedFood!, meal: mealButton.currentTitle!, dateString: dateString!)
         }
@@ -105,11 +113,26 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == K.resultPickerSegue {
-                let destinationVC = segue.destination as! PickerViewController
-                destinationVC.options = pickerOptions
-                
-            }
+        if segue.identifier == K.resultPickerSegue {
+            let destinationVC = segue.destination as! PickerViewController
+            destinationVC.delegate = self
+            destinationVC.options = rawPickerOptions
+            
         }
-
+    }
+    
 }
+
+extension ResultViewController: PickerViewControllerDelegate {
+    func didSelectValue(value: Any) {
+        if value is String {
+            // WHY
+            meal = value as! String }
+        else {
+            selectedFood!.selectedMeasure = value as! Measure
+        }
+        updateUI()
+    }
+}
+
+
