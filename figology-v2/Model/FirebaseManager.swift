@@ -82,7 +82,7 @@ struct FirebaseManager {
                                 fibrePerGram: food["fibrePerGram"] as! Double, brandName: food["brandName"] as! String,
                                 measures: measurements,
                                 selectedMeasure: Measure(measureExpression: selectedMeasure["measureExpression"] as! String, measureMass: selectedMeasure["measureMass"] as! Double),
-                                multiplier: food["multiplier"] as! Double
+                                multiplier: 1.0
                             )
                             tableData[mealNames.firstIndex(of: meal)!].append(foodObject)
                         }
