@@ -538,7 +538,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="equalSpacing" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cL4-eL-zsS">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cL4-eL-zsS">
                                 <rect key="frame" x="77" y="213" width="238" height="59.333333333333314"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVK-Aj-RWq">
@@ -551,7 +551,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LN4-Zw-6hC" customClass="Automatic">
-                                        <rect key="frame" x="0.0" y="25.333333333333329" width="238" height="34"/>
+                                        <rect key="frame" x="0.0" y="25.333333333333343" width="238" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="tqR-XF-xhU"/>
                                             <constraint firstAttribute="width" constant="238" id="z5C-VZ-bk7"/>
@@ -561,7 +561,7 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="equalSpacing" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gnE-5F-rMl">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gnE-5F-rMl">
                                 <rect key="frame" x="77" y="347" width="238" height="59.333333333333314"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANs-3z-tfq">
@@ -574,7 +574,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qfa-7g-wbe">
-                                        <rect key="frame" x="0.0" y="25.333333333333329" width="238" height="34"/>
+                                        <rect key="frame" x="0.0" y="25.333333333333314" width="238" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="KGI-Pu-nDP"/>
                                             <constraint firstAttribute="width" constant="238" id="kcp-6L-s0t"/>
@@ -591,15 +591,36 @@
                                     <action selector="googleSignUpPressed:" destination="1CK-Va-YbC" eventType="touchUpInside" id="TT6-dX-tu9"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="miE-aG-iAX">
+                                <rect key="frame" x="178" y="454" width="82" height="34.333333333333314"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Sign up"/>
+                                <connections>
+                                    <action selector="signUpPressed:" destination="1CK-Va-YbC" eventType="touchUpInside" id="JsE-Dy-j1E"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7gR-mC-MUW"/>
                         <color key="backgroundColor" name="AccentColor"/>
                         <constraints>
+                            <constraint firstItem="gnE-5F-rMl" firstAttribute="top" secondItem="cL4-eL-zsS" secondAttribute="bottom" constant="74.670000000000002" id="8er-gL-Rwc"/>
                             <constraint firstItem="9TL-Dr-2wn" firstAttribute="centerX" secondItem="8Z7-Yy-ETR" secondAttribute="centerX" id="ALp-0P-hkR"/>
+                            <constraint firstItem="gnE-5F-rMl" firstAttribute="leading" secondItem="7gR-mC-MUW" secondAttribute="leading" constant="77" id="O3H-XP-hpw"/>
                             <constraint firstItem="9TL-Dr-2wn" firstAttribute="top" secondItem="gnE-5F-rMl" secondAttribute="bottom" constant="60" id="Z1m-4h-Z5k"/>
+                            <constraint firstItem="7gR-mC-MUW" firstAttribute="trailing" secondItem="cL4-eL-zsS" secondAttribute="trailing" constant="78" id="ZHo-ak-Ihl"/>
+                            <constraint firstItem="7gR-mC-MUW" firstAttribute="trailing" secondItem="gnE-5F-rMl" secondAttribute="trailing" constant="78" id="c84-KR-YUO"/>
+                            <constraint firstItem="gnE-5F-rMl" firstAttribute="top" secondItem="cL4-eL-zsS" secondAttribute="bottom" constant="74.670000000000002" id="hac-8J-nmr"/>
+                            <constraint firstItem="cL4-eL-zsS" firstAttribute="top" secondItem="7gR-mC-MUW" secondAttribute="top" constant="110" id="kYM-b4-HcU"/>
+                            <constraint firstItem="cL4-eL-zsS" firstAttribute="leading" secondItem="7gR-mC-MUW" secondAttribute="leading" constant="77" id="wPN-8a-ZGA"/>
+                            <constraint firstItem="miE-aG-iAX" firstAttribute="top" secondItem="gnE-5F-rMl" secondAttribute="bottom" constant="47.670000000000002" id="zjE-yy-Ic6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Kv2-yb-ITV"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="LN4-Zw-6hC" id="MXM-ui-LEI"/>
+                        <outlet property="passwordTextField" destination="qfa-7g-wbe" id="vnm-aw-Fzu"/>
+                        <segue destination="Scl-M2-haP" kind="show" identifier="signUpToCalculator" id="5cV-Le-WvS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XB7-Wg-5Ke" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1259,6 +1280,7 @@
                         <outlet property="heightSlider" destination="seO-kb-1Cz" id="Bbj-BD-jtt"/>
                         <outlet property="weightLabel" destination="ytb-6j-pyq" id="Yoi-wo-BiC"/>
                         <outlet property="weightSlider" destination="lEH-ex-eXL" id="QOx-RP-iE8"/>
+                        <segue destination="yR5-F8-941" kind="show" identifier="calculatorToTab" id="4af-VQ-aJX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7vq-6I-F19" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1337,6 +1359,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="5cV-Le-WvS"/>
+        <segue reference="4af-VQ-aJX"/>
         <segue reference="59y-vI-ggX"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="Dark Purple"/>
