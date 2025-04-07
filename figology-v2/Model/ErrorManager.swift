@@ -7,14 +7,10 @@
 
 import UIKit
 
-
-
 struct ErrorManager {
-    func showError(errorMessage:String,viewController:UIViewController) {
-        let alert = UIAlertController(title: "Error", message: errorMessage,preferredStyle:UIAlertController.Style.alert)
-        
-alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
-        
-        viewController.present(alert, animated: true, completion: nil)
+    func showError(errorMessage: String, viewController: UIViewController) {
+            let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
+            viewController.present(alert, animated: true, completion: nil)
     }
 }
