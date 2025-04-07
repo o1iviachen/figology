@@ -10,6 +10,13 @@ import UIKit
 import Firebase
 
 class CalculatorViewController: UIViewController {
+    var backButtonShow: Bool = false
+    override func viewDidLoad() {
+            super.viewDidLoad()
+            
+            // Set the back button visibility based on backButtonShow
+            navigationItem.hidesBackButton = !backButtonShow
+        }
     
     let bmrValues: [Range<Float>: (multiplier: Float, label: String)] = [
         0.0..<0.2: (1.2, "Sedentary"),
@@ -75,11 +82,18 @@ class CalculatorViewController: UIViewController {
         // Add an UIAlertAction with a handler to perform the segue
         let gotItAction = UIAlertAction(title: "Got It!", style: .default) { (action) in
             // Perform the segue when the "Got It!" button is tapped
-            
+             
             self.db.collection("users").document((Auth.auth().currentUser?.email)!).setData(["fibre_goal": fibreGoal], merge: true)
             // UserDefaults.standard.set(fibreGoal, forKey: "fibreGoal")
-            self.navigationController?.popViewController(animated: true)
-            
+            if let navController = self.navigationController, navController.viewControllers.count >= 2 {
+                 let viewController = navController.viewControllers[navController.viewControllers.count - 2]
+                if viewController is ProfileViewController {
+                    self.navigationController?.popViewController(animated: true)
+                } else {
+                    self.performSegue(withIdentifier: K.calculatorTabSegue, sender: self)
+                }
+            }
+          
             
         }
         alert.addAction(gotItAction)

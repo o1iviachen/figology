@@ -18,6 +18,7 @@ struct K {
     static let logOutCellIdentifier = "LogOutCell"
     static let logOutCellNib = "LogOutCell"
     static let searchSegue = "searchSegue"
+    static let calculatorTabSegue = "calculatorToTab"
     static let signUpCalculatorSegue = "signUpToCalculator"
     static let calculatorMainSegue = "calculatorToMain"
     static let calculatorProSegue = "calculatorToPro"

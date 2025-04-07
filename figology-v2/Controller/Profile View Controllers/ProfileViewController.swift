@@ -135,6 +135,13 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         return nil
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "profileToCalculator" {
+            let destinationVC = segue.destination as! CalculatorViewController
+            destinationVC.backButtonShow = true
+        }
+    }
+    
 }
 
 

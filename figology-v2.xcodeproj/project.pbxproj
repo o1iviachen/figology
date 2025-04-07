@@ -42,6 +42,7 @@
 		9F1A2B4C2D7B661600A432CF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A2B4B2D7B661600A432CF /* Constants.swift */; };
 		9F2358AB2D942F3D001B3F1A /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2358AA2D942F3D001B3F1A /* CalendarViewController.swift */; };
 		9F8594A52D88F40200E21AE2 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */; };
+		9FACCF4F2DA420A100897AE5 /* GoogleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FACCF4E2DA420A100897AE5 /* GoogleManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		9F1A2B4D2D7B678D00A432CF /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		9F2358AA2D942F3D001B3F1A /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+		9FACCF4E2DA420A100897AE5 /* GoogleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleManager.swift; sourceTree = "<group>"; };
 		A619491DA545C473B161A1F4 /* Pods-figology-v2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-figology-v2.release.xcconfig"; path = "Target Support Files/Pods-figology-v2/Pods-figology-v2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,6 +151,7 @@
 				582934B12D8A1B9B000033C7 /* FibreCallManager.swift */,
 				582BE0F32D9497BF0059A4D1 /* Setting.swift */,
 				58B29EBA2D9D9F96002F6FA0 /* FirebaseManager.swift */,
+				9FACCF4E2DA420A100897AE5 /* GoogleManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 			children = (
 				589FADF92D6E34DA007890AB /* Main.storyboard */,
 				58FC741D2D91CF500007FC3E /* FoodCell.xib */,
+				58FC741C2D91CF500007FC3E /* FoodCell.swift */,
 				582BE0F52D9499460059A4D1 /* ProfileCell.swift */,
 				582BE0F62D9499460059A4D1 /* ProfileCell.xib */,
 				582BE0F92D949ADF0059A4D1 /* LogOutCell.swift */,
@@ -219,7 +223,6 @@
 			isa = PBXGroup;
 			children = (
 				0CF3D52F4EE9277E57D45AC7 /* Pods-figology-v2.debug.xcconfig */,
-				58FC741C2D91CF500007FC3E /* FoodCell.swift */,
 				A619491DA545C473B161A1F4 /* Pods-figology-v2.release.xcconfig */,
 			);
 			path = Pods;
@@ -370,6 +373,7 @@
 				589FADF62D6E34DA007890AB /* SceneDelegate.swift in Sources */,
 				58FC741E2D91CF500007FC3E /* FoodCell.swift in Sources */,
 				9F1A2B4C2D7B661600A432CF /* Constants.swift in Sources */,
+				9FACCF4F2DA420A100897AE5 /* GoogleManager.swift in Sources */,
 				582934AC2D8514E2000033C7 /* SignUpViewController.swift in Sources */,
 				589FADFE2D6E34DA007890AB /* figology_v2.xcdatamodeld in Sources */,
 				582BE0F72D9499460059A4D1 /* ProfileCell.swift in Sources */,
