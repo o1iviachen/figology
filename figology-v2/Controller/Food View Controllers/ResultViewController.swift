@@ -71,6 +71,7 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func handleTap() {
+        // addr
         selectedFood!.multiplier = Double(servingTextField.text!)!
         updateUI()
         servingTextField.resignFirstResponder()
@@ -81,7 +82,7 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
         if textField.text != "" {
             return true
         } else {
-            textField.text = "1.0"
+            textField.text = "1"
             return false
         }
         

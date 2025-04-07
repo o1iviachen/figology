@@ -10,7 +10,7 @@ import UIKit
 
 class TabBarController: UITabBarController {
     override func viewDidLoad() {
-        navigationItem.setHidesBackButton(true, animated: true)
+        self.navigationItem.setHidesBackButton(true, animated: true)
     }
 }
 

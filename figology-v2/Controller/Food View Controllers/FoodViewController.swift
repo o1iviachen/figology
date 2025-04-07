@@ -111,9 +111,11 @@ struct FoodView: UIViewControllerRepresentable {
     let date: Date
 
     func makeUIViewController(context: Context) -> FoodViewController {
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "FoodViewController") as! FoodViewController
-        
+//        vc.hidesBottomBarWhenPushed = true
+//        vc.tabBarController?.tabBar.backgroundColor = UIColor(red: 242, green: 225, blue: 246, alpha: 1)
         // Convert the Date to a String
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yy_MM_dd" // Should match the format used in firebaseManager.formatDate()
@@ -126,6 +128,6 @@ struct FoodView: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: FoodViewController, context: Context) {
-        // No updates needed
+        print("hi")
     }
 }
