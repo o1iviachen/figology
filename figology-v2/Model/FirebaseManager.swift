@@ -12,14 +12,22 @@ struct FirebaseManager {
     
     let db = Firestore.firestore()
     
+    func formatDate() -> String {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yy_MM_dd"
+        let dateString = dateFormatter.string(from: date)
+        return dateString
+    }
+    
     func logFood(food: Food, meal: String, dateString: String) {
         let encoder = JSONEncoder()
         do {
             let foodData = try encoder.encode(food)
             if let foodDictionary = try JSONSerialization.jsonObject(with: foodData, options: []) as? [String: Any] {
-                db.collection("users").document((Auth.auth().currentUser?.email)!).updateData([
-                    dateString: [meal: FieldValue.arrayRemove([foodDictionary])]
-                ]) { err in
+                db.collection("users").document((Auth.auth().currentUser?.email)!).setData([
+                    dateString: [meal: FieldValue.arrayUnion([foodDictionary])]
+                ], merge: true) { err in
                     if let err = err {
                         print("Error updating document: \(err)")
                     } else {
@@ -36,8 +44,8 @@ struct FirebaseManager {
     func fetchFoods(dateString: String, completion: @escaping ([[Food]]) -> Void) {
         var tableData: [[Food]] = [[],[],[],[]]
         let mealNames = ["breakfast", "lunch", "dinner", "snacks"]
-        db.collection("users").document((Auth.auth().currentUser?.email)!).addSnapshotListener { documentSnapshot, error in
-            guard let document = documentSnapshot else {
+        db.collection("users").document((Auth.auth().currentUser?.email)!).getDocument { document, error in
+            guard let document = document else {
                 print("Error fetching document: \(error!)")
                 completion(tableData)
                 return
@@ -47,14 +55,16 @@ struct FirebaseManager {
                 completion(tableData)
                 return
             }
+            
             let dateData = document.data()?[dateString] as? [String: Any]
             
             // Check if data is not nil
-            if dateData != nil {
+            if let safeData = dateData {
                 // Clear the existing table data
                 for meal in mealNames {
-                    if let foods = dateData?[meal] as? [[String: Any]] {
+                    if let foods = safeData[meal] as? [[String: Any]] {
                         for food in foods {
+                            print(foods)
                             var measurements: [Measure] = []
                             if let retrievedMeasures = food["measures"] as? [AnyObject] {
                                 for measurement in retrievedMeasures {
@@ -66,12 +76,13 @@ struct FirebaseManager {
                                     }
                                 }
                             }
+                            let selectedMeasure = food["selectedMeasure"] as! [String: Any]
                             let foodObject = Food(
                                 food: food["food"] as! String,
                                 fibrePerGram: food["fibrePerGram"] as! Double, brandName: food["brandName"] as! String,
                                 measures: measurements,
-                                selectedMeasure: food["selectedMeasure"] as! Measure,
-                                multiplier: food["multiplier"] as! Double
+                                selectedMeasure: Measure(measureExpression: selectedMeasure["measureExpression"] as! String, measureMass: selectedMeasure["measureMass"] as! Double),
+                                multiplier: 1.0
                             )
                             tableData[mealNames.firstIndex(of: meal)!].append(foodObject)
                         }
@@ -84,12 +95,14 @@ struct FirebaseManager {
         }
     }
     
+    // arrayUnion() adds elements to an array but only elements not already present.
+    
+    
     func removeFood(food: Food, meal: String, dateString: String) {
         let encoder = JSONEncoder()
         do {
             let foodData = try encoder.encode(food)
             if let foodDictionary = try JSONSerialization.jsonObject(with: foodData, options: []) as? [String: Any] {
-                print(foodDictionary)
                 db.collection("users").document((Auth.auth().currentUser?.email)!).updateData([
                     dateString: [meal: FieldValue.arrayRemove([foodDictionary])]
                 ]) { err in
