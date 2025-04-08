@@ -190,7 +190,8 @@
                     <connections>
                         <outlet property="emailTextField" destination="SaZ-XH-p2y" id="DgA-UX-5lW"/>
                         <outlet property="passwordTextField" destination="Vzq-8w-KxL" id="Uwq-bd-vgD"/>
-                        <segue destination="yR5-F8-941" kind="show" identifier="LogInToMain" id="WRm-FH-wBV"/>
+                        <segue destination="yR5-F8-941" kind="show" identifier="logInToTab" id="WRm-FH-wBV"/>
+                        <segue destination="Scl-M2-haP" kind="show" identifier="logInToCalculator" id="Mqm-F3-hHP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UrZ-3e-QUc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -624,6 +625,7 @@
                         <outlet property="emailTextField" destination="LN4-Zw-6hC" id="MXM-ui-LEI"/>
                         <outlet property="passwordTextField" destination="qfa-7g-wbe" id="vnm-aw-Fzu"/>
                         <segue destination="Scl-M2-haP" kind="show" identifier="signUpToCalculator" id="5cV-Le-WvS"/>
+                        <segue destination="yR5-F8-941" kind="show" identifier="signUpToTab" id="0fQ-Cv-ylB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XB7-Wg-5Ke" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -726,7 +728,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LOS-s1-2a0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2675.5725190839694" y="-218.3098591549296"/>
+            <point key="canvasLocation" x="2645" y="-265"/>
         </scene>
         <!--Calendar View Controller -->
         <scene sceneID="lPx-k9-IqG">
@@ -1311,7 +1313,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7vq-6I-F19" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5172" y="-127"/>
+            <point key="canvasLocation" x="5453" y="-218"/>
         </scene>
         <!--Food View Controller-->
         <scene sceneID="Tv2-UW-qH1">
@@ -1385,7 +1387,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5cV-Le-WvS"/>
+        <segue reference="Mqm-F3-hHP"/>
         <segue reference="WRm-FH-wBV"/>
         <segue reference="59y-vI-ggX"/>
     </inferredMetricsTieBreakers>

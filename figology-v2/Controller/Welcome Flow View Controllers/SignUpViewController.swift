@@ -87,13 +87,13 @@ class SignUpViewController: UIViewController {
                                                         if let err = err {
                                                             self.showError(errorMessage: err.localizedDescription)
                                                         } else {
-                                                            // self.performSegue(withIdentifier: K.signUpCalculatorSegue, sender: self)
+                                                             self.performSegue(withIdentifier: K.signUpCalculatorSegue, sender: self)
                                                         }
                                                     }
                                                 }
                                             }
                                         } else {
-                                            self.performSegue(withIdentifier: K.mainSignUpSegue, sender: self)
+                                            self.performSegue(withIdentifier: K.signUpTabSegue, sender: self)
                                         }
                                     }
                                     

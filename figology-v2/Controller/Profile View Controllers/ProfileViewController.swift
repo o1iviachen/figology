@@ -17,8 +17,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
     
     override func viewWillAppear(_ animated: Bool) {
+        userLabel.text = "Current user: \((Auth.auth().currentUser?.email)!)"
         if let index = self.tableView.indexPathForSelectedRow {
             self.tableView.deselectRow(at: index, animated: true)
+            
             // fibreLabel.text = "Fibre goal: \(UserDefaults.standard.integer(forKey: "fibreGoal"))g"
 
         }

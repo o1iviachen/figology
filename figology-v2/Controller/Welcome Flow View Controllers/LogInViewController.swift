@@ -35,7 +35,7 @@ class LogInViewController: UIViewController {
                 if let e = error {
                     self.showError(errorMessage: e.localizedDescription)
                 } else {
-                    self.performSegue(withIdentifier: K.mainLogInSegue, sender: self)
+                    self.performSegue(withIdentifier: K.logInTabSegue, sender: self)
                 }
             }
         }
@@ -72,13 +72,12 @@ class LogInViewController: UIViewController {
                                         if let err = err {
                                             self.showError(errorMessage: err.localizedDescription)
                                         } else {
-                                            // self.performSegue(withIdentifier: K.logInCalculatorSegue, sender: self)
+                                            self.performSegue(withIdentifier: K.logInCalculatorSegue, sender: self)
                                             print("yay!")
                                         }
                                     }
                                 } else {
-                                    self.performSegue(withIdentifier: K.mainLogInSegue, sender: self)
-                                    print("yay!")
+                                    self.performSegue(withIdentifier: K.logInTabSegue, sender: self)
                                 }
                             }
                         }

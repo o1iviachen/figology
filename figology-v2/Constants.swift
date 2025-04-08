@@ -9,10 +9,8 @@ import Foundation
 import UIKit
 
 struct K {
-    static let logInSegue = "WelcomeToLogIn"
-    static let signUpSegue = "WelcomeToSignUp"
-    static let mainLogInSegue = "LogInToMain"
-    static let mainSignUpSegue = "SignUpToMain"
+    static let logInTabSegue = "logInToTab"
+    static let signUpTabSegue = "signUpToTab"
     static let profileCellIdentifier = "ProfileCell"
     static let foodCellIdentifier = "FoodCell"
     static let logOutCellIdentifier = "LogOutCell"
