@@ -112,7 +112,7 @@ struct FibreCallManager {
             let decodedData = try decoder.decode(FibreData.self, from: fibreData)
             let food = decodedData.foods[0]
             let foodName = food.food_name
-            let brandName = food.brand_name ?? "Unbranded"
+            let brandName = food.brand_name ?? "unbranded"
             let servingFibre = food.nf_dietary_fiber
             let servingUnit = food.serving_unit
             let servingQuantity = food.serving_qty
@@ -133,7 +133,7 @@ struct FibreCallManager {
             }
             altMeasures.append(servingMeasure)
             
-            let parsedFood = Food(food: foodName, fibrePerGram: fibrePerGram, brandName: brandName, measures: altMeasures, selectedMeasure: servingMeasure, multiplier: servingGrams)
+            let parsedFood = Food(food: foodName, fibrePerGram: fibrePerGram, brandName: brandName, measures: altMeasures, selectedMeasure: servingMeasure, multiplier: 1.0)
             return parsedFood
             
         } catch {

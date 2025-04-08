@@ -21,29 +21,36 @@ struct FirebaseManager {
     }
     
     func logFood(food: Food, meal: String, dateString: String) {
-        let encoder = JSONEncoder()
-        do {
-            let foodData = try encoder.encode(food)
-            if let foodDictionary = try JSONSerialization.jsonObject(with: foodData, options: []) as? [String: Any] {
-                db.collection("users").document((Auth.auth().currentUser?.email)!).setData([
-                    dateString: [meal: FieldValue.arrayUnion([foodDictionary])]
-                ], merge: true) { err in
-                    if let err = err {
-                        print("Error updating document: \(err)")
-                    } else {
-                        print("Document successfully updated")
+        fetchFibreIntake(dateString: dateString) { currentIntake in
+            var changedIntake = currentIntake
+            changedIntake += food.fibrePerGram*food.selectedMeasure.measureMass*food.multiplier
+            // ugly
+            let encoder = JSONEncoder()
+            do {
+                let foodData = try encoder.encode(food)
+                if let foodDictionary = try JSONSerialization.jsonObject(with: foodData, options: []) as? [String: Any] {
+                    db.collection("users").document((Auth.auth().currentUser?.email)!).setData([
+                        dateString: [meal: FieldValue.arrayUnion([foodDictionary]), "fibreIntake": changedIntake]
+                    ], merge: true) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            print("Document successfully updated")
+                        }
                     }
                 }
+            } catch {
+                print("Error encoding food object: \(error)")
             }
-        } catch {
-            print("Error encoding food object: \(error)")
         }
+        
         
     }
     
     func fetchFoods(dateString: String, completion: @escaping ([[Food]]) -> Void) {
         var tableData: [[Food]] = [[],[],[],[]]
         let mealNames = ["breakfast", "lunch", "dinner", "snacks"]
+        // do change
         db.collection("users").document((Auth.auth().currentUser?.email)!).getDocument { document, error in
             guard let document = document else {
                 print("Error fetching document: \(error!)")
@@ -99,24 +106,70 @@ struct FirebaseManager {
     
     
     func removeFood(food: Food, meal: String, dateString: String) {
-        let encoder = JSONEncoder()
-        do {
-            let foodData = try encoder.encode(food)
-            if let foodDictionary = try JSONSerialization.jsonObject(with: foodData, options: []) as? [String: Any] {
-                db.collection("users").document((Auth.auth().currentUser?.email)!).updateData([
-                    dateString: [meal: FieldValue.arrayRemove([foodDictionary])]
-                ]) { err in
-                    if let err = err {
-                        print("Error updating document: \(err)")
-                    } else {
-                        print("Document successfully updated!")
+        fetchFibreIntake(dateString: dateString) { currentIntake in
+            var changedIntake = currentIntake
+            changedIntake -= food.fibrePerGram*food.selectedMeasure.measureMass*food.multiplier
+            let encoder = JSONEncoder()
+            do {
+                let foodData = try encoder.encode(food)
+                if let foodDictionary = try JSONSerialization.jsonObject(with: foodData, options: []) as? [String: Any] {
+                    db.collection("users").document((Auth.auth().currentUser?.email)!).updateData([
+                        dateString: [meal: FieldValue.arrayRemove([foodDictionary]), "fibreIntake": changedIntake]
+                    ]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            print("Document successfully updated!")
+                        }
                     }
+                    
                 }
-                
+            } catch {
+                print("Error encoding food object: \(error)")
             }
-        } catch {
-            print("Error encoding food object: \(error)")
         }
+    }
+    
+    func fetchFibreGoal(completion: @escaping (Int?) -> Void) {
+        var fibreGoal: Int? = nil
+        db.collection("users").document((Auth.auth().currentUser?.email)!).getDocument { document, error in
+            guard let document = document else {
+                print("Error fetching document: \(error!)")
+                completion(fibreGoal)
+                return
+            }
+            guard document.data() != nil else {
+                print("Document was empty.")
+                completion(fibreGoal)
+                return
+            }
+            fibreGoal = document.data()?["fibreGoal"] as? Int
+            completion(fibreGoal)
+        }
+        
+    }
+    
+    func fetchFibreIntake(dateString: String, completion: @escaping (Double) -> Void) {
+        var fibreIntake: Double = 0.0
+        db.collection("users").document((Auth.auth().currentUser?.email)!).getDocument { document, error in
+            guard let document = document else {
+                print("Error fetching document: \(error!)")
+                completion(fibreIntake)
+                return
+            }
+            guard document.data() != nil else {
+                print("Document was empty.")
+                completion(fibreIntake)
+                return
+            }
+            if let currentDate = document.data()?[dateString] as? [String: Any] {
+                if let currentFibreIntake = currentDate["fibreIntake"] {
+                    fibreIntake = currentFibreIntake as! Double
+                }
+            }
+            completion(fibreIntake)
+        }
+        
     }
     
 }

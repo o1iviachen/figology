@@ -142,9 +142,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         let cell = tableView.dequeueReusableCell(withIdentifier: K.foodCellIdentifier, for: indexPath) as! FoodCell
         let cellFood = searchList[indexPath.row]
         cell.foodNameLabel.text = cellFood!.food
-        let descriptionString = "\(cellFood!.brandName), \(cellFood!.multiplier) g"
+        let descriptionString = "\(cellFood!.brandName), \(String(format: "%.1f", cellFood!.multiplier*cellFood!.selectedMeasure.measureMass)) g"
         cell.foodDescriptionLabel.text = descriptionString
-        cell.fibreMassLabel.text = "\(String(format: "%.1f", cellFood!.fibrePerGram*cellFood!.multiplier)) g"
+        cell.fibreMassLabel.text = "\(String(format: "%.1f", cellFood!.fibrePerGram*cellFood!.multiplier*cellFood!.selectedMeasure.measureMass)) g"
         
         return cell
     }

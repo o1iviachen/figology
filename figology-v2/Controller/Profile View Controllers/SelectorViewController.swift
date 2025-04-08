@@ -16,7 +16,7 @@ class SelectorViewController: UIViewController {
     let db = Firestore.firestore()
     
     @IBAction func fibreChanged(_ sender: UISlider) {
-        fibreLabel.text = "\(String(Int(sender.value)))g"
+        fibreLabel.text = "\(String(Int(sender.value))) g"
     }
     
     @IBAction func confirmPressed(_ sender: UIButton) {
@@ -26,7 +26,7 @@ class SelectorViewController: UIViewController {
     }
     
     func showResult(fibreAmount: Int) {
-        let alert = UIAlertController(title: "Completed!", message: "Your fibre goal is now \(fibreAmount)g. You can change this at any time on the profile page.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Completed!", message: "Your fibre goal is now \(fibreAmount) g. You can change this at any time on the profile page.", preferredStyle: .alert)
         
         // Add an UIAlertAction with a handler to perform the segue
         let gotItAction = UIAlertAction(title: "Got It!", style: .default) { (action) in
@@ -34,12 +34,12 @@ class SelectorViewController: UIViewController {
             if self.canPerformSegue(withIdentifier: K.proMainSegue) {
                 self.performSegue(withIdentifier: K.proMainSegue, sender: self)
                 
-                self.db.collection("users").document((Auth.auth().currentUser?.email)!).setData([ "fibre_goal": fibreAmount], merge: true)
+                self.db.collection("users").document((Auth.auth().currentUser?.email)!).setData([ "fibreGoal": fibreAmount], merge: true)
                 // UserDefaults.standard.set(fibreAmount, forKey: "fibreGoal")
 
             } else {
                 UserDefaults.standard.set(fibreAmount, forKey: "fibreGoal")
-                self.db.collection("users").document((Auth.auth().currentUser?.email)!).setData([ "fibre_goal": fibreAmount], merge: true)
+                self.db.collection("users").document((Auth.auth().currentUser?.email)!).setData([ "fibreGoal": fibreAmount], merge: true)
                 self.navigationController?.popViewController(animated: true)
 
                 

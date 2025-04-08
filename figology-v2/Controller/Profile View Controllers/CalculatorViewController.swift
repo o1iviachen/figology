@@ -19,11 +19,11 @@ class CalculatorViewController: UIViewController {
         }
     
     let bmrValues: [Range<Float>: (multiplier: Float, label: String)] = [
-        0.0..<0.2: (1.2, "Sedentary"),
-        0.2..<0.4: (1.375, "Slightly Active"),
-        0.4..<0.6: (1.55, "Moderately Active"),
-        0.6..<0.8: (1.725, "Moderately Active"),
-        0.8..<1.1: (1.9, "Very Active")
+        0.0..<0.2: (1.2, "sedentary"),
+        0.2..<0.4: (1.375, "slightly active"),
+        0.4..<0.8: (1.55, "moderately active"),
+        0.6..<0.8: (1.725, "fairly active"),
+        0.8..<1.1: (1.9, "very active")
     ]
     
     let db = Firestore.firestore()
@@ -69,7 +69,8 @@ class CalculatorViewController: UIViewController {
         
         for (range, (multiplier, _)) in bmrValues {
             if range.contains(activity) {
-                    let calculatedGoal = Int(multiplier*bmr)
+                let baselineFibre = bmr/1000*14
+                    let calculatedGoal = Int(multiplier*baselineFibre)
                     showResult(fibreGoal: calculatedGoal)
                 }
             }
@@ -77,14 +78,11 @@ class CalculatorViewController: UIViewController {
     }
     
     func showResult(fibreGoal: Int) {
-        let alert = UIAlertController(title: "Completed!", message: "Your fibre goal is now \(fibreGoal)g. You can change this at any time on the profile page.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Completed!", message: "Your fibre goal is now \(fibreGoal) g. You can change this at any time on the profile page.", preferredStyle: .alert)
         
-        // Add an UIAlertAction with a handler to perform the segue
         let gotItAction = UIAlertAction(title: "Got It!", style: .default) { (action) in
-            // Perform the segue when the "Got It!" button is tapped
              
-            self.db.collection("users").document((Auth.auth().currentUser?.email)!).setData(["fibre_goal": fibreGoal], merge: true)
-            // UserDefaults.standard.set(fibreGoal, forKey: "fibreGoal")
+            self.db.collection("users").document((Auth.auth().currentUser?.email)!).setData(["fibreGoal": fibreGoal], merge: true)
             if let navController = self.navigationController, navController.viewControllers.count >= 2 {
                  let viewController = navController.viewControllers[navController.viewControllers.count - 2]
                 if viewController is ProfileViewController {

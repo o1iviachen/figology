@@ -10,6 +10,7 @@ import Firebase
 // delegate design change
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let data = [[Setting(image: UIImage(systemName: "plusminus")!, setting: "Fibre Calculator"), Setting(image: UIImage(systemName: "square.and.pencil")!, setting: "Edit Fibre Goal")], [Setting(image: UIImage(systemName: "wrench.adjustable")!, setting: "Support")], ["Log out"]]
+    let firebaseManager = FirebaseManager()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var userLabel: UILabel!
@@ -17,11 +18,13 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
     
     override func viewWillAppear(_ animated: Bool) {
-        userLabel.text = "Current user: \((Auth.auth().currentUser?.email)!)"
+        userLabel.text = "current user: \((Auth.auth().currentUser?.email)!)"
+        firebaseManager.fetchFibreGoal { fibreGoal in
+            self.fibreLabel.text = "fibre goal: \(fibreGoal ?? 0) g"
+        }
         if let index = self.tableView.indexPathForSelectedRow {
             self.tableView.deselectRow(at: index, animated: true)
             
-            // fibreLabel.text = "Fibre goal: \(UserDefaults.standard.integer(forKey: "fibreGoal"))g"
 
         }
         

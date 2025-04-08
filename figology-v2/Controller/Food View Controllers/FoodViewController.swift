@@ -13,6 +13,8 @@ import SwiftUI
 class FoodViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var progressLabel: UILabel!
+    @IBOutlet weak var progressBar: UIProgressView!
     
     var dateString: String? = nil
     let fibreCallManager = FibreCallManager()
@@ -20,6 +22,7 @@ class FoodViewController: UIViewController {
     var tableData: [[Food]] = []
     let headerTitles = ["breakfast", "lunch", "dinner", "snacks"]
     let firebaseManager = FirebaseManager()
+    var fibreIntake = 0.0
     var selectedFood: Food? = nil
     var selectedMeal: String? = nil
     
@@ -27,6 +30,7 @@ class FoodViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: K.foodCellIdentifier, bundle: nil), forCellReuseIdentifier: K.foodCellIdentifier)
+        progressBar.isHidden = true
         super.viewDidLoad()
     }
     
@@ -34,10 +38,23 @@ class FoodViewController: UIViewController {
         if dateString == nil {
             dateString = firebaseManager.formatDate()
         }
+        
         firebaseManager.fetchFoods(dateString: dateString!) { data in
             self.tableData = data
             self.tableView.reloadData()
             print(self.tableData)
+        }
+        firebaseManager.fetchFibreIntake(dateString: dateString!) { intake in
+            self.fibreIntake = intake
+        }
+        firebaseManager.fetchFibreGoal { fibreGoal in
+            if let setFibreGoal = fibreGoal {
+                self.progressLabel.text = "you have consumed out \(self.fibreIntake) g of your \(setFibreGoal) g fibre goal! way to go."
+                self.progressBar.progress = Float(self.fibreIntake/Double(setFibreGoal))
+                self.progressBar.isHidden = false
+            } else {
+                self.progressLabel.text = "please set your fibre goal."
+            }
         }
         
         DispatchQueue.main.async {
@@ -101,7 +118,6 @@ extension FoodViewController: UITableViewDelegate {
             selectedFood = tableData[indexPath.section][indexPath.row]
             firebaseManager.removeFood(food: selectedFood!, meal: headerTitles[indexPath.section], dateString: dateString!)
                 tableData[indexPath.section].remove(at: indexPath.row)
-            print(tableData)
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
     }

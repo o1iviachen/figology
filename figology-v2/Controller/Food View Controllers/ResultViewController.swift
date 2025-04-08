@@ -21,6 +21,7 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
     let db = Firestore.firestore()
     var dateString: String? = nil
     var meal: String = "breakfast"
+    var fibreGoal: Int? = nil
     
     @IBOutlet weak var foodLabel: UILabel!
     @IBOutlet weak var fibreLabel: UILabel!
@@ -42,26 +43,36 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
         swipeGesture.direction = .down
         view.addGestureRecognizer(swipeGesture)
         servingTextField.delegate = self
-        updateUI()
+        
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        firebaseManager.fetchFibreGoal { fetchedGoal in
+            if let setFibreGoal = fetchedGoal {
+                self.fibreGoal = setFibreGoal
+            }
+            self.updateUI()
+        }
     }
     
     func updateUI() {
+        let calculatedFibre = selectedFood!.fibrePerGram*selectedFood!.selectedMeasure.measureMass*selectedFood!.multiplier
         foodLabel.text = selectedFood!.food
-        fibreLabel.text = "\(String(format: "%.1f", selectedFood!.fibrePerGram*selectedFood!.selectedMeasure.measureMass*selectedFood!.multiplier)) g"
+        fibreLabel.text = "\(String(format: "%.1f", calculatedFibre)) g"
         descriptionLabel.text = "\(selectedFood!.brandName), \(String(format: "%.1f", selectedFood!.selectedMeasure.measureMass*selectedFood!.multiplier)) g"
+        servingTextField.text = String(selectedFood!.multiplier)
         mealButton.setTitle(meal, for: .normal)
         servingMeasureButton.setTitle(selectedFood!.selectedMeasure.measureExpression, for: .normal)
-        //        if UserDefaults.standard.integer(forKey: "proteinGoal") != 0 {
-        //            DispatchQueue.main.async {
-        //                self.progressLabel.text = "This is \(Int((Float(self.proteinAmount)/Float(UserDefaults.standard.integer(forKey: "proteinGoal"))*100)))% of your daily goal!"
-        //                self.progressBar.progress = Float(self.proteinAmount)/Float(UserDefaults.standard.integer(forKey: "proteinGoal"))
-        //            }
-        //        } else {
-        //            DispatchQueue.main.async {
-        //                self.progressLabel.text = "Please set your protein goal."
-        //                self.progressBar.isHidden = true
-        //            }
-        //        }
+        if let safeFibreGoal = fibreGoal {
+            let progressPercent = calculatedFibre/Double(safeFibreGoal)
+            progressLabel.text = "this is \(Int(progressPercent*100))% of your fibre goal!"
+            progressBar.progress = Float(progressPercent)
+        } else {
+            progressLabel.text = "please set your fibre goal."
+            progressBar.isHidden = true
+        }
     }
     
     @objc func handleSwipe() {
@@ -127,7 +138,6 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
 extension ResultViewController: PickerViewControllerDelegate {
     func didSelectValue(value: Any) {
         if value is String {
-            // WHY
             meal = value as! String }
         else {
             selectedFood!.selectedMeasure = value as! Measure
