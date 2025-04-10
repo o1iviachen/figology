@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 // delegate design change
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    let data = [[Setting(image: UIImage(systemName: "plusminus")!, setting: "Fibre Calculator"), Setting(image: UIImage(systemName: "square.and.pencil")!, setting: "Edit Fibre Goal")], [Setting(image: UIImage(systemName: "wrench.adjustable")!, setting: "Support")], ["Log out"]]
+    let data = [[Setting(image: UIImage(systemName: "plusminus")!, setting: "fibre calculator"), Setting(image: UIImage(systemName: "square.and.pencil")!, setting: "edit fibre goal")], [Setting(image: UIImage(systemName: "wrench.adjustable")!, setting: "support")], ["Log out"]]
     let firebaseManager = FirebaseManager()
     
     @IBOutlet weak var tableView: UITableView!
@@ -39,9 +39,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.delegate = self
         tableView.register(UINib(nibName: K.profileCellIdentifier, bundle: nil), forCellReuseIdentifier: K.profileCellIdentifier)
         tableView.register(UINib(nibName: K.logOutCellNib, bundle: nil), forCellReuseIdentifier: K.logOutCellIdentifier)
-        userLabel.text = "Current user:\n\((Auth.auth().currentUser?.email) ?? "No email")"
-        fibreLabel.text = "Fibre goal: 20 g"
-            // eventually: \(UserDefaults.standard.integer(forKey: "fibreGoal"))
         tableView.separatorStyle = .none
     }
 

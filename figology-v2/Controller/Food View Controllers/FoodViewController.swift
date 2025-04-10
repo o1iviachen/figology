@@ -19,6 +19,7 @@ class FoodViewController: UIViewController {
     var dateString: String? = nil
     let fibreCallManager = FibreCallManager()
     var fibreRequests: [URLRequest?] = []
+    var fibreGoal: Int? = nil
     var tableData: [[Food]] = []
     let headerTitles = ["breakfast", "lunch", "dinner", "snacks"]
     let firebaseManager = FirebaseManager()
@@ -45,25 +46,32 @@ class FoodViewController: UIViewController {
             print(self.tableData)
         }
         firebaseManager.fetchFibreIntake(dateString: dateString!) { intake in
-            self.fibreIntake = intake
-        }
-        firebaseManager.fetchFibreGoal { fibreGoal in
-            if let setFibreGoal = fibreGoal {
-                self.progressLabel.text = "you have consumed out \(self.fibreIntake) g of your \(setFibreGoal) g fibre goal! way to go."
-                self.progressBar.progress = Float(self.fibreIntake/Double(setFibreGoal))
-                self.progressBar.isHidden = false
-            } else {
-                self.progressLabel.text = "please set your fibre goal."
-            }
+            self.fibreIntake = Double(intake)
         }
         
+        firebaseManager.fetchFibreGoal { goal in
+            self.fibreGoal = goal
+            self.updateProgressUI()
+        }
+                
         DispatchQueue.main.async {
             if CGFloat(62*self.tableData.count + 40) > CGFloat(UIScreen.main.bounds.size.height) {
                 self.tableView.heightAnchor.constraint(equalToConstant: CGFloat(62*self.tableData.count + 40)).isActive = true
-                
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    func updateProgressUI() {
+        if let setFibreGoal = fibreGoal {
+                self.progressLabel.text = "you have consumed \(self.fibreIntake) g out of your \(setFibreGoal) g fibre goal! way to go."
+                self.progressBar.progress = Float(self.fibreIntake/Double(setFibreGoal))
+                self.progressBar.isHidden = false
+            print("hello")
+        } else {
+            self.progressLabel.text = "please set your fibre goal."
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -114,24 +122,33 @@ extension FoodViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // update firegoalui
+        // deletes the first one?
         if editingStyle == .delete {
             selectedFood = tableData[indexPath.section][indexPath.row]
             firebaseManager.removeFood(food: selectedFood!, meal: headerTitles[indexPath.section], dateString: dateString!)
-                tableData[indexPath.section].remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
+            tableData[indexPath.section].remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.firebaseManager.fetchFibreIntake(dateString: self.dateString!) { intake in
+                self.fibreIntake = intake
+                self.updateProgressUI()
+                }
             }
+            
+
+        }
     }
 }
 
 struct FoodView: UIViewControllerRepresentable {
     let date: Date
-
+    
     func makeUIViewController(context: Context) -> FoodViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "FoodViewController") as! FoodViewController
-//        vc.hidesBottomBarWhenPushed = true
-//        vc.tabBarController?.tabBar.backgroundColor = UIColor(red: 242, green: 225, blue: 246, alpha: 1)
+        //        vc.tabBarController?.tabBar.backgroundColor = UIColor(red: 242, green: 225, blue: 246, alpha: 1)
         // Convert the Date to a String
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yy_MM_dd" // Should match the format used in firebaseManager.formatDate()
@@ -141,7 +158,7 @@ struct FoodView: UIViewControllerRepresentable {
         
         return vc
     }
-
+    
     func updateUIViewController(_ uiViewController: FoodViewController, context: Context) {
         print("hi")
     }

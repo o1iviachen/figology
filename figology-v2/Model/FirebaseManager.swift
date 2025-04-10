@@ -113,9 +113,9 @@ struct FirebaseManager {
             do {
                 let foodData = try encoder.encode(food)
                 if let foodDictionary = try JSONSerialization.jsonObject(with: foodData, options: []) as? [String: Any] {
-                    db.collection("users").document((Auth.auth().currentUser?.email)!).updateData([
+                    db.collection("users").document((Auth.auth().currentUser?.email)!).setData([
                         dateString: [meal: FieldValue.arrayRemove([foodDictionary]), "fibreIntake": changedIntake]
-                    ]) { err in
+                    ], merge: true) { err in
                         if let err = err {
                             print("Error updating document: \(err)")
                         } else {
@@ -164,14 +164,28 @@ struct FirebaseManager {
             }
             if let currentDate = document.data()?[dateString] as? [String: Any] {
                 if let currentFibreIntake = currentDate["fibreIntake"] {
-                    fibreIntake = currentFibreIntake as! Double
+                    fibreIntake = ((currentFibreIntake as! Double)*10).rounded() / 10
                 }
             }
             completion(fibreIntake)
         }
         
     }
-    
+    func isFoodLogged(dateString: String, foodDict: [String: Any], completion: @escaping (Bool) -> Void) {
+        db.collection("users").document((Auth.auth().currentUser?.email)!).getDocument { (document, error) in
+            if let document = document, document.exists {
+                if let dateData = document.data()?[dateString] as? [[String: Any]] {
+//                    if dateData.contains(where: { $0 == foodDict }) {
+//                        completion(true)
+//                    }
+                }
+            } else {
+                print("Document does not exist")
+                completion(false)
+            }
+        }
+
+    }
 }
 
 

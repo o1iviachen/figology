@@ -13,8 +13,8 @@ struct FibreCallManager {
     
     let headers = [
             "Content-Type": "application/x-www-form-urlencoded",
-            "x-app-id": "94ea4728",
-            "x-app-key": "c86188b486f07e88de9cdc2c415a9432",
+            "x-app-id": "c1358ca9",
+            "x-app-key": "2fc3f23569c0ca6b14767cab5f262e30",
             "x-remote-user-id": "0"
     ]
     
