@@ -21,7 +21,6 @@
 		582BE0FB2D949ADF0059A4D1 /* LogOutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582BE0F92D949ADF0059A4D1 /* LogOutCell.swift */; };
 		582BE0FC2D949ADF0059A4D1 /* LogOutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 582BE0FA2D949ADF0059A4D1 /* LogOutCell.xib */; };
 		582BE0FE2D94A2B80059A4D1 /* SelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582BE0FD2D94A2B80059A4D1 /* SelectorViewController.swift */; };
-		582BE1002D94A62D0059A4D1 /* ProfilePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582BE0FF2D94A62D0059A4D1 /* ProfilePasswordViewController.swift */; };
 		582BE1022D94A8340059A4D1 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582BE1012D94A8340059A4D1 /* SupportViewController.swift */; };
 		582BE1042D94A9D30059A4D1 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582BE1032D94A9D30059A4D1 /* CalculatorViewController.swift */; };
 		58528F232D9D937700A107F0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58528F222D9D937700A107F0 /* SearchViewController.swift */; };
@@ -60,7 +59,6 @@
 		582BE0F92D949ADF0059A4D1 /* LogOutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutCell.swift; sourceTree = "<group>"; };
 		582BE0FA2D949ADF0059A4D1 /* LogOutCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogOutCell.xib; sourceTree = "<group>"; };
 		582BE0FD2D94A2B80059A4D1 /* SelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorViewController.swift; sourceTree = "<group>"; };
-		582BE0FF2D94A62D0059A4D1 /* ProfilePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePasswordViewController.swift; sourceTree = "<group>"; };
 		582BE1012D94A8340059A4D1 /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		582BE1032D94A9D30059A4D1 /* CalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
 		58528F222D9D937700A107F0 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -125,7 +123,6 @@
 			children = (
 				582BE0F12D9497B00059A4D1 /* ProfileViewController.swift */,
 				582BE0FD2D94A2B80059A4D1 /* SelectorViewController.swift */,
-				582BE0FF2D94A62D0059A4D1 /* ProfilePasswordViewController.swift */,
 				582BE1012D94A8340059A4D1 /* SupportViewController.swift */,
 				582BE1032D94A9D30059A4D1 /* CalculatorViewController.swift */,
 			);
@@ -370,7 +367,6 @@
 				582934AE2D851A4B000033C7 /* LogInViewController.swift in Sources */,
 				58B29EB92D9D9BEC002F6FA0 /* ResultViewController.swift in Sources */,
 				589FADF42D6E34DA007890AB /* AppDelegate.swift in Sources */,
-				582BE1002D94A62D0059A4D1 /* ProfilePasswordViewController.swift in Sources */,
 				589FADF62D6E34DA007890AB /* SceneDelegate.swift in Sources */,
 				58FC741E2D91CF500007FC3E /* FoodCell.swift in Sources */,
 				9F1A2B4C2D7B661600A432CF /* Constants.swift in Sources */,
