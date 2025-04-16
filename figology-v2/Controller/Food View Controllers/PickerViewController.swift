@@ -32,9 +32,7 @@ class PickerViewController: UIViewController {
         } else {
             modifiedOptions = options.map { ($0 as! Measure).measureExpression }
         }
-        
-        // picker need better positioning
-    
+            
     }
 }
 

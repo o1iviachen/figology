@@ -43,9 +43,7 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
         swipeGesture.direction = .down
         view.addGestureRecognizer(swipeGesture)
         servingTextField.delegate = self
-      
-        
-        
+        servingMeasureButton.titleLabel?.numberOfLines = 1
         
     }
     
@@ -55,6 +53,7 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
                 self.fibreGoal = setFibreGoal
             }
             self.updateUI()
+            
         }
     }
     
@@ -65,7 +64,13 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
         descriptionLabel.text = "\(selectedFood!.brandName), \(String(format: "%.1f", selectedFood!.selectedMeasure.measureMass*selectedFood!.multiplier)) g"
         servingTextField.text = String(selectedFood!.multiplier)
         mealButton.setTitle(meal, for: .normal)
-        servingMeasureButton.setTitle(selectedFood!.selectedMeasure.measureExpression, for: .normal)
+        if selectedFood!.selectedMeasure.measureExpression.count < 10 {
+            servingMeasureButton.setTitle(selectedFood!.selectedMeasure.measureExpression, for: .normal)
+        } else {
+            
+                servingMeasureButton.setTitle("\(String(selectedFood!.selectedMeasure.measureExpression.prefix(9)))...", for: .normal)
+            
+        }
         if let safeFibreGoal = fibreGoal {
             let progressPercent = calculatedFibre/Double(safeFibreGoal)
             progressLabel.text = "this is \(Int(progressPercent*100))% of your fibre goal!"

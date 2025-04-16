@@ -67,7 +67,6 @@ class FoodViewController: UIViewController {
                 self.progressLabel.text = "you have consumed \(self.fibreIntake) g out of your \(setFibreGoal) g fibre goal! way to go."
                 self.progressBar.progress = Float(self.fibreIntake/Double(setFibreGoal))
                 self.progressBar.isHidden = false
-            print("hello")
         } else {
             self.progressLabel.text = "please set your fibre goal."
         }
@@ -80,13 +79,6 @@ class FoodViewController: UIViewController {
             destinationVC.selectedFood = selectedFood!
             destinationVC.meal = selectedMeal!
         }
-//        } else if segue.identifier == K.foodSearchSegue {
-//            let destinationVC = segue.destination as! SearchViewController
-//            firebaseManager.fetchRecentFoods { recentFoods in
-//                destinationVC.searchList = recentFoods
-//
-//            }
-//        }
     }
     
     
