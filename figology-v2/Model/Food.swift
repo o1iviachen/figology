@@ -19,6 +19,7 @@ struct Food: Codable {
     let measures: [Measure]
     var selectedMeasure: Measure
     var multiplier: Double
+    let consumptionTime: String
 }
 
 struct FoodRequest: Decodable {
@@ -43,6 +44,7 @@ struct RawFood: Decodable {
     var serving_unit: String
     var serving_qty: Int
     var serving_weight_grams: Double
+    let consumed_at: String
 }
 
 

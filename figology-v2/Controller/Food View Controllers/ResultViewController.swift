@@ -43,6 +43,7 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
         swipeGesture.direction = .down
         view.addGestureRecognizer(swipeGesture)
         servingTextField.delegate = self
+      
         
         
         
@@ -120,6 +121,7 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
         } else {
             selectedFood!.multiplier = Double(servingTextField.text!)!
             firebaseManager.logFood(food: selectedFood!, meal: mealButton.currentTitle!, dateString: dateString!)
+            firebaseManager.addToRecentFoods(food: selectedFood!)
         }
         navigationController?.popViewController(animated: true)
     }

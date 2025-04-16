@@ -13,8 +13,8 @@ struct FibreCallManager {
     
     let headers = [
             "Content-Type": "application/x-www-form-urlencoded",
-            "x-app-id": "c1358ca9",
-            "x-app-key": "2fc3f23569c0ca6b14767cab5f262e30",
+            "x-app-id": "cf6aaf5a",
+            "x-app-key": "24050e732b86f62fdc276c47ff47594d",
             "x-remote-user-id": "0"
     ]
     
@@ -40,6 +40,8 @@ struct FibreCallManager {
                 print(e.localizedDescription)
             }
             if let safeData = data {
+                print(String(decoding: safeData, as: UTF8.self))
+                print("WHAT THE FUSKF")
                 fibreRequests = self.parseFoodJSON(foodData: safeData)
             }
             
@@ -74,6 +76,7 @@ struct FibreCallManager {
                     print(e.localizedDescription)
                 }
                 if let safeData = data {
+                    print(safeData)
                     if let food = self.parseFibreJSON(fibreData: safeData) {
                         fibreFood = food
                     }
@@ -110,9 +113,11 @@ struct FibreCallManager {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(FibreData.self, from: fibreData)
+            print(String(decoding: fibreData, as: UTF8.self))
             let food = decodedData.foods[0]
             let foodName = food.food_name
             let brandName = food.brand_name ?? "unbranded"
+            let consumptionTime = food.consumed_at
             let servingFibre = food.nf_dietary_fiber
             let servingUnit = food.serving_unit
             let servingQuantity = food.serving_qty
@@ -133,7 +138,7 @@ struct FibreCallManager {
             }
             altMeasures.append(servingMeasure)
             
-            let parsedFood = Food(food: foodName, fibrePerGram: fibrePerGram, brandName: brandName, measures: altMeasures, selectedMeasure: servingMeasure, multiplier: 1.0)
+            let parsedFood = Food(food: foodName, fibrePerGram: fibrePerGram, brandName: brandName, measures: altMeasures, selectedMeasure: servingMeasure, multiplier: 1.0, consumptionTime: consumptionTime)
             return parsedFood
             
         } catch {

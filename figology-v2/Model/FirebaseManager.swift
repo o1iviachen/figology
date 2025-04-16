@@ -24,7 +24,6 @@ struct FirebaseManager {
         fetchFibreIntake(dateString: dateString) { currentIntake in
             var changedIntake = currentIntake
             changedIntake += food.fibrePerGram*food.selectedMeasure.measureMass*food.multiplier
-            // ugly
             let encoder = JSONEncoder()
             do {
                 let foodData = try encoder.encode(food)
@@ -89,7 +88,7 @@ struct FirebaseManager {
                                 fibrePerGram: food["fibrePerGram"] as! Double, brandName: food["brandName"] as! String,
                                 measures: measurements,
                                 selectedMeasure: Measure(measureExpression: selectedMeasure["measureExpression"] as! String, measureMass: selectedMeasure["measureMass"] as! Double),
-                                multiplier: 1.0
+                                multiplier: 1.0, consumptionTime: food["consumptionTime"] as! String
                             )
                             tableData[mealNames.firstIndex(of: meal)!].append(foodObject)
                         }
@@ -101,8 +100,6 @@ struct FirebaseManager {
             completion(tableData)
         }
     }
-    
-    // arrayUnion() adds elements to an array but only elements not already present.
     
     
     func removeFood(food: Food, meal: String, dateString: String) {
@@ -171,20 +168,110 @@ struct FirebaseManager {
         }
         
     }
-    func isFoodLogged(dateString: String, foodDict: [String: Any], completion: @escaping (Bool) -> Void) {
-        db.collection("users").document((Auth.auth().currentUser?.email)!).getDocument { (document, error) in
-            if let document = document, document.exists {
-                if let dateData = document.data()?[dateString] as? [[String: Any]] {
-//                    if dateData.contains(where: { $0 == foodDict }) {
-//                        completion(true)
-//                    }
+    
+    func fetchRecentFoods(completion: @escaping ([Food]) -> Void) {
+        var recentData: [Food] = []
+        // do change
+        db.collection("users").document((Auth.auth().currentUser?.email)!).getDocument { document, error in
+            guard let document = document else {
+                print("Error fetching document: \(error!)")
+                completion(recentData)
+                return
+            }
+            guard document.data() != nil else {
+                print("Document was empty.")
+                completion(recentData)
+                return
+            }
+            
+            let dateData = document.data()?["recentFoods"] as? [[String: Any]]
+            
+            // Check if data is not nil
+            if let safeData = dateData {
+                // Clear the existing table data
+                for food in safeData {
+                    var measurements: [Measure] = []
+                    if let retrievedMeasures = food["measures"] as? [AnyObject] {
+                        for measurement in retrievedMeasures {
+                            if let measureValue = measurement as? [String: Any] {
+                                let measureExpression = measureValue["measureExpression"] as! String
+                                let measureMass = measureValue["measureMass"] as! Double
+                                let measureObject = Measure(measureExpression: measureExpression, measureMass: measureMass)
+                                measurements.append(measureObject)
+                            }
+                        }
+                    }
+                    let selectedMeasure = food["selectedMeasure"] as! [String: Any]
+                    let foodObject = Food(
+                        food: food["food"] as! String,
+                        fibrePerGram: food["fibrePerGram"] as! Double, brandName: food["brandName"] as! String,
+                        measures: measurements,
+                        selectedMeasure: Measure(measureExpression: selectedMeasure["measureExpression"] as! String, measureMass: selectedMeasure["measureMass"] as! Double),
+                        multiplier: 1.0, consumptionTime: food["consumptionTime"] as! String
+                    )
+                    recentData.append(foodObject)
                 }
             } else {
-                print("Document does not exist")
-                completion(false)
+                print("No data found for recent foods.")
             }
+            completion(recentData)
         }
-
+    }
+    
+    func addToRecentFoods(food: Food) {
+        db.collection("users").document((Auth.auth().currentUser?.email)!).getDocument { document, error in
+            guard let document = document else {
+                print("Error fetching document: \(error!)")
+                return
+            }
+            guard document.data() != nil else {
+                print("Document was empty.")
+                return
+            }
+            if let recentFoods = document.data()?["recentFoods"] as? [[String: Any]] {
+                if recentFoods.count >= 10 {
+                    let formatter = ISO8601DateFormatter()
+                    var dates: [String] = []
+                    for food in recentFoods {
+                        if let date = formatter.date(from: food["consumptionTime"] as! String) {
+                            let isoString = formatter.string(from: date)
+                            dates.append(isoString)
+                        }
+                    }
+                    
+                    if let earliest = dates.min() {
+                        let minIndex = dates.firstIndex(of: earliest)!
+                        let foodDictToDelete = recentFoods[minIndex]
+                        db.collection("users").document((Auth.auth().currentUser?.email)!).setData([
+                            "recentFoods": FieldValue.arrayRemove([foodDictToDelete])
+                        ], merge: true) { err in
+                            if let err = err {
+                                print("Error updating document: \(err)")
+                            } else {
+                                print("Document successfully updated")
+                            }
+                        }
+                    }
+                }
+            }
+            let encoder = JSONEncoder()
+            do {
+                let foodData = try encoder.encode(food)
+                if let foodDictionary = try JSONSerialization.jsonObject(with: foodData, options: []) as? [String: Any] {
+                    db.collection("users").document((Auth.auth().currentUser?.email)!).setData([
+                        "recentFoods": FieldValue.arrayUnion([foodDictionary])], merge: true) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            print("Document successfully updated")
+                        }
+                    }
+                }
+            } catch {
+                print("Error encoding food object: \(error)")
+            }
+            
+        }
     }
 }
 

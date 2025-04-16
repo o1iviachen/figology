@@ -32,6 +32,7 @@ struct K {
     static let resultPickerSegue = "resultToPicker"
     static let calendarFoodSegue = "calendarToFood"
     static let foodResultSegue = "foodToResult"
+    static let foodSearchSegue = "foodToSearch"
     static let foodEditSegue = "foodToEdit"
     static let tabBarIdentifier = "TabBarController"
     static let welcomeIdentifier = "NavigationController"

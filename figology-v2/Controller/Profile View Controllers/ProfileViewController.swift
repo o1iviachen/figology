@@ -20,7 +20,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewWillAppear(_ animated: Bool) {
         userLabel.text = "current user: \((Auth.auth().currentUser?.email)!)"
         firebaseManager.fetchFibreGoal { fibreGoal in
-            self.fibreLabel.text = "fibre goal: \(fibreGoal ?? 0) g"
+            if let safeFibreGoal = fibreGoal {
+                self.fibreLabel.text = "fibre goal: \(safeFibreGoal) g"
+            } else {
+                self.fibreLabel.text = "please set your fibre goal."
+            }
         }
         if let index = self.tableView.indexPathForSelectedRow {
             self.tableView.deselectRow(at: index, animated: true)

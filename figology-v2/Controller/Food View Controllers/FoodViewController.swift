@@ -78,8 +78,15 @@ class FoodViewController: UIViewController {
         if segue.identifier == K.foodResultSegue {
             let destinationVC = segue.destination as! ResultViewController
             destinationVC.selectedFood = selectedFood!
-            destinationVC.meal = selectedMeal! // has the issue of not removing previous entries (until going again)
+            destinationVC.meal = selectedMeal!
         }
+//        } else if segue.identifier == K.foodSearchSegue {
+//            let destinationVC = segue.destination as! SearchViewController
+//            firebaseManager.fetchRecentFoods { recentFoods in
+//                destinationVC.searchList = recentFoods
+//
+//            }
+//        }
     }
     
     

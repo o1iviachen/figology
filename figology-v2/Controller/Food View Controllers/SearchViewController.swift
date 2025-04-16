@@ -11,13 +11,17 @@ import FLAnimatedImage
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate, UITableViewDataSource {
     
-    var searchList: [Food?] = [Food(food: "banana", fibrePerGram: 3.2, brandName: "Common", measures: [Measure(measureExpression: "cup", measureMass: 234)], selectedMeasure: Measure(measureExpression: "cup", measureMass: 234), multiplier: 234), Food(food: "cheese", fibrePerGram: 3.2, brandName: "not common", measures: [Measure(measureExpression: "cup", measureMass: 234)], selectedMeasure: Measure(measureExpression: "ml", measureMass: 234), multiplier: 23)]
-    // var searchList: [Food?] = []
+    var searchList: [Food?] = []
     var selectedFood: Food? = nil
     var logoView: FLAnimatedImageView!
     let fibreCallManager = FibreCallManager()
+    let firebaseManager = FirebaseManager()
     
     override func viewDidLoad() {
+        firebaseManager.fetchRecentFoods { recentFoods in
+            self.searchList = recentFoods
+            self.resultsTableView.reloadData()
+        }
         logoView = FLAnimatedImageView()
         logoView.contentMode = .scaleAspectFit
         let centerX = view.bounds.size.width / 2
@@ -33,6 +37,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         resultsTableView.register(UINib(nibName: K.foodCellIdentifier, bundle: nil), forCellReuseIdentifier: K.foodCellIdentifier)
         
     }
+
     
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
