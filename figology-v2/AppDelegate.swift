@@ -17,6 +17,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        let lightPurple = UIColor(red: 242/255, green: 225/255, blue: 246/255, alpha: 1)
+        let darkPurple = UIColor(red: 81/255.0, green: 48/255.0, blue: 101/255.0, alpha: 1.0)
+        let mediumPurple = UIColor(red: 152/255.0, green: 132/255.0, blue: 160/255.0, alpha: 1)
+
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.backgroundColor = lightPurple
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.shadowColor = .clear
+
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithOpaqueBackground()
+        tabBarAppearance.backgroundColor = lightPurple
+        tabBarAppearance.shadowColor = .clear
+        tabBarAppearance.stackedLayoutAppearance.normal.iconColor = mediumPurple
+
+
+        UINavigationBar.appearance().standardAppearance = navBarAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
+        UINavigationBar.appearance().tintColor = darkPurple
+
+        UITabBar.appearance().standardAppearance = tabBarAppearance
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        UITabBar.appearance().tintColor = darkPurple
         return true
     }
     

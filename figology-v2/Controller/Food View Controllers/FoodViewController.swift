@@ -28,6 +28,7 @@ class FoodViewController: UIViewController {
     var selectedMeal: String? = nil
     
     override func viewDidLoad() {
+       
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: K.foodCellIdentifier, bundle: nil), forCellReuseIdentifier: K.foodCellIdentifier)
@@ -144,21 +145,20 @@ struct FoodView: UIViewControllerRepresentable {
     let date: Date
     
     func makeUIViewController(context: Context) -> FoodViewController {
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "FoodViewController") as! FoodViewController
-        //        vc.tabBarController?.tabBar.backgroundColor = UIColor(red: 242, green: 225, blue: 246, alpha: 1)
-        // Convert the Date to a String
+
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yy_MM_dd" // Should match the format used in firebaseManager.formatDate()
-        let formattedDate = dateFormatter.string(from: date)
+        dateFormatter.dateFormat = "yy_MM_dd"
+        vc.dateString = dateFormatter.string(from: date)
+
         
-        vc.dateString = formattedDate
-        
+
         return vc
     }
-    
+
     func updateUIViewController(_ uiViewController: FoodViewController, context: Context) {
         print("hi")
     }
+    
 }
