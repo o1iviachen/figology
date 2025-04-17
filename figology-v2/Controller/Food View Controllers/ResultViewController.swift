@@ -133,19 +133,22 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
                         self.errorManager.showError(errorMessage: "Could not remove previous food.", viewController: self)
                     }
                 }
-                
             }
         }
+        
         self.selectedFood!.multiplier = Double(self.servingTextField.text!)!
         self.selectedFood!.selectedMeasure = self.temporaryMeasure!
         firebaseManager.logFood(food: selectedFood!, meal: mealButton.currentTitle!, dateString: dateString!, fibreIntake: fibreIntake) { foodAdded in
             if !foodAdded {
-                self.errorManager.showError(errorMessage: "Could not add updated food.", viewController: self)
+                self.errorManager.showError(errorMessage: "Could not add new food.", viewController: self)
             }
         }
-        firebaseManager.addToRecentFoods(food: selectedFood!)
         
-        navigationController?.popViewController(animated: true)
+        firebaseManager.addToRecentFoods(food: selectedFood!)
+        // patchwork, will not work with slow wifi
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
