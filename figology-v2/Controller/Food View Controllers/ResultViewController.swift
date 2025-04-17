@@ -147,6 +147,7 @@ extension ResultViewController: PickerViewControllerDelegate {
         if value is String {
             meal = value as! String }
         else {
+            // problem w delete
             selectedFood!.selectedMeasure = value as! Measure
         }
         updateUI()

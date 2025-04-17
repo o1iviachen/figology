@@ -115,9 +115,14 @@ extension FoodViewController: UITableViewDataSource {
 
 extension FoodViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedMeal = headerTitles[indexPath.section]
-        selectedFood = tableData[indexPath.section][indexPath.row]
-        performSegue(withIdentifier: K.foodResultSegue, sender: self)
+        let exists = navigationController?.viewControllers.contains {
+            $0 is UIHostingController<AnyView>
+        } == true
+        if !exists {
+            selectedMeal = headerTitles[indexPath.section]
+            selectedFood = tableData[indexPath.section][indexPath.row]
+            performSegue(withIdentifier: K.foodResultSegue, sender: self)
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
