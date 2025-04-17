@@ -26,9 +26,10 @@ class FoodViewController: UIViewController {
     var fibreIntake = 0.0
     var selectedFood: Food? = nil
     var selectedMeal: String? = nil
+    let errorManager = ErrorManager()
     
     override func viewDidLoad() {
-       
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: K.foodCellIdentifier, bundle: nil), forCellReuseIdentifier: K.foodCellIdentifier)
@@ -54,7 +55,7 @@ class FoodViewController: UIViewController {
             self.fibreGoal = goal
             self.updateProgressUI()
         }
-                
+        
         DispatchQueue.main.async {
             if CGFloat(62*self.tableData.count + 40) > CGFloat(UIScreen.main.bounds.size.height) {
                 self.tableView.heightAnchor.constraint(equalToConstant: CGFloat(62*self.tableData.count + 40)).isActive = true
@@ -65,9 +66,9 @@ class FoodViewController: UIViewController {
     
     func updateProgressUI() {
         if let setFibreGoal = fibreGoal {
-                self.progressLabel.text = "you have consumed \(self.fibreIntake) g out of your \(setFibreGoal) g fibre goal! way to go."
-                self.progressBar.progress = Float(self.fibreIntake/Double(setFibreGoal))
-                self.progressBar.isHidden = false
+            self.progressLabel.text = "you have consumed \(self.fibreIntake) g out of your \(setFibreGoal) g fibre goal! way to go."
+            self.progressBar.progress = Float(self.fibreIntake/Double(setFibreGoal))
+            self.progressBar.isHidden = false
         } else {
             self.progressLabel.text = "please set your fibre goal."
         }
@@ -131,17 +132,20 @@ extension FoodViewController: UITableViewDelegate {
         // deletes the first one?
         if editingStyle == .delete {
             selectedFood = tableData[indexPath.section][indexPath.row]
-            firebaseManager.removeFood(food: selectedFood!, meal: headerTitles[indexPath.section], dateString: dateString!)
-            tableData[indexPath.section].remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.firebaseManager.fetchFibreIntake(dateString: self.dateString!) { intake in
-                self.fibreIntake = intake
-                self.updateProgressUI()
+            firebaseManager.removeFood(food: selectedFood!, meal: headerTitles[indexPath.section], dateString: dateString!, fibreIntake: fibreIntake) { foodRemoved in
+                if foodRemoved {
+                    self.tableData[indexPath.section].remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                    self.firebaseManager.fetchFibreIntake(dateString: self.dateString!) { intake in
+                        self.fibreIntake = intake
+                        self.updateProgressUI()
+                    }
+                } else {
+                    self.errorManager.showError(errorMessage: "Could not remove food.", viewController: self)
                 }
             }
             
-
+            
         }
     }
 }
@@ -156,13 +160,13 @@ struct FoodView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> FoodViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "FoodViewController") as! FoodViewController
-
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yy_MM_dd"
         vc.dateString = dateFormatter.string(from: date)
-
         
-
+        
+        
         return vc
     }
     

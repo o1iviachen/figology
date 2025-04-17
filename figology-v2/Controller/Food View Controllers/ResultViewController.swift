@@ -16,12 +16,14 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
     var measureList: [Measure] = []
     var selectedFood: Food? = nil
     var temporaryMeasure: Measure? = nil
+    var fibreIntake: Double = 0.0
     var measureDescriptionList: [String] = []
     let firebaseManager = FirebaseManager()
     let db = Firestore.firestore()
     var dateString: String? = nil
     var meal: String = "breakfast"
     var fibreGoal: Int? = nil
+    let errorManager = ErrorManager()
     
     @IBOutlet weak var foodLabel: UILabel!
     @IBOutlet weak var fibreLabel: UILabel!
@@ -38,6 +40,10 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
         if dateString == nil {
             dateString = firebaseManager.formatDate()
         }
+        firebaseManager.fetchFibreIntake(dateString: dateString!) { intake in
+            self.fibreIntake = intake
+        }
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(tapGesture)
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
@@ -69,7 +75,7 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
             servingMeasureButton.setTitle(temporaryMeasure!.measureExpression, for: .normal)
         } else {
             
-                servingMeasureButton.setTitle("\(String(temporaryMeasure!.measureExpression.prefix(9)))...", for: .normal)
+            servingMeasureButton.setTitle("\(String(temporaryMeasure!.measureExpression.prefix(9)))...", for: .normal)
             
         }
         if let safeFibreGoal = fibreGoal {
@@ -122,17 +128,23 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
         if let navController = self.navigationController, navController.viewControllers.count >= 2 {
             let viewController = navController.viewControllers[navController.viewControllers.count - 2]
             if viewController is FoodViewController {
-                firebaseManager.removeFood(food: selectedFood!, meal: meal, dateString: dateString!)
-                print("skid")
-                selectedFood!.multiplier = Double(servingTextField.text!)!
-                selectedFood!.selectedMeasure = temporaryMeasure!
-                firebaseManager.logFood(food: selectedFood!, meal: mealButton.currentTitle!, dateString: dateString!)
-            } else {
-                selectedFood!.multiplier = Double(servingTextField.text!)!
-                firebaseManager.logFood(food: selectedFood!, meal: mealButton.currentTitle!, dateString: dateString!)
-                firebaseManager.addToRecentFoods(food: selectedFood!)
+                firebaseManager.removeFood(food: selectedFood!, meal: meal, dateString: dateString!, fibreIntake: fibreIntake) { foodRemoved in
+                    if !foodRemoved {
+                        self.errorManager.showError(errorMessage: "Could not remove previous food.", viewController: self)
+                    }
+                }
+                
             }
         }
+        self.selectedFood!.multiplier = Double(self.servingTextField.text!)!
+        self.selectedFood!.selectedMeasure = self.temporaryMeasure!
+        firebaseManager.logFood(food: selectedFood!, meal: mealButton.currentTitle!, dateString: dateString!, fibreIntake: fibreIntake) { foodAdded in
+            if !foodAdded {
+                self.errorManager.showError(errorMessage: "Could not add updated food.", viewController: self)
+            }
+        }
+        firebaseManager.addToRecentFoods(food: selectedFood!)
+        
         navigationController?.popViewController(animated: true)
     }
     

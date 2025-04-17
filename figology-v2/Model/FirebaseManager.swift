@@ -20,30 +20,26 @@ struct FirebaseManager {
         return dateString
     }
     
-    func logFood(food: Food, meal: String, dateString: String) {
-        fetchFibreIntake(dateString: dateString) { currentIntake in
-            var changedIntake = currentIntake
-            changedIntake += food.fibrePerGram*food.selectedMeasure.measureMass*food.multiplier
-            let encoder = JSONEncoder()
-            do {
-                let foodData = try encoder.encode(food)
-                if let foodDictionary = try JSONSerialization.jsonObject(with: foodData, options: []) as? [String: Any] {
-                    db.collection("users").document((Auth.auth().currentUser?.email)!).setData([
-                        dateString: [meal: FieldValue.arrayUnion([foodDictionary]), "fibreIntake": changedIntake]
-                    ], merge: true) { err in
-                        if let err = err {
-                            print("Error updating document: \(err)")
-                        } else {
-                            print("Document successfully updated")
-                        }
+    func logFood(food: Food, meal: String, dateString: String, fibreIntake: Double, completion: @escaping (Bool) -> Void) {
+        var changedIntake = fibreIntake
+        changedIntake += food.fibrePerGram*food.selectedMeasure.measureMass*food.multiplier
+        let encoder = JSONEncoder()
+        do {
+            let foodData = try encoder.encode(food)
+            if let foodDictionary = try JSONSerialization.jsonObject(with: foodData, options: []) as? [String: Any] {
+                db.collection("users").document((Auth.auth().currentUser?.email)!).setData([
+                    dateString: [meal: FieldValue.arrayUnion([foodDictionary]), "fibreIntake": changedIntake]
+                ], merge: true) { err in
+                    if err == nil {
+                        completion(true)
+                    } else {
+                        completion(false)
                     }
                 }
-            } catch {
-                print("Error encoding food object: \(error)")
             }
+        } catch {
+            completion(false)
         }
-        
-        
     }
     
     func fetchFoods(dateString: String, completion: @escaping ([[Food]]) -> Void) {
@@ -102,29 +98,28 @@ struct FirebaseManager {
     }
     
     
-    func removeFood(food: Food, meal: String, dateString: String) {
-        fetchFibreIntake(dateString: dateString) { currentIntake in
-            var changedIntake = currentIntake
-            changedIntake -= food.fibrePerGram*food.selectedMeasure.measureMass*food.multiplier
-            let encoder = JSONEncoder()
-            do {
-                let foodData = try encoder.encode(food)
-                if let foodDictionary = try JSONSerialization.jsonObject(with: foodData, options: []) as? [String: Any] {
-                    db.collection("users").document((Auth.auth().currentUser?.email)!).setData([
-                        dateString: [meal: FieldValue.arrayRemove([foodDictionary]), "fibreIntake": changedIntake]
-                    ], merge: true) { err in
-                        if let err = err {
-                            print("Error updating document: \(err)")
-                        } else {
-                            print("Document successfully updated!")
-                        }
+    func removeFood(food: Food, meal: String, dateString: String, fibreIntake: Double, completion: @escaping (Bool) -> Void) {
+        var changedIntake = fibreIntake
+        changedIntake -= food.fibrePerGram*food.selectedMeasure.measureMass*food.multiplier
+        let encoder = JSONEncoder()
+        do {
+            let foodData = try encoder.encode(food)
+            if let foodDictionary = try JSONSerialization.jsonObject(with: foodData, options: []) as? [String: Any] {
+                db.collection("users").document((Auth.auth().currentUser?.email)!).setData([
+                    dateString: [meal: FieldValue.arrayRemove([foodDictionary]), "fibreIntake": changedIntake]
+                ], merge: true) { err in
+                    if err == nil {
+                        completion(true)
+                    } else {
+                        completion(false)
                     }
-                    
                 }
-            } catch {
-                print("Error encoding food object: \(error)")
+                
             }
+        } catch {
+            completion(false)
         }
+        
     }
     
     func fetchFibreGoal(completion: @escaping (Int?) -> Void) {
@@ -260,12 +255,12 @@ struct FirebaseManager {
                 if let foodDictionary = try JSONSerialization.jsonObject(with: foodData, options: []) as? [String: Any] {
                     db.collection("users").document((Auth.auth().currentUser?.email)!).setData([
                         "recentFoods": FieldValue.arrayUnion([foodDictionary])], merge: true) { err in
-                        if let err = err {
-                            print("Error updating document: \(err)")
-                        } else {
-                            print("Document successfully updated")
+                            if let err = err {
+                                print("Error updating document: \(err)")
+                            } else {
+                                print("Document successfully updated")
+                            }
                         }
-                    }
                 }
             } catch {
                 print("Error encoding food object: \(error)")
