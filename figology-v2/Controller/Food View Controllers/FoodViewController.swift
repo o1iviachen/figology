@@ -12,10 +12,6 @@ import SwiftUI
 
 class FoodViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var progressLabel: UILabel!
-    @IBOutlet weak var progressBar: UIProgressView!
-    
     var dateString: String? = nil
     let fibreCallManager = FibreCallManager()
     var fibreRequests: [URLRequest?] = []
@@ -28,36 +24,55 @@ class FoodViewController: UIViewController {
     var selectedMeal: String? = nil
     let errorManager = ErrorManager()
     
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var progressLabel: UILabel!
+    @IBOutlet weak var progressBar: UIProgressView!
+    
     override func viewDidLoad() {
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UINib(nibName: K.foodCellIdentifier, bundle: nil), forCellReuseIdentifier: K.foodCellIdentifier)
-        progressBar.isHidden = true
         super.viewDidLoad()
+        
+        // Set the view controller as the delegate of the table view to handle user interactions
+        tableView.delegate = self
+
+        // Set the view controller as the data source of the table view to provide the data
+        tableView.dataSource = self
+
+        // Register food cell in table view
+        tableView.register(UINib(nibName: K.foodCellIdentifier, bundle: nil), forCellReuseIdentifier: K.foodCellIdentifier)
+        
+        // Start with progress bar hidden
+        progressBar.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if dateString == nil {
-            dateString = firebaseManager.formatDate()
-        }
+        super.viewWillAppear(animated)
         
+        // Get current date
+        dateString = firebaseManager.formatDate()
+        
+        // Fetch user document in Firebase Firestore
         firebaseManager.fetchUserDocument { document in
+            
+            // Fetch current date's consumed foods
             self.firebaseManager.fetchFoods(dateString: self.dateString!, document: document) { data in
                 self.tableData = data
                 self.tableView.reloadData()
                 print(self.tableData)
             }
+            
+            // Fetch current date's current fibre intake
             self.firebaseManager.fetchFibreIntake(dateString: self.dateString!, document: document) { intake in
                 self.fibreIntake = Double(intake)
             }
             
+            // Fetch fibre goal
             self.firebaseManager.fetchFibreGoal(document: document) { goal in
                 self.fibreGoal = goal
                 self.updateProgressUI()
             }
         }
         
+        // Change the table view height depending on the number of foods
         DispatchQueue.main.async {
             if CGFloat(62*self.tableData.count + 40) > CGFloat(UIScreen.main.bounds.size.height) {
                 self.tableView.heightAnchor.constraint(equalToConstant: CGFloat(62*self.tableData.count + 40)).isActive = true
@@ -67,19 +82,31 @@ class FoodViewController: UIViewController {
     }
     
     func updateProgressUI() {
+        
+        // If fibre goal exists
         if let setFibreGoal = fibreGoal {
+            
+            // Update progress label
             self.progressLabel.text = "you have consumed \(self.fibreIntake) g out of your \(setFibreGoal) g fibre goal! way to go."
+            
+            // Show decimal progress on progress bar
             self.progressBar.progress = Float(self.fibreIntake/Double(setFibreGoal))
             self.progressBar.isHidden = false
         } else {
+            
+            // Communicate to user to set their fibre goal
             self.progressLabel.text = "please set your fibre goal."
         }
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // If the segue to be performed goes to the result view controller (the food is being edited)
         if segue.identifier == K.foodResultSegue {
             let destinationVC = segue.destination as! ResultViewController
+            
+            // Prepare the result view controller's attributes
             destinationVC.selectedFood = selectedFood!
             destinationVC.originalMeal = selectedMeal!
         }
@@ -91,25 +118,39 @@ class FoodViewController: UIViewController {
 //MARK: - UITableViewDataSource
 extension FoodViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
+        
+        // Required to populate the correct number of sections (number of meal types)
         return tableData.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        // Required to populate the correct number of foods per meal
         return tableData[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.foodCellIdentifier, for: indexPath) as! FoodCell
+        
+        // Get the required Food object
         let cellFood = tableData[indexPath.section][indexPath.row]
+        
+        // Access a food cell's attributes to customise the cells according to Food object
         cell.foodNameLabel.text = cellFood.food
+        
+        // Calculate the consumed mass
         let descriptionString = "\(cellFood.brandName), \(String(format: "%.1f", cellFood.multiplier*cellFood.selectedMeasure.measureMass)) g"
         cell.foodDescriptionLabel.text = descriptionString
+        
+        // Calculate the fibre mass per consumed mass
         cell.fibreMassLabel.text = "\(String(format: "%.1f", cellFood.fibrePerGram*cellFood.multiplier*cellFood.selectedMeasure.measureMass)) g"
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        // As long as there are more header titles, name sections
         if section < headerTitles.count {
             return headerTitles[section]
         }
@@ -159,7 +200,7 @@ extension FoodViewController: UITableViewDelegate {
 //MARK: - UIViewControllerRepresentable
 struct FoodView: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: FoodViewController, context: Context) {
-        print("ok")
+        // ?
     }
     
     let date: Date
@@ -167,12 +208,7 @@ struct FoodView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> FoodViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "FoodViewController") as! FoodViewController
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yy_MM_dd"
-        vc.dateString = dateFormatter.string(from: date)
-        
-        
+        vc.dateString = FirebaseManager().formatDate()
         
         return vc
     }
