@@ -42,18 +42,20 @@ class FoodViewController: UIViewController {
             dateString = firebaseManager.formatDate()
         }
         
-        firebaseManager.fetchFoods(dateString: dateString!) { data in
-            self.tableData = data
-            self.tableView.reloadData()
-            print(self.tableData)
-        }
-        firebaseManager.fetchFibreIntake(dateString: dateString!) { intake in
-            self.fibreIntake = Double(intake)
-        }
-        
-        firebaseManager.fetchFibreGoal { goal in
-            self.fibreGoal = goal
-            self.updateProgressUI()
+        firebaseManager.fetchUserDocument { document in
+            self.firebaseManager.fetchFoods(dateString: self.dateString!, document: document) { data in
+                self.tableData = data
+                self.tableView.reloadData()
+                print(self.tableData)
+            }
+            self.firebaseManager.fetchFibreIntake(dateString: self.dateString!, document: document) { intake in
+                self.fibreIntake = Double(intake)
+            }
+            
+            self.firebaseManager.fetchFibreGoal(document: document) { goal in
+                self.fibreGoal = goal
+                self.updateProgressUI()
+            }
         }
         
         DispatchQueue.main.async {
@@ -138,9 +140,11 @@ extension FoodViewController: UITableViewDelegate {
                 if foodRemoved {
                     self.tableData[indexPath.section].remove(at: indexPath.row)
                     tableView.deleteRows(at: [indexPath], with: .fade)
-                    self.firebaseManager.fetchFibreIntake(dateString: self.dateString!) { intake in
-                        self.fibreIntake = intake
-                        self.updateProgressUI()
+                    self.firebaseManager.fetchUserDocument { document in
+                        self.firebaseManager.fetchFibreIntake(dateString: self.dateString!, document: document) { intake in
+                            self.fibreIntake = intake
+                            self.updateProgressUI()
+                        }
                     }
                 } else {
                     self.errorManager.showError(errorMessage: "could not remove food.", viewController: self)

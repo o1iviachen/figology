@@ -41,9 +41,7 @@ class ResultViewController: UIViewController {
         if dateString == nil {
             dateString = firebaseManager.formatDate()
         }
-        firebaseManager.fetchFibreIntake(dateString: dateString!) { intake in
-            self.fibreIntake = intake
-        }
+        
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(tapGesture)
@@ -56,14 +54,20 @@ class ResultViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        firebaseManager.fetchFibreGoal { fetchedGoal in
-            if let setFibreGoal = fetchedGoal {
-                self.fibreGoal = setFibreGoal
+        firebaseManager.fetchUserDocument { document in
+            self.firebaseManager.fetchFibreGoal(document: document) { fetchedGoal in
+                if let setFibreGoal = fetchedGoal {
+                    self.fibreGoal = setFibreGoal
+                }
             }
-            self.updateUI()
-            
+            self.firebaseManager.fetchFibreIntake(dateString: self.dateString!, document: document) { intake in
+                self.fibreIntake = intake
+            }
         }
+        self.updateUI()
     }
+    
+    
     
     func updateUI() {
         let calculatedFibre = selectedFood!.fibrePerGram*temporaryMeasure!.measureMass*selectedFood!.multiplier
@@ -132,8 +136,9 @@ class ResultViewController: UIViewController {
                 self.errorManager.showError(errorMessage: "could not add new food.", viewController: self)
             }
         }
-        
-        firebaseManager.addToRecentFoods(food: selectedFood!)
+        firebaseManager.fetchUserDocument { document in
+            self.firebaseManager.addToRecentFoods(food: self.selectedFood!, document: document)
+        }
         // patchwork, will not work with slow wifi
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.navigationController?.popViewController(animated: true)

@@ -30,13 +30,16 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         userLabel.text = "current user: \((Auth.auth().currentUser?.email)!)"
-        firebaseManager.fetchFibreGoal { fibreGoal in
-            if let safeFibreGoal = fibreGoal {
-                self.fibreLabel.text = "fibre goal: \(safeFibreGoal) g"
-            } else {
-                self.fibreLabel.text = "please set your fibre goal."
+        firebaseManager.fetchUserDocument { document in
+            self.firebaseManager.fetchFibreGoal(document: document) { fibreGoal in
+                if let safeFibreGoal = fibreGoal {
+                    self.fibreLabel.text = "fibre goal: \(safeFibreGoal) g"
+                } else {
+                    self.fibreLabel.text = "please set your fibre goal."
+                }
             }
         }
+        
         if let index = self.tableView.indexPathForSelectedRow {
             self.tableView.deselectRow(at: index, animated: true)
             

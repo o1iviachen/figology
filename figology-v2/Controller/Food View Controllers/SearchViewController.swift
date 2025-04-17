@@ -18,10 +18,13 @@ class SearchViewController: UIViewController {
     let firebaseManager = FirebaseManager()
     
     override func viewDidLoad() {
-        firebaseManager.fetchRecentFoods { recentFoods in
-            self.searchList = recentFoods
-            self.resultsTableView.reloadData()
+        firebaseManager.fetchUserDocument { document in
+            self.firebaseManager.fetchRecentFoods(document: document) { recentFoods in
+                self.searchList = recentFoods
+                self.resultsTableView.reloadData()
+            }
         }
+        
         logoView = FLAnimatedImageView()
         logoView.contentMode = .scaleAspectFit
         let centerX = view.bounds.size.width / 2
