@@ -143,7 +143,7 @@ extension FoodViewController: UITableViewDelegate {
                         self.updateProgressUI()
                     }
                 } else {
-                    self.errorManager.showError(errorMessage: "Could not remove food.", viewController: self)
+                    self.errorManager.showError(errorMessage: "could not remove food.", viewController: self)
                 }
             }
             

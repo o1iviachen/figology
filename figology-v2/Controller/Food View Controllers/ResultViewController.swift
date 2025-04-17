@@ -119,7 +119,7 @@ class ResultViewController: UIViewController {
             if viewController is FoodViewController {
                 firebaseManager.removeFood(food: selectedFood!, meal: originalMeal, dateString: dateString!, fibreIntake: fibreIntake) { foodRemoved in
                     if !foodRemoved {
-                        self.errorManager.showError(errorMessage: "Could not remove previous food.", viewController: self)
+                        self.errorManager.showError(errorMessage: "could not remove previous food.", viewController: self)
                     }
                 }
             }
@@ -129,7 +129,7 @@ class ResultViewController: UIViewController {
         self.selectedFood!.selectedMeasure = self.temporaryMeasure!
         firebaseManager.logFood(food: selectedFood!, meal: mealButton.currentTitle!, dateString: dateString!, fibreIntake: fibreIntake) { foodAdded in
             if !foodAdded {
-                self.errorManager.showError(errorMessage: "Could not add new food.", viewController: self)
+                self.errorManager.showError(errorMessage: "could not add new food.", viewController: self)
             }
         }
         
