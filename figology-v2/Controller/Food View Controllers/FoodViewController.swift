@@ -142,6 +142,10 @@ extension FoodViewController: UITableViewDelegate {
 }
 
 struct FoodView: UIViewControllerRepresentable {
+    func updateUIViewController(_ uiViewController: FoodViewController, context: Context) {
+        print("ok")
+    }
+    
     let date: Date
     
     func makeUIViewController(context: Context) -> FoodViewController {
@@ -155,10 +159,6 @@ struct FoodView: UIViewControllerRepresentable {
         
 
         return vc
-    }
-
-    func updateUIViewController(_ uiViewController: FoodViewController, context: Context) {
-        print("hi")
     }
     
 }
