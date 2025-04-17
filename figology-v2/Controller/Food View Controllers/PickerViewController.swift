@@ -36,6 +36,7 @@ class PickerViewController: UIViewController {
     }
 }
 
+//MARK: - UIPickerViewDelegate
 extension PickerViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return modifiedOptions[row]
@@ -47,6 +48,7 @@ extension PickerViewController: UIPickerViewDelegate {
     
 }
 
+//MARK: - UIPickerViewDataSource
 extension PickerViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

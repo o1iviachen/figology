@@ -10,10 +10,11 @@ import MessageUI
 import Firebase
 
 
-class SupportViewController: UIViewController, MFMailComposeViewControllerDelegate, UITextViewDelegate {
+class SupportViewController: UIViewController {
     
     @IBOutlet weak var viewHolder: UIView!
     var newTextView: UITextView!
+    let errorManager = ErrorManager()
     
     override func viewDidLoad() {
         newTextView = UITextView()
@@ -21,7 +22,6 @@ class SupportViewController: UIViewController, MFMailComposeViewControllerDelega
         newTextView.backgroundColor = UIColor.white
         viewHolder.translatesAutoresizingMaskIntoConstraints = false
         newTextView.translatesAutoresizingMaskIntoConstraints = false // Important: Disable autoresizing mask
-        newTextView.delegate = self
         
         view.addSubview(newTextView)
 
@@ -68,8 +68,7 @@ class SupportViewController: UIViewController, MFMailComposeViewControllerDelega
     
     @IBAction func sendButtonTapped(_ sender: UIButton) {
         guard let emailBody = newTextView.text else {
-            print("Error: Email body is empty.")
-            // Display an error message to the user
+            self.errorManager.showError(errorMessage: "email body is empty.", viewController: self)
             return
         }
         
@@ -85,6 +84,11 @@ class SupportViewController: UIViewController, MFMailComposeViewControllerDelega
     }
     
     
+    
+}
+
+//MARK: - MFMailComposeViewControllerDelegate
+extension SupportViewController: MFMailComposeViewControllerDelegate {
     func sendEmail(body: String, controller: SupportViewController) {
         if !body.isEmpty {
             // try on physical device
@@ -97,12 +101,8 @@ class SupportViewController: UIViewController, MFMailComposeViewControllerDelega
                 mailComposer.setMessageBody("\(body)", isHTML: false)
                 controller.present(mailComposer, animated: true, completion: nil)
             } else {
-                showError(errorMessage: "Unable to send email. Please set up an email account on your device.")
-                // Display an error message to the user
+                self.errorManager.showError(errorMessage: "unable to send email. please set up an email account on your device.", viewController: self)
             }
-        } else {
-            showError(errorMessage:"You have not written anything.")
-            // Display an error message to the user
         }
     }
     
@@ -110,41 +110,24 @@ class SupportViewController: UIViewController, MFMailComposeViewControllerDelega
         switch result {
         case .sent:
             controller.dismiss(animated: true, completion: {
-                self.showError(errorMessage: "The email was sent.")
+                self.errorManager.showError(errorMessage: "email sent!", viewController: self)
             })
         case .saved:
             controller.dismiss(animated: true, completion: {
-                self.showError(errorMessage: "The email was saved.")
+                self.errorManager.showError(errorMessage: "email saved!", viewController: self)
             })
         case .cancelled:
             controller.dismiss(animated: true, completion: nil)
             
         case .failed:
             controller.dismiss(animated: true, completion: {
-                self.showError(errorMessage: "The email was not sent.")
+                self.errorManager.showError(errorMessage: "the email was not sent.", viewController: self)
             })
         @unknown default:
             break
         }
         
     }
-    func showError(errorMessage: String) {
-        if errorMessage == "The email was not sent." {
-            let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-            
-            self.present(alert, animated: true, completion: nil)
-        } else {
-            let alert = UIAlertController(title: "Success!", message: errorMessage, preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-            
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    
 }
 
 

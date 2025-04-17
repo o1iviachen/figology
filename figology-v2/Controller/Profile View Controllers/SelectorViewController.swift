@@ -31,19 +31,10 @@ class SelectorViewController: UIViewController {
         // Add an UIAlertAction with a handler to perform the segue
         let gotItAction = UIAlertAction(title: "Got It!", style: .default) { (action) in
             // Perform the segue when the "Got It!" button is tapped
-            if self.canPerformSegue(withIdentifier: K.proMainSegue) {
-                self.performSegue(withIdentifier: K.proMainSegue, sender: self)
-                
-                self.db.collection("users").document((Auth.auth().currentUser?.email)!).setData([ "fibreGoal": fibreAmount], merge: true)
-                // UserDefaults.standard.set(fibreAmount, forKey: "fibreGoal")
-
-            } else {
                 UserDefaults.standard.set(fibreAmount, forKey: "fibreGoal")
                 self.db.collection("users").document((Auth.auth().currentUser?.email)!).setData([ "fibreGoal": fibreAmount], merge: true)
                 self.navigationController?.popViewController(animated: true)
 
-                
-            }
         }
         alert.addAction(gotItAction)
         
@@ -53,10 +44,3 @@ class SelectorViewController: UIViewController {
     }
 }
 
-// check
-extension UIViewController {
-    func canPerformSegue(withIdentifier id: String) -> Bool {
-        guard let segues = self.value(forKey: "storyboardSegueTemplates") as? [NSObject] else { return false }
-        return segues.first { $0.value(forKey: "identifier") as? String == id } != nil
-    }
-}

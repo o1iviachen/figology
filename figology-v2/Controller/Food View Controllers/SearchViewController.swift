@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import FLAnimatedImage
 
-class SearchViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate, UITableViewDataSource {
+class SearchViewController: UIViewController {
     
     var searchList: [Food?] = []
     var selectedFood: Food? = nil
@@ -37,7 +37,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         resultsTableView.register(UINib(nibName: K.foodCellIdentifier, bundle: nil), forCellReuseIdentifier: K.foodCellIdentifier)
         
     }
-
+    
     
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
@@ -70,10 +70,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         loadingUIUpdate()
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        loadingUIUpdate()
-        return searchTextField.placeholder != "Enter a food"
-    }
     
     func loadingUIUpdate() {
         if searchTextField.text != "" {
@@ -86,20 +82,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITextFieldDe
             searchTextField.placeholder = "Enter a food"
         }
     }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if let food = searchTextField.text {
-            self.searchList.removeAll()
-            getFibreData(foodString: food) { 
-                DispatchQueue.main.async {
-                    self.resultsTableView.heightAnchor.constraint(equalToConstant: CGFloat(62*self.searchList.count)).isActive = true
-                    self.logoView.isHidden = true
-                    self.resultsTableView.reloadData()
-                }
-            }
-        }
-        searchTextField.text = ""
-    }
-
+    
     func getFibreData(foodString: String, completion: @escaping () -> Void) {
         let foodRequest = fibreCallManager.prepareFoodRequest(foodSearch: foodString)
         fibreCallManager.performFoodRequest(request: foodRequest) { results in
@@ -108,7 +91,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITextFieldDe
                 let fibreRequest = self.fibreCallManager.prepareFibreRequest(foodRequest: result)
                 fibreRequests.append(fibreRequest)
             }
-            
+            // might need to change
             let dispatchGroup = DispatchGroup()
             
             for fibreRequest in fibreRequests {
@@ -128,6 +111,26 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.searchResultSegue {
+            
+            let destinationVC = segue.destination as! ResultViewController
+            destinationVC.selectedFood = selectedFood
+        }
+    }
+}
+
+//MARK: - UITableViewDelegate
+extension SearchViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedFood = searchList[indexPath.row]
+        performSegue(withIdentifier: K.searchResultSegue, sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+//MARK: - UITextFieldDelegate
+extension SearchViewController: UITextFieldDelegate {
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         // textfield triggers --> pass reference
         if textField.text != "" {
@@ -138,7 +141,27 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         }
         
     }
-    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let food = searchTextField.text {
+            self.searchList.removeAll()
+            getFibreData(foodString: food) {
+                DispatchQueue.main.async {
+                    self.resultsTableView.heightAnchor.constraint(equalToConstant: CGFloat(62*self.searchList.count)).isActive = true
+                    self.logoView.isHidden = true
+                    self.resultsTableView.reloadData()
+                }
+            }
+        }
+        searchTextField.text = ""
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        loadingUIUpdate()
+        return searchTextField.placeholder != "Enter a food"
+    }
+}
+
+//MARK: - UITableViewDataSource
+extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchList.count
     }
@@ -153,21 +176,4 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         
         return cell
     }
-    
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedFood = searchList[indexPath.row]
-        performSegue(withIdentifier: K.searchResultSegue, sender: self)
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == K.searchResultSegue {
-            
-            let destinationVC = segue.destination as! ResultViewController
-            destinationVC.selectedFood = selectedFood
-        }
-    }
 }
-
-

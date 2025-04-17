@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import FLAnimatedImage
 
-class ResultViewController: UIViewController, UITextFieldDelegate {
+class ResultViewController: UIViewController {
     var rawPickerOptions: [Any] = []
     var measureQuantity = 0.0
     var fibreMass = 0.0
@@ -21,7 +21,7 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
     let firebaseManager = FirebaseManager()
     let db = Firestore.firestore()
     var dateString: String? = nil
-    var meal: String = "breakfast"
+    var originalMeal: String = "breakfast"
     var fibreGoal: Int? = nil
     let errorManager = ErrorManager()
     
@@ -36,6 +36,7 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mealButton.setTitle(originalMeal, for: .normal)
         temporaryMeasure = selectedFood!.selectedMeasure
         if dateString == nil {
             dateString = firebaseManager.formatDate()
@@ -70,7 +71,6 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
         fibreLabel.text = "\(String(format: "%.1f", calculatedFibre)) g"
         descriptionLabel.text = "\(selectedFood!.brandName), \(String(format: "%.1f", temporaryMeasure!.measureMass*selectedFood!.multiplier)) g"
         servingTextField.text = String(selectedFood!.multiplier)
-        mealButton.setTitle(meal, for: .normal)
         if temporaryMeasure!.measureExpression.count < 10 {
             servingMeasureButton.setTitle(temporaryMeasure!.measureExpression, for: .normal)
         } else {
@@ -101,17 +101,6 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
         servingTextField.resignFirstResponder()
     }
     
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        // textfield triggers --> pass reference
-        if textField.text != "" {
-            return true
-        } else {
-            textField.text = "1"
-            return false
-        }
-        
-    }
-    
     @IBAction func mealButtonSelected(_ sender: UIButton) {
         rawPickerOptions = ["breakfast", "lunch", "dinner", "snacks"]
         performSegue(withIdentifier: K.resultPickerSegue, sender: self)
@@ -128,7 +117,7 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
         if let navController = self.navigationController, navController.viewControllers.count >= 2 {
             let viewController = navController.viewControllers[navController.viewControllers.count - 2]
             if viewController is FoodViewController {
-                firebaseManager.removeFood(food: selectedFood!, meal: meal, dateString: dateString!, fibreIntake: fibreIntake) { foodRemoved in
+                firebaseManager.removeFood(food: selectedFood!, meal: originalMeal, dateString: dateString!, fibreIntake: fibreIntake) { foodRemoved in
                     if !foodRemoved {
                         self.errorManager.showError(errorMessage: "Could not remove previous food.", viewController: self)
                     }
@@ -146,7 +135,7 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
         
         firebaseManager.addToRecentFoods(food: selectedFood!)
         // patchwork, will not work with slow wifi
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.navigationController?.popViewController(animated: true)
         }
     }
@@ -162,10 +151,11 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
     
 }
 
+//MARK: - PickerViewControllerDelegate
 extension ResultViewController: PickerViewControllerDelegate {
     func didSelectValue(value: Any) {
         if value is String {
-            meal = value as! String }
+            mealButton.setTitle(value as? String, for: .normal) }
         else {
             // problem w delete
             temporaryMeasure = value as? Measure
@@ -174,4 +164,17 @@ extension ResultViewController: PickerViewControllerDelegate {
     }
 }
 
+//MARK: - UITextFieldDelegate
+extension ResultViewController: UITextFieldDelegate {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        // textfield triggers --> pass reference
+        if textField.text != "" {
+            return true
+        } else {
+            textField.text = "1"
+            return false
+        }
+        
+    }
+}
 

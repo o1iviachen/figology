@@ -79,13 +79,14 @@ class FoodViewController: UIViewController {
         if segue.identifier == K.foodResultSegue {
             let destinationVC = segue.destination as! ResultViewController
             destinationVC.selectedFood = selectedFood!
-            destinationVC.meal = selectedMeal!
+            destinationVC.originalMeal = selectedMeal!
         }
     }
     
     
 }
 
+//MARK: - UITableViewDataSource
 extension FoodViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return tableData.count
@@ -114,6 +115,7 @@ extension FoodViewController: UITableViewDataSource {
     }
 }
 
+//MARK: - UITableViewDelegate
 extension FoodViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let exists = navigationController?.viewControllers.contains {
@@ -150,6 +152,7 @@ extension FoodViewController: UITableViewDelegate {
     }
 }
 
+//MARK: - UIViewControllerRepresentable
 struct FoodView: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: FoodViewController, context: Context) {
         print("ok")

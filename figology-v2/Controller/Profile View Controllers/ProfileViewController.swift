@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 // delegate design change
-class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ProfileViewController: UIViewController {
     let data = [[Setting(image: UIImage(systemName: "plusminus")!, setting: "fibre calculator"), Setting(image: UIImage(systemName: "square.and.pencil")!, setting: "edit fibre goal")], [Setting(image: UIImage(systemName: "wrench.adjustable")!, setting: "support")], ["Log out"]]
     let firebaseManager = FirebaseManager()
     
@@ -16,6 +16,16 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var fibreLabel: UILabel!
 
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UINib(nibName: K.profileCellIdentifier, bundle: nil), forCellReuseIdentifier: K.profileCellIdentifier)
+        tableView.register(UINib(nibName: K.logOutCellNib, bundle: nil), forCellReuseIdentifier: K.logOutCellIdentifier)
+        tableView.separatorStyle = .none
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         userLabel.text = "current user: \((Auth.auth().currentUser?.email)!)"
@@ -35,17 +45,32 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func findNavigationController(viewController: UIViewController?) -> UINavigationController? {
+        guard let viewController = viewController else {
+            return nil
+        }
         
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(UINib(nibName: K.profileCellIdentifier, bundle: nil), forCellReuseIdentifier: K.profileCellIdentifier)
-        tableView.register(UINib(nibName: K.logOutCellNib, bundle: nil), forCellReuseIdentifier: K.logOutCellIdentifier)
-        tableView.separatorStyle = .none
+        if let navigationController = viewController as? UINavigationController {
+            return navigationController
+        }
+        
+        for childViewController in viewController.children {
+            return findNavigationController(viewController: childViewController)
+        }
+        return nil
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "profileToCalculator" {
+            let destinationVC = segue.destination as! CalculatorViewController
+            destinationVC.backButtonShow = true
+        }
+    }
+    
+}
 
+//MARK: - UITableViewDataSource
+extension ProfileViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return data.count
     }
@@ -69,16 +94,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10.0 // Adjust the value as needed
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = .clear
-        return headerView
-    }
-    
+}
+
+//MARK: - UITableViewDelegate
+extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // log out button pressed
         if indexPath == [2,0] {
@@ -125,29 +144,14 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
     }
-    
-    func findNavigationController(viewController: UIViewController?) -> UINavigationController? {
-        guard let viewController = viewController else {
-            return nil
-        }
-        
-        if let navigationController = viewController as? UINavigationController {
-            return navigationController
-        }
-        
-        for childViewController in viewController.children {
-            return findNavigationController(viewController: childViewController)
-        }
-        return nil
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10.0 // Adjust the value as needed
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "profileToCalculator" {
-            let destinationVC = segue.destination as! CalculatorViewController
-            destinationVC.backButtonShow = true
-        }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = .clear
+        return headerView
     }
-    
+
 }
-
-

@@ -13,6 +13,7 @@ import Firebase
 class LogInViewController: UIViewController {
     
     let db = Firestore.firestore()
+    let errorManager = ErrorManager()
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -31,9 +32,9 @@ class LogInViewController: UIViewController {
     @IBAction func loginPressed(_ sender: UIButton) {
         if let email = emailTextField.text, let password = passwordTextField.text {
             
-            Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-                if let e = error {
-                    self.showError(errorMessage: e.localizedDescription)
+            Auth.auth().signIn(withEmail: email, password: password) { authResult, err in
+                if let err = err {
+                    self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
                 } else {
                     self.performSegue(withIdentifier: K.logInTabSegue, sender: self)
                 }
@@ -48,17 +49,17 @@ class LogInViewController: UIViewController {
         GIDSignIn.sharedInstance.configuration = config
         
         // Start the sign in flow!
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
-            if let e = error {
-                showError(errorMessage: e.localizedDescription)
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, err in
+            if let err = err {
+                self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
             } else {
                 if (result?.user) != nil {
                     let user = result?.user
                     let idToken = user?.idToken?.tokenString
                     let credential = GoogleAuthProvider.credential(withIDToken: idToken!, accessToken: user!.accessToken.tokenString)
-                    Auth.auth().signIn(with: credential) { result, error in
-                        if let e = error {
-                            self.showError(errorMessage: e.localizedDescription)
+                    Auth.auth().signIn(with: credential) { result, err in
+                        if let err = err {
+                            self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
                         } else {
                             if let isNewUser: Bool = result?.additionalUserInfo?.isNewUser {
                                 if isNewUser {
@@ -70,7 +71,7 @@ class LogInViewController: UIViewController {
                                         date: [:]
                                     ]) { err in
                                         if let err = err {
-                                            self.showError(errorMessage: err.localizedDescription)
+                                            self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
                                         } else {
                                             self.performSegue(withIdentifier: K.logInCalculatorSegue, sender: self)
                                         }
@@ -82,22 +83,12 @@ class LogInViewController: UIViewController {
                         }
                         
                     }
-                } else {
-                    showError(errorMessage: "No user")
-                }
+                } 
                 
                 
             }
         }
     }
- 
-        
-    
-    func showError(errorMessage: String) {
-            let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
     
 }
 

@@ -16,20 +16,22 @@ class PasswordViewController: UIViewController {
     }
     
     var email = ""
+    let errorManager = ErrorManager()
+
 
     @IBOutlet weak var emailTextField: UITextField!
     
     @IBAction func sendEmailPressed(_ sender: UIButton) {
         let emailAddress = emailTextField.text
-        Auth.auth().sendPasswordReset(withEmail: emailAddress ?? "") { error in
-            if let e = error {
-                self.showError(errorMessage: e.localizedDescription)
+        Auth.auth().sendPasswordReset(withEmail: emailAddress ?? "") { err in
+            if let err = err {
+                self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
             } else {
                 Auth.auth().fetchSignInMethods(forEmail: emailAddress ?? "", completion: {
-                    (signInMethods, error) in
+                    (signInMethods, err) in
                     
-                    if let e = error {
-                        self.showError(errorMessage: e.localizedDescription)
+                    if let err = err {
+                        self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
                     } else {
                         let alert = UIAlertController(title: "Completed!", message: "Please check your email to reset your password.", preferredStyle: .alert)
                         
@@ -51,12 +53,6 @@ class PasswordViewController: UIViewController {
             }
             
         }
-    }
-    
-    func showError(errorMessage: String) {
-        let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
     
 }
