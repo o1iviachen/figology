@@ -18,22 +18,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        // put in tabbar
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             self.window = window
             
+            // Instantiate Storyboard
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            // Determine if there if a user logged in
             handle = Auth.auth().addStateDidChangeListener { auth, user in
-                // ...
+                
+                // If a user is logged in, go to tab bar view controller
+                if user != nil {
+                    let initialViewController = storyboard.instantiateViewController(withIdentifier: K.tabBarIdentifier)
+                    window.rootViewController = initialViewController
+                }
+                
+                // If no user is logged in, go to welcome view controller
+                else {
+                    let initialViewController = storyboard.instantiateViewController(withIdentifier: K.welcomeIdentifier)
+                    window.rootViewController = initialViewController
+                }
             }
-            if Auth.auth().currentUser != nil {
-                let initialViewController = storyboard.instantiateViewController(withIdentifier: K.tabBarIdentifier)
-                window.rootViewController = initialViewController
-            } else {
-                let initialViewController = storyboard.instantiateViewController(withIdentifier: K.welcomeIdentifier)
-                window.rootViewController = initialViewController
-            }
+            
             
             window.makeKeyAndVisible()
             guard let _ = (scene as? UIWindowScene) else { return }

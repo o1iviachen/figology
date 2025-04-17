@@ -1277,7 +1277,7 @@
                                 </subviews>
                             </stackView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d5o-tm-ooN">
-                                <rect key="frame" x="0.0" y="180" width="393" height="589"/>
+                                <rect key="frame" x="0.0" y="180" width="393" height="638"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bqQ-Z9-OuG">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="1000"/>
@@ -1320,9 +1320,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GAV-i6-Ujq"/>
-        <segue reference="EP1-xN-1qK"/>
-        <segue reference="4af-VQ-aJX"/>
+        <segue reference="5cV-Le-WvS"/>
+        <segue reference="0fQ-Cv-ylB"/>
         <segue reference="59y-vI-ggX"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="Dark Purple"/>

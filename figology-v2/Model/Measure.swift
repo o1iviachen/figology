@@ -10,7 +10,6 @@ import Foundation
 struct Measure: Codable {
     let measureExpression: String
     let measureMass: Double
-    
 }
 
 struct RawMeasure: Decodable {

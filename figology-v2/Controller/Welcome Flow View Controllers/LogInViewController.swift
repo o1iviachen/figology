@@ -19,22 +19,33 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // If segue that will be performed goes to password view controller
         if segue.identifier == K.logInPasswordSegue {
+            
+            // Force downcast destinationVC as PasswordViewController
             let destinationVC = segue.destination as! PasswordViewController
-            if let email = emailTextField.text
-            {
+            
+            // Set PasswordViewController class attribute as email
+            if let email = emailTextField.text {
                 destinationVC.email = email
             }
         }
     }
     
-    
     @IBAction func loginPressed(_ sender: UIButton) {
+        
+        // Get email and password
         if let email = emailTextField.text, let password = passwordTextField.text {
             
+            // Sign in user using email and password. signIn has email and password validation
             Auth.auth().signIn(withEmail: email, password: password) { authResult, err in
+                
+                // If there is an error, show error to user in popup
                 if let err = err {
                     self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
+                    
+                    // Otherwise, perform segue to tab bar view controller
                 } else {
                     self.performSegue(withIdentifier: K.logInTabSegue, sender: self)
                 }
@@ -44,6 +55,7 @@ class LogInViewController: UIViewController {
     
     @IBAction func googleLogInPressed(_ sender: GIDSignInButton) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        
         // Create Google Sign In configuration object.
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
@@ -57,25 +69,24 @@ class LogInViewController: UIViewController {
                     let user = result?.user
                     let idToken = user?.idToken?.tokenString
                     let credential = GoogleAuthProvider.credential(withIDToken: idToken!, accessToken: user!.accessToken.tokenString)
+                    
+                    // Sign in user with Google
                     Auth.auth().signIn(with: credential) { result, err in
+                        
+                        // If there are errors in signing in, show error to user in popup
                         if let err = err {
                             self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
+                        
+                        // Otherwise, check if user is new or not
                         } else {
+                            
+                            // If user is new, go to calculator view controller
                             if let isNewUser: Bool = result?.additionalUserInfo?.isNewUser {
                                 if isNewUser {
-                                    let rawDate = Date()
-                                    let dateFormatter = DateFormatter()
-                                    dateFormatter.dateFormat = "dd/MM/yyyy"
-                                    let date = dateFormatter.string(from: rawDate)
-                                    self.db.collection("users").document((Auth.auth().currentUser?.email)!).setData([
-                                        date: [:]
-                                    ]) { err in
-                                        if let err = err {
-                                            self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
-                                        } else {
-                                            self.performSegue(withIdentifier: K.logInCalculatorSegue, sender: self)
-                                        }
-                                    }
+                                    
+                                    self.performSegue(withIdentifier: K.logInCalculatorSegue, sender: self)
+                                    
+                                // If user is not new, go to tab bar view controller
                                 } else {
                                     self.performSegue(withIdentifier: K.logInTabSegue, sender: self)
                                 }
@@ -83,12 +94,9 @@ class LogInViewController: UIViewController {
                         }
                         
                     }
-                } 
-                
-                
+                }
             }
         }
     }
-    
 }
 

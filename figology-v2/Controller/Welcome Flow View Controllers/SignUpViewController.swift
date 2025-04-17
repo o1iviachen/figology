@@ -14,53 +14,40 @@ class SignUpViewController: UIViewController {
     
     let db = Firestore.firestore()
     let errorManager = ErrorManager()
+    let firebaseManager = FirebaseManager()
     
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-    
-    
     @IBAction func signUpPressed(_ sender: UIButton) {
+        
+        // Get email and password
         if let email = emailTextField.text, let password = passwordTextField.text {
             
+            // Create new user using email and password. createUser has email and password validation
             Auth.auth().createUser(withEmail: email, password: password) { authResult, err in
+                
+                // If there is an error, show error to user in popup
                 if let err = err {
                     self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
-                } else {
-                    let rawDate = Date()
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "dd_MM_yyyy"
-                    let date = dateFormatter.string(from: rawDate)
-                    self.db.collection("users").document((Auth.auth().currentUser?.email)!).setData([
-                        
-                        date: [:]
-                    ]) { err in
-                        if let err = err {
-                            self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
-                        } else {
-                            self.performSegue(withIdentifier: K.signUpCalculatorSegue, sender: self)
-                        }
-                        
-                    }
                     
+                    // Otherwise, perform segue to calculator ... error here ?
+                } else {
+                    self.performSegue(withIdentifier: K.signUpCalculatorSegue, sender: self)
                 }
-                
             }
         }
     }
     
+    // repetitive with log in
     @IBAction func googleSignUpPressed(_ sender: GIDSignInButton) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         
-        // Create Google Sign In configuration object.
+        // Create Google Sign In configuration object
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
         
-        // Start the sign in flow!
+        // Start sign in flow
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, err in
             if let err = err {
                 self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
@@ -70,30 +57,27 @@ class SignUpViewController: UIViewController {
                     let idToken = user?.idToken?.tokenString
                     let credential = GoogleAuthProvider.credential(withIDToken: idToken!,
                                                                    accessToken: user!.accessToken.tokenString)
+                    
+                    // Sign in user with Google
                     Auth.auth().signIn(with: credential) { result, err in
+                        
+                        // If there are errors in signing up, show error to user in popup
                         if let err = err {
                             self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
-                        } else {
+                            
+                        }
+                        
+                        // Otherwise, check if user is new or not
+                        else {
+                            
+                            // If user is new, go to calculator view controller
                             if let isNewUser: Bool = result?.additionalUserInfo?.isNewUser {
                                 if isNewUser {
-                                    let rawDate = Date()
-                                    let dateFormatter = DateFormatter()
-                                    dateFormatter.dateFormat = "dd/MM/yyyy"
-                                    let date = dateFormatter.string(from: rawDate)
-                                    if let isNewUser: Bool = result?.additionalUserInfo?.isNewUser {
-                                        if isNewUser {
-                                            self.db.collection("users").document((Auth.auth().currentUser?.email)!).setData([
-                                                date: [:]
-                                            ]) { err in
-                                                if let err = err {
-                                                    self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
-                                                } else {
-                                                    self.performSegue(withIdentifier: K.signUpCalculatorSegue, sender: self)
-                                                }
-                                            }
-                                        }
-                                    }
-                                } else {
+                                    self.performSegue(withIdentifier: K.signUpCalculatorSegue, sender: self)
+                                }
+                                
+                                // If user is not new, go to tab bar view controller
+                                else {
                                     self.performSegue(withIdentifier: K.signUpTabSegue, sender: self)
                                 }
                             }

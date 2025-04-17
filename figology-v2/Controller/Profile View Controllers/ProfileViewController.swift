@@ -11,6 +11,7 @@ import Firebase
 class ProfileViewController: UIViewController {
     let data = [[Setting(image: UIImage(systemName: "plusminus")!, setting: "fibre calculator"), Setting(image: UIImage(systemName: "square.and.pencil")!, setting: "edit fibre goal")], [Setting(image: UIImage(systemName: "wrench.adjustable")!, setting: "support")], ["Log out"]]
     let firebaseManager = FirebaseManager()
+    let errorManager = ErrorManager()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var userLabel: UILabel!
@@ -101,12 +102,12 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // log out button pressed
         if indexPath == [2,0] {
-            let alert = UIAlertController(title: "Are you sure?", message: "Do you want to log out?", preferredStyle: .alert)
+            let alert = UIAlertController(title: "are you sure?", message: "do you want to log out?", preferredStyle: .alert)
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .default)
+            let cancelAction = UIAlertAction(title: "cancel", style: .default)
             
             // Add an UIAlertAction with a handler to perform the segue
-            let logOutAction = UIAlertAction(title: "Log out", style: .default) { (action) in
+            let logOutAction = UIAlertAction(title: "log out", style: .default) { (action) in
                 // Perform the segue when the "Got It!" button is tapped
                 do {
                     
@@ -123,7 +124,7 @@ extension ProfileViewController: UITableViewDelegate {
 
                     self.navigationController?.popToRootViewController(animated: true)
                 } catch let signOutError as NSError {
-                    print("Error signing out: %@", signOutError)
+                    self.errorManager.showError(errorMessage: signOutError.localizedDescription, viewController: self)
                 }
             }
             

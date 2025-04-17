@@ -7,11 +7,6 @@
 
 import Foundation
 
-struct FoodData: Decodable {
-    let common: [FoodRequest]
-    let branded: [FoodRequest]
-}
-
 struct Food: Codable {
     let food: String
     let fibrePerGram: Double
@@ -22,6 +17,11 @@ struct Food: Codable {
     let consumptionTime: String
 }
 
+struct FoodData: Decodable {
+    let common: [FoodRequest]
+    let branded: [FoodRequest]
+}
+
 struct FoodRequest: Decodable {
     let food_name: String
 }
@@ -29,12 +29,6 @@ struct FoodRequest: Decodable {
 struct FibreData: Decodable {
     let foods: [RawFood]
 }
-
-// add keys
-// enum CodingKeys: String, CodingKey {
-//case foodName = "food_name"
-//case nfDietaryFiber = "nf_dietary_fiber"
-//}
 
 struct RawFood: Decodable {
     let food_name: String
