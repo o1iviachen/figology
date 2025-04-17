@@ -73,7 +73,6 @@ class LogInViewController: UIViewController {
                                             self.showError(errorMessage: err.localizedDescription)
                                         } else {
                                             self.performSegue(withIdentifier: K.logInCalculatorSegue, sender: self)
-                                            print("yay!")
                                         }
                                     }
                                 } else {

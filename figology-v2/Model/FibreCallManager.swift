@@ -40,8 +40,6 @@ struct FibreCallManager {
                 print(e.localizedDescription)
             }
             if let safeData = data {
-                print(String(decoding: safeData, as: UTF8.self))
-                print("WHAT THE FUSKF")
                 fibreRequests = self.parseFoodJSON(foodData: safeData)
             }
             
@@ -113,7 +111,6 @@ struct FibreCallManager {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(FibreData.self, from: fibreData)
-            print(String(decoding: fibreData, as: UTF8.self))
             let food = decodedData.foods[0]
             let foodName = food.food_name
             let brandName = food.brand_name ?? "unbranded"
