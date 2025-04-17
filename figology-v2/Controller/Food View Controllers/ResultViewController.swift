@@ -15,7 +15,7 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
     var fibreMass = 0.0
     var measureList: [Measure] = []
     var selectedFood: Food? = nil
-    // Food(food: "hasbjda", fibrePerGram: 2.3, brandName: "sdf", measures: [Measure(measureExpression: "Sdf", measureMass: 213)], selectedMeasure: Measure(measureExpression: "Sdf", measureMass: 213), multiplier: 123)
+    var temporaryMeasure: Measure? = nil
     var measureDescriptionList: [String] = []
     let firebaseManager = FirebaseManager()
     let db = Firestore.firestore()
@@ -34,6 +34,7 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        temporaryMeasure = selectedFood!.selectedMeasure
         if dateString == nil {
             dateString = firebaseManager.formatDate()
         }
@@ -58,17 +59,17 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
     }
     
     func updateUI() {
-        let calculatedFibre = selectedFood!.fibrePerGram*selectedFood!.selectedMeasure.measureMass*selectedFood!.multiplier
+        let calculatedFibre = selectedFood!.fibrePerGram*temporaryMeasure!.measureMass*selectedFood!.multiplier
         foodLabel.text = selectedFood!.food
         fibreLabel.text = "\(String(format: "%.1f", calculatedFibre)) g"
-        descriptionLabel.text = "\(selectedFood!.brandName), \(String(format: "%.1f", selectedFood!.selectedMeasure.measureMass*selectedFood!.multiplier)) g"
+        descriptionLabel.text = "\(selectedFood!.brandName), \(String(format: "%.1f", temporaryMeasure!.measureMass*selectedFood!.multiplier)) g"
         servingTextField.text = String(selectedFood!.multiplier)
         mealButton.setTitle(meal, for: .normal)
-        if selectedFood!.selectedMeasure.measureExpression.count < 10 {
-            servingMeasureButton.setTitle(selectedFood!.selectedMeasure.measureExpression, for: .normal)
+        if temporaryMeasure!.measureExpression.count < 10 {
+            servingMeasureButton.setTitle(temporaryMeasure!.measureExpression, for: .normal)
         } else {
             
-                servingMeasureButton.setTitle("\(String(selectedFood!.selectedMeasure.measureExpression.prefix(9)))...", for: .normal)
+                servingMeasureButton.setTitle("\(String(temporaryMeasure!.measureExpression.prefix(9)))...", for: .normal)
             
         }
         if let safeFibreGoal = fibreGoal {
@@ -118,15 +119,19 @@ class ResultViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func addFood(_ sender: UIBarButtonItem) {
-        if let lastViewController = navigationController!.viewControllers.last,
-           lastViewController is FoodViewController {
-            firebaseManager.removeFood(food: selectedFood!, meal: meal, dateString: dateString!)
-            selectedFood!.multiplier = Double(servingTextField.text!)!
-            firebaseManager.logFood(food: selectedFood!, meal: mealButton.currentTitle!, dateString: dateString!)
-        } else {
-            selectedFood!.multiplier = Double(servingTextField.text!)!
-            firebaseManager.logFood(food: selectedFood!, meal: mealButton.currentTitle!, dateString: dateString!)
-            firebaseManager.addToRecentFoods(food: selectedFood!)
+        if let navController = self.navigationController, navController.viewControllers.count >= 2 {
+            let viewController = navController.viewControllers[navController.viewControllers.count - 2]
+            if viewController is FoodViewController {
+                firebaseManager.removeFood(food: selectedFood!, meal: meal, dateString: dateString!)
+                print("skid")
+                selectedFood!.multiplier = Double(servingTextField.text!)!
+                selectedFood!.selectedMeasure = temporaryMeasure!
+                firebaseManager.logFood(food: selectedFood!, meal: mealButton.currentTitle!, dateString: dateString!)
+            } else {
+                selectedFood!.multiplier = Double(servingTextField.text!)!
+                firebaseManager.logFood(food: selectedFood!, meal: mealButton.currentTitle!, dateString: dateString!)
+                firebaseManager.addToRecentFoods(food: selectedFood!)
+            }
         }
         navigationController?.popViewController(animated: true)
     }
@@ -148,7 +153,7 @@ extension ResultViewController: PickerViewControllerDelegate {
             meal = value as! String }
         else {
             // problem w delete
-            selectedFood!.selectedMeasure = value as! Measure
+            temporaryMeasure = value as? Measure
         }
         updateUI()
     }
