@@ -46,17 +46,7 @@ class PasswordViewController: UIViewController {
                         
                         // Otherwise, indicate user to check their email
                         else {
-                            let alert = UIAlertController(title: "completed!", message: "please check your email to reset your password.", preferredStyle: .alert)
-                            
-                            // Add action to communicate understanding
-                            let gotItAction = UIAlertAction(title: "got it!", style: .default) { (action) in
-                                
-                                // Perform the segue when the "Got It!" button is tapped
-                                self.navigationController?.popViewController(animated: true)
-                                
-                            }
-                            alert.addAction(gotItAction)
-                            self.present(alert, animated: true, completion: nil)
+                            self.alertManager.showAlert(alertMessage: "please check your email to resent your password", viewController: self)
                         }
                     }
                                                    

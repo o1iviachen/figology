@@ -11,12 +11,15 @@ import Firebase
 
 class CalculatorViewController: UIViewController {
     var backButtonShow: Bool = false
+    let db = Firestore.firestore()
+    let alertManager = AlertManager()
+    
     override func viewDidLoad() {
-            super.viewDidLoad()
-            
-            // Set the back button visibility based on backButtonShow
-            navigationItem.hidesBackButton = !backButtonShow
-        }
+        super.viewDidLoad()
+        
+        // Set the back button visibility based on backButtonShow
+        navigationItem.hidesBackButton = !backButtonShow
+    }
     
     let bmrValues: [Range<Float>: (multiplier: Float, label: String)] = [
         0.0..<0.2: (1.2, "sedentary"),
@@ -25,8 +28,6 @@ class CalculatorViewController: UIViewController {
         0.6..<0.8: (1.725, "fairly active"),
         0.8..<1.1: (1.9, "very active")
     ]
-    
-    let db = Firestore.firestore()
     
     @IBOutlet weak var heightSlider: UISlider!
     @IBOutlet weak var ageSlider: UISlider!
@@ -55,9 +56,9 @@ class CalculatorViewController: UIViewController {
             
             // If a range in the bmrValues dictionary includes the sender value, display corresponding expression
             if range.contains(sender.value) {
-                    activityLabel.text = label
-                }
+                activityLabel.text = label
             }
+        }
     }
     
     
@@ -78,44 +79,25 @@ class CalculatorViewController: UIViewController {
                 
                 // Calculate fibre goal following https://macrofactorapp.com/does-fiber-have-calories/
                 let baselineFibre = bmr/1000*14
-                    let calculatedGoal = Int(multiplier*baselineFibre)
-                    showResult(fibreGoal: calculatedGoal)
-                }
-            }
-       
-    }
-    
-    func showResult(fibreGoal: Int) {
-        let alert = UIAlertController(title: "completed!", message: "your fibre goal is now \(fibreGoal) g. you can change this at any time at the profile page.", preferredStyle: .alert)
-        
-        // Add an UIAlertAction with a handler to go to next view controller based on previous view controllers
-        let gotItAction = UIAlertAction(title: "got it!", style: .default) { (action) in
-             
-            self.db.collection("users").document((Auth.auth().currentUser?.email)!).setData(["fibreGoal": fibreGoal], merge: true)
-            
-            // Make sure there is two or more view controllers
-            if let navController = self.navigationController, navController.viewControllers.count >= 2 {
-                 let viewController = navController.viewControllers[navController.viewControllers.count - 2]
+                let calculatedGoal = Int(multiplier*baselineFibre)
+                alertManager.showAlert(alertMessage: "your fibre goal is now \(calculatedGoal) g. you can change this at any time on the profile page", viewController: self)
+                db.collection("users").document((Auth.auth().currentUser?.email)!).setData(["fibreGoal": calculatedGoal], merge: true)
                 
-                // If the last view controller is a profile view controller, the use did not just sign up. Therefore, pop view controller to profile view controller
-                if viewController is ProfileViewController {
-                    self.navigationController?.popViewController(animated: true)
-                } else {
+                // Make sure there is two or more view controllers
+                if let navController = navigationController, navController.viewControllers.count >= 2 {
+                    let viewController = navController.viewControllers[navController.viewControllers.count - 2]
                     
-                    // Otherwise, go to tam bar controller as user is using the application for the first time
-                    self.performSegue(withIdentifier: K.calculatorTabSegue, sender: self)
+                    // If the last view controller is a profile view controller, the use did not just sign up. Therefore, pop view controller to profile view controller
+                    if viewController is ProfileViewController {
+                        navigationController?.popViewController(animated: true)
+                    } else {
+                        
+                        // Otherwise, go to tam bar controller as user is using the application for the first time
+                        performSegue(withIdentifier: K.calculatorTabSegue, sender: self)
+                    }
                 }
+                break
             }
-          
-            
         }
-        alert.addAction(gotItAction)
-        self.present(alert, animated: true, completion: nil)
-        
     }
-    
-    
-    
-    
-    
 }
