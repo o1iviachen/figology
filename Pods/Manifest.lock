@@ -640,7 +640,6 @@ PODS:
     - "gRPC-C++ (~> 1.44.0)"
     - leveldb-library (~> 1.22)
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FLAnimatedImage (1.0.17)
   - GoogleSignIn (7.0.0):
     - AppAuth (~> 1.5)
     - GTMAppAuth (< 3.0, >= 1.3)
@@ -733,7 +732,6 @@ PODS:
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Firestore
-  - FLAnimatedImage
   - GoogleSignIn
   - IQKeyboardManagerSwift
 
@@ -747,7 +745,6 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreInternal
     - FirebaseFirestore
-    - FLAnimatedImage
     - GoogleSignIn
     - GoogleUtilities
     - "gRPC-C++"
@@ -769,7 +766,6 @@ SPEC CHECKSUMS:
   FirebaseCore: b8697a177690b69b0dbce9d612b69b893be70469
   FirebaseCoreInternal: e301297f4c15a17489e48ed722d733b1578e0c02
   FirebaseFirestore: 07d6c8950584d3c15f2fa1a58f8783a246ca95f7
-  FLAnimatedImage: bbf914596368867157cc71b38a8ec834b3eeb32b
   GoogleSignIn: b232380cf495a429b8095d3178a8d5855b42e842
   GoogleUtilities: c2bdc4cf2ce786c4d2e6b3bcfd599a25ca78f06f
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
@@ -782,6 +778,6 @@ SPEC CHECKSUMS:
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
 
-PODFILE CHECKSUM: a73499f5cd8db7437e5c9347681b1fcce0ca6f26
+PODFILE CHECKSUM: 6118079d2b8b449919df5df958f22e47a1079570
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1

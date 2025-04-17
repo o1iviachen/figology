@@ -13,7 +13,7 @@ import Firebase
 class SignUpViewController: UIViewController {
     
     let db = Firestore.firestore()
-    let errorManager = ErrorManager()
+    let alertManager = AlertManager()
     let firebaseManager = FirebaseManager()
     
     @IBOutlet weak var passwordTextField: UITextField!
@@ -29,7 +29,7 @@ class SignUpViewController: UIViewController {
                 
                 // If there is an error, show error to user in popup
                 if let err = err {
-                    self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
+                    self.alertManager.showAlert(alertMessage: err.localizedDescription, viewController: self)
                     
                     // Otherwise, perform segue to calculator ... error here ?
                 } else {
@@ -50,7 +50,7 @@ class SignUpViewController: UIViewController {
         // Start sign in flow
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, err in
             if let err = err {
-                self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
+                self.alertManager.showAlert(alertMessage: err.localizedDescription, viewController: self)
             } else {
                 if (result?.user) != nil {
                     let user = result?.user
@@ -63,7 +63,7 @@ class SignUpViewController: UIViewController {
                         
                         // If there are errors in signing up, show error to user in popup
                         if let err = err {
-                            self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
+                            self.alertManager.showAlert(alertMessage: err.localizedDescription, viewController: self)
                             
                         }
                         

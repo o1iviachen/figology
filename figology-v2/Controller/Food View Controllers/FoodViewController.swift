@@ -22,7 +22,7 @@ class FoodViewController: UIViewController {
     var fibreIntake = 0.0
     var selectedFood: Food? = nil
     var selectedMeal: String? = nil
-    let errorManager = ErrorManager()
+    let alertManager = AlertManager()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var progressLabel: UILabel!
@@ -161,9 +161,12 @@ extension FoodViewController: UITableViewDataSource {
 //MARK: - UITableViewDelegate
 extension FoodViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Check if UIHostingController is in navigation stack
         let exists = navigationController?.viewControllers.contains {
             $0 is UIHostingController<AnyView>
         } == true
+        
+        // If not, user is not checking the food view controller from the calendar view controller. Therefore, allow user to edit food
         if !exists {
             selectedMeal = headerTitles[indexPath.section]
             selectedFood = tableData[indexPath.section][indexPath.row]
@@ -173,22 +176,39 @@ extension FoodViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        // update firegoalui
-        // deletes the first one?
+        // Makes editing style delete upon swiping left; code from https://stackoverflow.com/questions/24103069/add-swipe-to-delete-uitableviewcell
         if editingStyle == .delete {
+            
+            // Get the food to delete
             selectedFood = tableData[indexPath.section][indexPath.row]
+            
+            // Delete food from Firebase Firestore
             firebaseManager.removeFood(food: selectedFood!, meal: headerTitles[indexPath.section], dateString: dateString!, fibreIntake: fibreIntake) { foodRemoved in
+                
+                // If food is successfully removed
                 if foodRemoved {
+                    
+                    // Remove food from the table data
                     self.tableData[indexPath.section].remove(at: indexPath.row)
+                    
+                    // Delete food from table view with fade animation (self.tableView.reloadData() would not have the fade)
                     tableView.deleteRows(at: [indexPath], with: .fade)
+                    
+                    // Fetch user document
                     self.firebaseManager.fetchUserDocument { document in
+                        
+                        // Fetch fibre intake with food removal
                         self.firebaseManager.fetchFibreIntake(dateString: self.dateString!, document: document) { intake in
                             self.fibreIntake = intake
+                            
+                            // Upon completion, update progress UI
                             self.updateProgressUI()
                         }
                     }
+                    
+                // Otherwise, show error message to user using pop up
                 } else {
-                    self.errorManager.showError(errorMessage: "could not remove food.", viewController: self)
+                    self.alertManager.showAlert(alertMessage: "could not remove food.", viewController: self)
                 }
             }
             

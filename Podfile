@@ -8,6 +8,5 @@ target 'figology-v2' do
   pod 'Firebase/Firestore'
   pod 'GoogleSignIn'
   pod 'IQKeyboardManagerSwift'
-  pod 'FLAnimatedImage'
 
 end

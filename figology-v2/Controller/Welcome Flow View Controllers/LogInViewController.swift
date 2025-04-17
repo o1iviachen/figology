@@ -13,7 +13,7 @@ import Firebase
 class LogInViewController: UIViewController {
     
     let db = Firestore.firestore()
-    let errorManager = ErrorManager()
+    let alertManager = AlertManager()
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -43,7 +43,7 @@ class LogInViewController: UIViewController {
                 
                 // If there is an error, show error to user in popup
                 if let err = err {
-                    self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
+                    self.alertManager.showAlert(alertMessage: err.localizedDescription, viewController: self)
                     
                     // Otherwise, perform segue to tab bar view controller
                 } else {
@@ -63,7 +63,7 @@ class LogInViewController: UIViewController {
         // Start the sign in flow!
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, err in
             if let err = err {
-                self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
+                self.alertManager.showAlert(alertMessage: err.localizedDescription, viewController: self)
             } else {
                 if (result?.user) != nil {
                     let user = result?.user
@@ -75,7 +75,7 @@ class LogInViewController: UIViewController {
                         
                         // If there are errors in signing in, show error to user in popup
                         if let err = err {
-                            self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
+                            self.alertManager.showAlert(alertMessage: err.localizedDescription, viewController: self)
                         
                         // Otherwise, check if user is new or not
                         } else {

@@ -21,24 +21,22 @@ class SelectorViewController: UIViewController {
     
     @IBAction func confirmPressed(_ sender: UIButton) {
         fibreAmount = Int(fibreSlider.value)
-        showResult(fibreAmount: fibreAmount)
         
+        // Save selected fibre amount to user document on Firebase Firestore
+        db.collection("users").document((Auth.auth().currentUser?.email)!).setData([ "fibreGoal": fibreAmount], merge: true)
+        showResult(fibreAmount: fibreAmount)
     }
     
     func showResult(fibreAmount: Int) {
-        let alert = UIAlertController(title: "Completed!", message: "Your fibre goal is now \(fibreAmount) g. You can change this at any time on the profile page.", preferredStyle: .alert)
         
-        // Add an UIAlertAction with a handler to perform the segue
-        let gotItAction = UIAlertAction(title: "Got It!", style: .default) { (action) in
-            // Perform the segue when the "Got It!" button is tapped
-                UserDefaults.standard.set(fibreAmount, forKey: "fibreGoal")
-                self.db.collection("users").document((Auth.auth().currentUser?.email)!).setData([ "fibreGoal": fibreAmount], merge: true)
+        let alert = UIAlertController(title: "completed!", message: "your fibre goal is now \(fibreAmount) g. you can change this at any time on the profile page.", preferredStyle: .alert)
+        
+        // Add an UIAlertAction with a handler to return to profile view controller
+        let gotItAction = UIAlertAction(title: "got it!", style: .default) { (action) in
                 self.navigationController?.popViewController(animated: true)
-
         }
-        alert.addAction(gotItAction)
         
-        // Present the alert
+        alert.addAction(gotItAction)
         self.present(alert, animated: true, completion: nil)
         
     }

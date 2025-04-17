@@ -10,7 +10,7 @@ import Firebase
 
 class PasswordViewController: UIViewController {
     var email: String? = ""
-    let errorManager = ErrorManager()
+    let alertManager = AlertManager()
     
     @IBOutlet weak var emailTextField: UITextField!
     
@@ -31,7 +31,7 @@ class PasswordViewController: UIViewController {
                 
                 // If there is an error, show error to user using popup
                 if let err = err {
-                    self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
+                    self.alertManager.showAlert(alertMessage: err.localizedDescription, viewController: self)
                 }
                 
                 // Otherwise, fetch sign in methods to use to reset password
@@ -41,7 +41,7 @@ class PasswordViewController: UIViewController {
                         
                         // If there is a fetch error, show error ot user using popup
                         if let err = err {
-                            self.errorManager.showError(errorMessage: err.localizedDescription, viewController: self)
+                            self.alertManager.showAlert(alertMessage: err.localizedDescription, viewController: self)
                         }
                         
                         // Otherwise, indicate user to check their email
