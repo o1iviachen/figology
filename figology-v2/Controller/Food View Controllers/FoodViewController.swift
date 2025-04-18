@@ -43,13 +43,16 @@ class FoodViewController: UIViewController {
         
         // Start with progress bar hidden
         progressBar.isHidden = true
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Get current date
-        dateString = firebaseManager.formatDate()
+        // If the date string is nil, set the date as today; a non-nil date string signifies the food view controller was instantiated from the calendar view controller
+        if dateString == nil {
+            dateString = firebaseManager.formatDate()
+        }
         
         // Fetch user document in Firebase Firestore
         firebaseManager.fetchUserDocument { document in
@@ -220,17 +223,19 @@ extension FoodViewController: UITableViewDelegate {
 
 //MARK: - UIViewControllerRepresentable
 struct FoodView: UIViewControllerRepresentable {
+    
+    let date: Date
+
     func updateUIViewController(_ uiViewController: FoodViewController, context: Context) {
         // ?
     }
-    
-    let date: Date
-    
+        
     func makeUIViewController(context: Context) -> FoodViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "FoodViewController") as! FoodViewController
-        vc.dateString = FirebaseManager().formatDate()
-        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yy_MM_dd"
+        vc.dateString = dateFormatter.string(from: date)
         return vc
     }
     

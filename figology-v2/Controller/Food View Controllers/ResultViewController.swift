@@ -40,7 +40,6 @@ class ResultViewController: UIViewController {
         servingTextField.delegate = self
         
         // Initially configure UI with unmodified Food
-        print("hellllo")
         mealButton.setTitle(originalMeal, for: .normal)
         servingTextField.text = String(selectedFood!.multiplier)
         
@@ -63,6 +62,7 @@ class ResultViewController: UIViewController {
             self.firebaseManager.fetchFibreIntake(dateString: self.dateString!, document: document) { intake in
                 self.fibreIntake = intake
             }
+            self.updateUI()
         }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
@@ -71,7 +71,6 @@ class ResultViewController: UIViewController {
         swipeGesture.direction = .down
         view.addGestureRecognizer(swipeGesture)
         
-        updateUI()
     }
 
     func updateUI() {
@@ -96,6 +95,7 @@ class ResultViewController: UIViewController {
             let progressPercent = calculatedFibre/Double(safeFibreGoal)
             progressLabel.text = "this is \(Int(progressPercent*100))% of your fibre goal!"
             progressBar.progress = Float(progressPercent)
+            progressBar.isHidden = false
         }
         
         // Otherwise, tell user to set their fibre goal

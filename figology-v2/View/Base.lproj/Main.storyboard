@@ -1287,7 +1287,7 @@
                                 <rect key="frame" x="0.0" y="180" width="393" height="638"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bqQ-Z9-OuG">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1000"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="638"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                 </subviews>
@@ -1305,7 +1305,7 @@
                             <constraint firstItem="d5o-tm-ooN" firstAttribute="trailing" secondItem="xjQ-yM-qna" secondAttribute="trailing" id="0rD-fC-ZqD"/>
                             <constraint firstItem="d5o-tm-ooN" firstAttribute="bottom" secondItem="xjQ-yM-qna" secondAttribute="bottom" id="93g-CT-1NS"/>
                             <constraint firstItem="d5o-tm-ooN" firstAttribute="leading" secondItem="xjQ-yM-qna" secondAttribute="leading" id="EBg-R1-DRV"/>
-                            <constraint firstItem="bqQ-Z9-OuG" firstAttribute="height" secondItem="sCd-S3-73r" secondAttribute="height" multiplier="1.17371" id="Hus-L7-E2W"/>
+                            <constraint firstItem="bqQ-Z9-OuG" firstAttribute="height" secondItem="d5o-tm-ooN" secondAttribute="height" id="Hus-L7-E2W"/>
                             <constraint firstItem="bqQ-Z9-OuG" firstAttribute="width" secondItem="sCd-S3-73r" secondAttribute="width" id="JEL-9z-tEj"/>
                             <constraint firstItem="d5o-tm-ooN" firstAttribute="top" secondItem="v5L-ei-MFc" secondAttribute="bottom" constant="15" id="RLC-Fr-Mdc"/>
                             <constraint firstItem="v5L-ei-MFc" firstAttribute="top" secondItem="xjQ-yM-qna" secondAttribute="top" id="o04-0x-8pQ"/>
