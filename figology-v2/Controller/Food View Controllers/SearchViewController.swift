@@ -22,12 +22,14 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadingAnimation.isHidden = false
+        
         // Fetch user document
         firebaseManager.fetchUserDocument { document in
             
             // Fetch user's recently consumed foods
             self.firebaseManager.fetchRecentFoods(document: document) { recentFoods in
-                
+                self.loadingAnimation.isHidden = true
                 // Show recently consumed foods before user searches anything
                 self.searchList = recentFoods
                 self.resultsTableView.reloadData()

@@ -96,7 +96,7 @@ extension ProfileViewController: UITableViewDataSource {
         }
         // Otherwise, create a log out cell
         else {
-            let logOutCell = tableView.dequeueReusableCell(withIdentifier: K.logOutCellIdentifier, for: indexPath) as! LogOutCell
+            let logOutCell = tableView.dequeueReusableCell(withIdentifier: K.logOutCellIdentifier, for: indexPath) 
             return logOutCell
         }
     }
