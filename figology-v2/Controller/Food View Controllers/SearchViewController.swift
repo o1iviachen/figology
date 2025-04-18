@@ -15,6 +15,7 @@ class SearchViewController: UIViewController {
     let fibreCallManager = FibreCallManager()
     let firebaseManager = FirebaseManager()
     
+    @IBOutlet weak var resultsTableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var loadingAnimation: UIActivityIndicatorView!
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
@@ -24,14 +25,22 @@ class SearchViewController: UIViewController {
         
         loadingAnimation.isHidden = false
         
+        
         // Fetch user document
         firebaseManager.fetchUserDocument { document in
             
             // Fetch user's recently consumed foods
             self.firebaseManager.fetchRecentFoods(document: document) { recentFoods in
                 self.loadingAnimation.isHidden = true
+                
                 // Show recently consumed foods before user searches anything
                 self.searchList = recentFoods
+                
+                // Adjust results table view height to fit recent foods
+                DispatchQueue.main.async {
+                    self.resultsTableViewHeightConstraint.constant =  CGFloat(62*self.searchList.count)
+                    self.loadingAnimation.isHidden = true
+                }
                 self.resultsTableView.reloadData()
             }
         }
@@ -154,7 +163,7 @@ extension SearchViewController: UITextFieldDelegate {
             // Get fibre data. Upon completion, adjust results table view height, hide loading animation and reload results table view data.
             getFibreData(foodString: food) {
                 DispatchQueue.main.async {
-                    self.resultsTableView.heightAnchor.constraint(equalToConstant: CGFloat(62*self.searchList.count)).isActive = true
+                    self.resultsTableViewHeightConstraint.constant =  CGFloat(62*self.searchList.count)
                     self.loadingAnimation.isHidden = true
                     self.resultsTableView.reloadData()
                 }

@@ -40,6 +40,7 @@ class ResultViewController: UIViewController {
         servingTextField.delegate = self
         
         // Initially configure UI with unmodified Food
+        print("hellllo")
         mealButton.setTitle(originalMeal, for: .normal)
         servingTextField.text = String(selectedFood!.multiplier)
         
@@ -69,6 +70,8 @@ class ResultViewController: UIViewController {
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
         swipeGesture.direction = .down
         view.addGestureRecognizer(swipeGesture)
+        
+        updateUI()
     }
 
     func updateUI() {

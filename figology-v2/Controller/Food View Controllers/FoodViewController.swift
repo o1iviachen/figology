@@ -24,6 +24,7 @@ class FoodViewController: UIViewController {
     var selectedMeal: String? = nil
     let alertManager = AlertManager()
     
+    @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
@@ -74,8 +75,8 @@ class FoodViewController: UIViewController {
         
         // Change the table view height depending on the number of foods
         DispatchQueue.main.async {
-            if CGFloat(62*self.tableData.count + 40) > CGFloat(UIScreen.main.bounds.size.height) {
-                self.tableView.heightAnchor.constraint(equalToConstant: CGFloat(62*self.tableData.count + 40)).isActive = true
+            if CGFloat(62*self.tableData.joined().count + 40) > self.tableView.bounds.size.height {
+                self.tableViewHeightConstraint.constant = CGFloat(62*self.tableData.joined().count + 40)
                 self.tableView.reloadData()
             }
         }

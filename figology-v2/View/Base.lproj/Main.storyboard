@@ -225,7 +225,7 @@
                                 <rect key="frame" x="0.0" y="130" width="393" height="639"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="HRA-kZ-rWX">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1000"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="639"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                 </subviews>
@@ -242,7 +242,7 @@
                         <constraints>
                             <constraint firstItem="GuF-5g-nM6" firstAttribute="trailing" secondItem="3up-Nv-Xp0" secondAttribute="trailing" id="0sy-Ex-VCd"/>
                             <constraint firstItem="WZW-gz-Yrf" firstAttribute="top" secondItem="3up-Nv-Xp0" secondAttribute="top" id="7WN-63-MOr"/>
-                            <constraint firstItem="HRA-kZ-rWX" firstAttribute="height" secondItem="Q6g-18-mSQ" secondAttribute="height" multiplier="1.17371" id="FeQ-eO-FYo"/>
+                            <constraint firstItem="HRA-kZ-rWX" firstAttribute="height" secondItem="GuF-5g-nM6" secondAttribute="height" id="FeQ-eO-FYo"/>
                             <constraint firstItem="WZW-gz-Yrf" firstAttribute="leading" secondItem="3up-Nv-Xp0" secondAttribute="leading" constant="50" id="Fi4-Bg-cix"/>
                             <constraint firstItem="GuF-5g-nM6" firstAttribute="top" secondItem="WZW-gz-Yrf" secondAttribute="bottom" constant="15" id="N7t-cY-feX"/>
                             <constraint firstItem="WZW-gz-Yrf" firstAttribute="centerX" secondItem="Q6g-18-mSQ" secondAttribute="centerX" id="XMg-lw-l4l"/>
@@ -264,6 +264,7 @@
                         <outlet property="progressBar" destination="BPP-E8-6a5" id="aLj-jw-cD5"/>
                         <outlet property="progressLabel" destination="4hb-Og-Z03" id="klQ-Pt-VZh"/>
                         <outlet property="tableView" destination="HRA-kZ-rWX" id="OFp-FD-SNw"/>
+                        <outlet property="tableViewHeightConstraint" destination="FeQ-eO-FYo" id="iUs-RR-JqJ"/>
                         <segue destination="qrR-6c-Uej" kind="show" identifier="foodToResult" id="59y-vI-ggX"/>
                     </connections>
                 </viewController>
@@ -310,7 +311,7 @@
                                 <rect key="frame" x="0.0" y="148" width="393" height="621"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zbV-ay-FeN">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1000"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="621"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                 </subviews>
@@ -328,7 +329,7 @@
                             <constraint firstItem="zbV-ay-FeN" firstAttribute="width" secondItem="zrm-gn-bjO" secondAttribute="width" id="Da6-yE-WAT"/>
                             <constraint firstItem="j4N-1R-t4J" firstAttribute="leading" secondItem="Rv5-zx-aYo" secondAttribute="leading" constant="20" id="MqJ-1S-uBc"/>
                             <constraint firstItem="cwh-LE-s8a" firstAttribute="trailing" secondItem="Rv5-zx-aYo" secondAttribute="trailing" id="TwJ-3P-tnH"/>
-                            <constraint firstItem="zbV-ay-FeN" firstAttribute="height" secondItem="zrm-gn-bjO" secondAttribute="height" multiplier="1.17371" id="bSS-sS-D5g"/>
+                            <constraint firstItem="zbV-ay-FeN" firstAttribute="height" secondItem="cwh-LE-s8a" secondAttribute="height" id="bSS-sS-D5g"/>
                             <constraint firstItem="Rv5-zx-aYo" firstAttribute="trailing" secondItem="j4N-1R-t4J" secondAttribute="trailing" constant="20" id="eyu-KK-gSz"/>
                             <constraint firstItem="cwh-LE-s8a" firstAttribute="top" secondItem="j4N-1R-t4J" secondAttribute="bottom" constant="10" id="vFq-8g-oKJ"/>
                             <constraint firstItem="cwh-LE-s8a" firstAttribute="leading" secondItem="Rv5-zx-aYo" secondAttribute="leading" id="whR-nq-P2U"/>
@@ -340,6 +341,7 @@
                     <connections>
                         <outlet property="loadingAnimation" destination="fVe-fW-i4i" id="Qct-gA-gnv"/>
                         <outlet property="resultsTableView" destination="zbV-ay-FeN" id="Klb-XW-ve8"/>
+                        <outlet property="resultsTableViewHeightConstraint" destination="Da6-yE-WAT" id="gYv-Cz-090"/>
                         <outlet property="searchTextField" destination="WQs-hi-o85" id="CSD-Mr-h2e"/>
                         <segue destination="qrR-6c-Uej" kind="show" identifier="searchToResult" id="snc-Vg-Qu0"/>
                     </connections>
