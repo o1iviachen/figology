@@ -59,9 +59,12 @@ struct FirebaseManager {
     func removeFood(food: Food, meal: String, dateString: String, fibreIntake: Double, completion: @escaping (Bool) -> Void) {
         var changedIntake = fibreIntake
         
+        print(changedIntake)
+        
         // Subtract food's fibre to user's daily fibre intake
         changedIntake -= food.fibrePerGram*food.selectedMeasure.measureMass*food.multiplier
         
+        print(changedIntake)
         // Encode food struct to remove data to Firebase Firestore
         let encoder = JSONEncoder()
         do {

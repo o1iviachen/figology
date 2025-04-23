@@ -138,7 +138,7 @@ class ResultViewController: UIViewController {
                 
                 // Therefore, remove the original selected food
                 firebaseManager.removeFood(food: selectedFood!, meal: originalMeal, dateString: dateString!, fibreIntake: fibreIntake) { foodRemoved in
-                    
+                    print(self.fibreIntake)
                     // Communicate error to user using a popup
                     if !foodRemoved {
                         self.alertManager.showAlert(alertMessage: "could not remove previous food.", viewController: self)
@@ -151,22 +151,30 @@ class ResultViewController: UIViewController {
         self.selectedFood!.multiplier = Double(self.servingTextField.text!)!
         self.selectedFood!.selectedMeasure = self.temporaryMeasure!
         
-        // Log new modified food
-        firebaseManager.logFood(food: selectedFood!, meal: mealButton.currentTitle!, dateString: dateString!, fibreIntake: fibreIntake) { foodAdded in
-            
-            // Communicate error to user using a popup
-            if !foodAdded {
-                self.alertManager.showAlert(alertMessage: "could not add new food.", viewController: self)
-            }
-        }
-        
         // Fetch user document
         firebaseManager.fetchUserDocument { document in
             
             // Add new modified food to recent foods array
             self.firebaseManager.addToRecentFoods(food: self.selectedFood!, document: document)
+            
+            // Fetch fibre intake
+            self.firebaseManager.fetchFibreIntake(dateString: self.dateString!, document: document) { intake in
+                self.fibreIntake = intake
+
+                // Log new modified food
+                self.firebaseManager.logFood(food: self.selectedFood!, meal: self.mealButton.currentTitle!, dateString: self.dateString!, fibreIntake: self.fibreIntake) { foodAdded in
+                    
+                    // Communicate error to user using a popup
+                    if !foodAdded {
+                        self.alertManager.showAlert(alertMessage: "could not add new food.", viewController: self)
+                    }
+                }
+
+            }
+            
+            
         }
-        
+                
         // Provide buffer time for Firebase Firestore to update so that UI adjusts accordingly
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.navigationController?.popViewController(animated: true)
