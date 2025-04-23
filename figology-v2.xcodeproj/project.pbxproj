@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		108A5EF48070FB76746CEEE7 /* Pods_figology_v2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E88174711C81B0C4DE8B49D /* Pods_figology_v2.framework */; };
 		582934AA2D851215000033C7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 582934A92D851215000033C7 /* GoogleService-Info.plist */; };
 		582934AC2D8514E2000033C7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582934AB2D8514E2000033C7 /* SignUpViewController.swift */; };
 		582934AE2D851A4B000033C7 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582934AD2D851A4B000033C7 /* LogInViewController.swift */; };
@@ -27,7 +26,6 @@
 		589FADF42D6E34DA007890AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FADF32D6E34DA007890AB /* AppDelegate.swift */; };
 		589FADF62D6E34DA007890AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FADF52D6E34DA007890AB /* SceneDelegate.swift */; };
 		589FADFB2D6E34DA007890AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 589FADF92D6E34DA007890AB /* Main.storyboard */; };
-		589FADFE2D6E34DA007890AB /* figology_v2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 589FADFC2D6E34DA007890AB /* figology_v2.xcdatamodeld */; };
 		589FAE002D6E34DB007890AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 589FADFF2D6E34DB007890AB /* Assets.xcassets */; };
 		589FAE032D6E34DB007890AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 589FAE012D6E34DB007890AB /* LaunchScreen.storyboard */; };
 		58B29EB92D9D9BEC002F6FA0 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B29EB82D9D9BEC002F6FA0 /* ResultViewController.swift */; };
@@ -64,7 +62,6 @@
 		589FADF32D6E34DA007890AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		589FADF52D6E34DA007890AB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		589FADFA2D6E34DA007890AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		589FADFD2D6E34DA007890AB /* figology_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = figology_v2.xcdatamodel; sourceTree = "<group>"; };
 		589FADFF2D6E34DB007890AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		589FAE022D6E34DB007890AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		589FAE042D6E34DB007890AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -74,9 +71,7 @@
 		58FC741C2D91CF500007FC3E /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		58FC741D2D91CF500007FC3E /* FoodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoodCell.xib; sourceTree = "<group>"; };
 		90E424712D78D0A400EF8B8C /* FoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
-		9E88174711C81B0C4DE8B49D /* Pods_figology_v2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_figology_v2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F1A2B4B2D7B661600A432CF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		9F1A2B4D2D7B678D00A432CF /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		9F2358AA2D942F3D001B3F1A /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		9FF16E1A2DA431C70043F90D /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
@@ -88,21 +83,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				108A5EF48070FB76746CEEE7 /* Pods_figology_v2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		582934A52D84D26D000033C7 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				9F1A2B4D2D7B678D00A432CF /* LogInViewController.swift */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		582BE1052D94B5E10059A4D1 /* Welcome Flow View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,8 +140,6 @@
 				589FADF22D6E34DA007890AB /* figology-v2 */,
 				589FADF12D6E34DA007890AB /* Products */,
 				846CE356C5EB6AFAB1D2EF6D /* Pods */,
-				BA38A4B0D21F80661938B25B /* Frameworks */,
-				582934A52D84D26D000033C7 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -180,7 +164,6 @@
 				589FAE012D6E34DB007890AB /* LaunchScreen.storyboard */,
 				582934A92D851215000033C7 /* GoogleService-Info.plist */,
 				589FAE042D6E34DB007890AB /* Info.plist */,
-				589FADFC2D6E34DA007890AB /* figology_v2.xcdatamodeld */,
 			);
 			path = "figology-v2";
 			sourceTree = "<group>";
@@ -217,14 +200,6 @@
 				A619491DA545C473B161A1F4 /* Pods-figology-v2.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		BA38A4B0D21F80661938B25B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				9E88174711C81B0C4DE8B49D /* Pods_figology_v2.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,7 +339,6 @@
 				58FC741E2D91CF500007FC3E /* FoodCell.swift in Sources */,
 				9F1A2B4C2D7B661600A432CF /* Constants.swift in Sources */,
 				582934AC2D8514E2000033C7 /* SignUpViewController.swift in Sources */,
-				589FADFE2D6E34DA007890AB /* figology_v2.xcdatamodeld in Sources */,
 				582BE0F72D9499460059A4D1 /* ProfileCell.swift in Sources */,
 				58528F232D9D937700A107F0 /* SearchViewController.swift in Sources */,
 				582BE0F42D9497BF0059A4D1 /* Setting.swift in Sources */,
@@ -590,19 +564,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		589FADFC2D6E34DA007890AB /* figology_v2.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				589FADFD2D6E34DA007890AB /* figology_v2.xcdatamodel */,
-			);
-			currentVersion = 589FADFD2D6E34DA007890AB /* figology_v2.xcdatamodel */;
-			path = figology_v2.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 589FADE82D6E34DA007890AB /* Project object */;
 }
