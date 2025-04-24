@@ -153,7 +153,6 @@ class ResultViewController: UIViewController {
         
         // Fetch user document
         firebaseManager.fetchUserDocument { document in
-            
             // Add new modified food to recent foods array
             self.firebaseManager.addToRecentFoods(food: self.selectedFood!, document: document)
             

@@ -272,7 +272,7 @@ struct FirebaseManager {
             fibrePerGram: food["fibrePerGram"] as! Double, brandName: food["brandName"] as! String,
             measures: measurements,
             selectedMeasure: Measure(measureExpression: selectedMeasure["measureExpression"] as! String, measureMass: selectedMeasure["measureMass"] as! Double),
-            multiplier: 1.0, consumptionTime: food["consumptionTime"] as! String
+            multiplier: food["multiplier"] as! Double, consumptionTime: food["consumptionTime"] as! String
         )
         
         return(foodObject)

@@ -61,7 +61,6 @@ class FoodViewController: UIViewController {
             self.firebaseManager.fetchFoods(dateString: self.dateString!, document: document) { data in
                 self.tableData = data
                 self.tableView.reloadData()
-                print(self.tableData)
             }
             
             // Fetch current date's current fibre intake
