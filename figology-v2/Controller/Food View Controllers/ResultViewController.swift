@@ -76,12 +76,12 @@ class ResultViewController: UIViewController {
     func updateUI() {
         
         // Calculate fibre in consumed food
-        let calculatedFibre = selectedFood!.fibrePerGram*temporaryMeasure!.measureMass*selectedFood!.multiplier
+        let calculatedFibre = selectedFood!.fibrePerGram*temporaryMeasure!.measureMass*Double(self.servingTextField.text!)!
         
         // Update UI with selected food's attributes
         foodLabel.text = selectedFood!.food
         fibreLabel.text = "\(String(format: "%.1f", calculatedFibre)) g"
-        descriptionLabel.text = "\(selectedFood!.brandName), \(String(format: "%.1f", temporaryMeasure!.measureMass*selectedFood!.multiplier)) g"
+        descriptionLabel.text = "\(selectedFood!.brandName), \(String(format: "%.1f", temporaryMeasure!.measureMass*Double(self.servingTextField.text!)!)) g"
         
         // Truncate text button if measure expression length is greater than 9
         if temporaryMeasure!.measureExpression.count < 10 {
@@ -106,13 +106,11 @@ class ResultViewController: UIViewController {
     }
     
     @objc func handleSwipe() {
-        selectedFood!.multiplier = Double(servingTextField.text!)!
         updateUI()
         servingTextField.resignFirstResponder()
     }
     
     @objc func handleTap() {
-        selectedFood!.multiplier = Double(servingTextField.text!)!
         updateUI()
         servingTextField.resignFirstResponder()
     }

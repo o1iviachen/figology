@@ -31,7 +31,7 @@ class SignUpViewController: UIViewController {
                 if let err = err {
                     self.alertManager.showAlert(alertMessage: err.localizedDescription, viewController: self)
                     
-                    // Otherwise, perform segue to calculator ... error here ?
+                // Otherwise, perform segue to calculator ... error here ?
                 } else {
                     self.performSegue(withIdentifier: K.signUpCalculatorSegue, sender: self)
                 }
