@@ -94,12 +94,13 @@ class SupportViewController: UIViewController {
 extension SupportViewController: MFMailComposeViewControllerDelegate {
     func sendEmail(body: String, controller: SupportViewController) {
         if !body.isEmpty {
+            print(MFMailComposeViewController.canSendMail())
             if MFMailComposeViewController.canSendMail() {
                 let mailComposer = MFMailComposeViewController()
                 
                 // Prepare email to be sent
                 mailComposer.mailComposeDelegate = controller
-                mailComposer.setPreferredSendingEmailAddress((Auth.auth().currentUser?.email)!)
+                mailComposer.setPreferredSendingEmailAddress((Auth.auth().currentUser!.email)!)
                 mailComposer.setToRecipients(["olivia63chen@gmail.com"])
                 mailComposer.setSubject("Inquiry about figology.")
                 mailComposer.setMessageBody("\(body)", isHTML: false)
@@ -108,6 +109,8 @@ extension SupportViewController: MFMailComposeViewControllerDelegate {
                 // Show error if email was not sent
                 self.alertManager.showAlert(alertMessage: "unable to send email. please set up an email account on your device.", viewController: self)
             }
+        } else {
+            self.alertManager.showAlert(alertMessage: "please write an email.", viewController: self)
         }
     }
     
