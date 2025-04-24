@@ -80,20 +80,21 @@ class CalculatorViewController: UIViewController {
                 // Calculate fibre goal following https://macrofactorapp.com/does-fiber-have-calories/
                 let baselineFibre = bmr/1000*14
                 let calculatedGoal = Int(multiplier*baselineFibre)
-                alertManager.showAlert(alertMessage: "your fibre goal is now \(calculatedGoal) g. you can change this at any time on the profile page", viewController: self)
                 db.collection("users").document((Auth.auth().currentUser?.email)!).setData(["fibreGoal": calculatedGoal], merge: true)
                 
-                // Make sure there is two or more view controllers
-                if let navController = navigationController, navController.viewControllers.count >= 2 {
-                    let viewController = navController.viewControllers[navController.viewControllers.count - 2]
-                    
-                    // If the last view controller is a profile view controller, the use did not just sign up. Therefore, pop view controller to profile view controller
-                    if viewController is ProfileViewController {
-                        navigationController?.popViewController(animated: true)
-                    } else {
+                alertManager.showAlert(alertMessage: "your fibre goal is now \(calculatedGoal) g. you can change this at any time on the profile page", viewController: self) {
+                    // Make sure there is two or more view controllers
+                    if let navController = self.navigationController, navController.viewControllers.count >= 2 {
+                        let viewController = navController.viewControllers[navController.viewControllers.count - 2]
                         
-                        // Otherwise, go to tam bar controller as user is using the application for the first time
-                        performSegue(withIdentifier: K.calculatorTabSegue, sender: self)
+                        // If the last view controller is a profile view controller, the use did not just sign up. Therefore, pop view controller to profile view controller
+                        if viewController is ProfileViewController {
+                            self.navigationController?.popViewController(animated: true)
+                        } else {
+                            
+                            // Otherwise, go to tam bar controller as user is using the application for the first time
+                            self.performSegue(withIdentifier: K.calculatorTabSegue, sender: self)
+                        }
                     }
                 }
                 break

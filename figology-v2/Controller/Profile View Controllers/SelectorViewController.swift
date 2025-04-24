@@ -17,7 +17,7 @@ class SelectorViewController: UIViewController {
     let alertManager = AlertManager()
     
     @IBAction func fibreChanged(_ sender: UISlider) {
-        fibreLabel.text = "\(String(Int(sender.value))) g"
+        fibreLabel.text = "\(Int(sender.value)) g"
     }
     
     @IBAction func confirmPressed(_ sender: UIButton) {
@@ -25,7 +25,9 @@ class SelectorViewController: UIViewController {
         
         // Save selected fibre amount to user document on Firebase Firestore
         db.collection("users").document((Auth.auth().currentUser?.email)!).setData([ "fibreGoal": fibreAmount], merge: true)
-        alertManager.showAlert(alertMessage: "your fibre goal is now \(fibreAmount) g. you can change this at any time on the profile page", viewController: self)
+        alertManager.showAlert(alertMessage: "your fibre goal is now \(fibreAmount) g. you can change this at any time on the profile page", viewController: self) {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }
 
