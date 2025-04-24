@@ -81,14 +81,11 @@ class SignUpViewController: UIViewController {
                                     self.performSegue(withIdentifier: K.signUpTabSegue, sender: self)
                                 }
                             }
-                            
                         }
                     }
                 }
             }
         }
-        
     }
-    
 }
 

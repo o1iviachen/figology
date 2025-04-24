@@ -164,17 +164,11 @@ class ResultViewController: UIViewController {
                     // Communicate error to user using a popup
                     if !foodAdded {
                         self.alertManager.showAlert(alertMessage: "could not add new food.", viewController: self)
+                    } else {
+                        self.navigationController?.popViewController(animated: true)
                     }
                 }
-
             }
-            
-            
-        }
-                
-        // Provide buffer time for Firebase Firestore to update so that UI adjusts accordingly
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.navigationController?.popViewController(animated: true)
         }
     }
     

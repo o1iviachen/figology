@@ -83,7 +83,6 @@ class LogInViewController: UIViewController {
                             // If user is new, go to calculator view controller
                             if let isNewUser: Bool = result?.additionalUserInfo?.isNewUser {
                                 if isNewUser {
-                                    
                                     self.performSegue(withIdentifier: K.logInCalculatorSegue, sender: self)
                                     
                                 // If user is not new, go to tab bar view controller
@@ -92,7 +91,6 @@ class LogInViewController: UIViewController {
                                 }
                             }
                         }
-                        
                     }
                 }
             }
