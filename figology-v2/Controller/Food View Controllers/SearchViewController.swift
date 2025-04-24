@@ -14,6 +14,7 @@ class SearchViewController: UIViewController {
     var selectedFood: Food? = nil
     let fibreCallManager = FibreCallManager()
     let firebaseManager = FirebaseManager()
+    let alertManager = AlertManager()
     
     @IBOutlet weak var resultsTableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var loadingAnimation: UIActivityIndicatorView!
@@ -156,16 +157,16 @@ extension SearchViewController: UITextFieldDelegate {
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         if let food = searchTextField.text {
-            
-            // Clear search list
-            self.searchList.removeAll()
-            
             // Get fibre data. Upon completion, adjust results table view height, hide loading animation and reload results table view data.
             getFibreData(foodString: food) {
                 DispatchQueue.main.async {
-                    self.resultsTableViewHeightConstraint.constant =  CGFloat(62*self.searchList.count)
                     self.loadingAnimation.isHidden = true
-                    self.resultsTableView.reloadData()
+                    if self.searchList.count == 0 {
+                        self.alertManager.showAlert(alertMessage: "no foods were found.", viewController: self)
+                    } else {
+                        self.resultsTableViewHeightConstraint.constant =  CGFloat(62*self.searchList.count)
+                        self.resultsTableView.reloadData()
+                    }
                 }
             }
         }

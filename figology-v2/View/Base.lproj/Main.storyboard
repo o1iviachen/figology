@@ -133,7 +133,7 @@
                                             <color key="baseForegroundColor" systemColor="systemGrayColor"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <segue destination="pYR-e6-3zg" kind="show" id="Jik-pQ-bhB"/>
+                                            <segue destination="pYR-e6-3zg" kind="show" identifier="logInToPassword" id="Jik-pQ-bhB"/>
                                         </connections>
                                     </button>
                                 </subviews>
