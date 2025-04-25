@@ -12,16 +12,28 @@ _figology._
 ## Installation
 This iOS app is only supported for Mac. 
 
-### Installing the required software 
-XCode and Cocoapods need to be installed to run this application. If these are already installed, skip this section. 
-1. Install XCode from the App Store
-2. 
+### Installing the required software and dependencies 
+XCode and CocoaPods need to be installed to run this application. 
+If these are already installed, skip this section. 
+1. Install XCode from the App Store. 
+2. Open the Terminal and instal CocoaPods by entering ``sudo gem install cocoapods``.
+3. To setup CocoaPods, enter ``pod setup`` in the Terminal.
 
-### Cloning and running _figology_
-1. Open XCode and select "Clone Git Repository"
+### Cloning and running _figology._
+1. Open XCode and select **Clone Git Repository**. 
+2. Enter the [repository link](https://github.com/o1iviachen/figology.git) and select **Clone**.
+3. Select a file to save the repository to and select **Clone** to complete the cloning process.
+4. To install CocoaPods to this specific project, open the Terminal and navigate to the folder containing the repository using ``cd`` and the entire pathway of the file.
+   This may look like ``cd /Users/su/Desktop/figology``.
+   Once navigated to the folder of the workspace, enter ``pod install``. 
+5. After the workspace is opened in XCode and CocoaPods is installed to this project, select your target device from the toolbar at the top of the XCode window.
+   This can either be a physical device connected to your Mac or a simulator (e.g., iPhone 16 Pro).
+6. In XCode, click the Run button at the top of the left sidebar or press ``Cmd + R`` to run _figology._ 
 
 ## Known Bugs
-After signing up, the user will not be directed to the calculator page automatically. However, the user should direct themselves to this page to set their fibre goal. This bug doesn't hinder the functionality of the application. 
+After signing up, the user will not be directed to the calculator page automatically. 
+However, the user should direct themselves to this page to set their fibre goal. 
+This bug doesn't hinder the functionality of the application. 
 
 ## Support
 
