@@ -92,7 +92,6 @@ struct FibreCallManager {
                 
                 // If data is received successfully
                 if let safeData = data {
-                    
                     // Parse JSON into a Food object
                     if let food = self.parseFibreJSON(fibreData: safeData) {
                         fibreFood = food
@@ -117,7 +116,7 @@ struct FibreCallManager {
         // Try to decode data from Nutritionix API
         do {
             let decodedData = try decoder.decode(FoodData.self, from: foodData)
-            
+            //print(String(decoding: decodedData, as: UTF8.self))
             // Append food names to a foodList
             for food in decodedData.common {
                 foodList.append(food.food_name)
@@ -139,7 +138,7 @@ struct FibreCallManager {
         // Try to decode data from Nutritionix API
         do {
             let decodedData = try decoder.decode(FibreData.self, from: fibreData)
-            
+
             // Create Food object from Nutrionix API JSON
             let food = decodedData.foods[0]
             let foodName = food.food_name

@@ -287,7 +287,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="j4N-1R-t4J">
                                 <rect key="frame" x="20" y="103" width="353" height="35"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a food" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WQs-hi-o85">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter a food" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WQs-hi-o85">
                                         <rect key="frame" x="0.0" y="0.0" width="293.33333333333331" height="35"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1329,7 +1329,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="5cV-Le-WvS"/>
         <segue reference="0fQ-Cv-ylB"/>
-        <segue reference="59y-vI-ggX"/>
+        <segue reference="snc-Vg-Qu0"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="Dark Purple"/>
     <resources>

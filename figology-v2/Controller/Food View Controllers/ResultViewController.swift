@@ -208,8 +208,8 @@ extension ResultViewController: PickerViewControllerDelegate {
 extension ResultViewController: UITextFieldDelegate {
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         
-        // If serving text field is empty when user tries to stop editing, write 1 as placeholder value
-        if textField.text != "" {
+        // If serving text field is empty or is not a number when user tries to stop editing, write 1 as placeholder value
+        if Double(textField.text ?? "empty") != nil {
             return true
         } else {
             textField.text = "1"
