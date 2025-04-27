@@ -3,7 +3,7 @@
 //  figology-v2
 //
 //  Created by olivia chen on 2025-03-07.
-//
+//  refer to dr angela
 
 import Foundation
 
@@ -14,7 +14,7 @@ struct Food: Codable {
     let measures: [Measure]
     var selectedMeasure: Measure
     var multiplier: Double
-    let consumptionTime: String
+    var consumptionTime: String?
 }
 
 struct FoodData: Decodable {
@@ -35,10 +35,9 @@ struct RawFood: Decodable {
     let nf_dietary_fiber: Double
     let brand_name: String?
     let alt_measures: [RawMeasure]
-    var serving_unit: String
-    var serving_qty: Int
-    var serving_weight_grams: Double
-    let consumed_at: String
+    let serving_qty: Int
+    let serving_unit: String
+    let serving_weight_grams: Double
 }
 
 

@@ -12,7 +12,7 @@ class TabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Hide navigation button upon completing log in/sign up
+        // Hide navigation button upon completing authentication
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
 }

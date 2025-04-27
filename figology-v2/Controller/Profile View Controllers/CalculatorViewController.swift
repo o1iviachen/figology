@@ -92,7 +92,7 @@ class CalculatorViewController: UIViewController {
                             self.navigationController?.popViewController(animated: true)
                         } else {
                             
-                            // Otherwise, go to tam bar controller as user is using the application for the first time
+                            // Otherwise, go to tab bar controller as user is using the application for the first time
                             self.performSegue(withIdentifier: K.calculatorTabSegue, sender: self)
                         }
                     }

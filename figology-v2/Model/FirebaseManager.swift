@@ -13,13 +13,20 @@ struct FirebaseManager {
     
     let db = Firestore.firestore()
     
+    
     func formatDate() -> String {
+        
+        // Get the current date and time
         let date = Date()
+        
+        // Initialize the date formatter and set the style
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") 
         dateFormatter.dateFormat = "yy_MM_dd"
         let dateString = dateFormatter.string(from: date)
         return dateString
     }
+    
     
     func logFood(food: Food, meal: String, dateString: String, fibreIntake: Double, completion: @escaping (Bool) -> Void) {
         var changedIntake = fibreIntake
@@ -59,8 +66,6 @@ struct FirebaseManager {
     func removeFood(food: Food, meal: String, dateString: String, fibreIntake: Double, completion: @escaping (Bool) -> Void) {
         var changedIntake = fibreIntake
         
-        print(changedIntake)
-        
         // Subtract food's fibre to user's daily fibre intake
         changedIntake -= food.fibrePerGram*food.selectedMeasure.measureMass*food.multiplier
         
@@ -95,6 +100,7 @@ struct FirebaseManager {
         
     }
     
+    
     func addToRecentFoods(food: Food, document: DocumentSnapshot?) {
         
             // Decode document data into array of dictionary
@@ -102,14 +108,16 @@ struct FirebaseManager {
                 
                 // If there are 10 or more recent foods, remove the earliest one added
                 if recentFoods.count >= 10 {
-                    let formatter = ISO8601DateFormatter()
-                    var dates: [String] = []
+                    let formatter = DateFormatter()
+                    formatter.locale = Locale(identifier: "en_US_POSIX")
+                    formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+                    
+                    var dates: [Date] = []
                     
                     // Determine all the times the foods were added
                     for food in recentFoods {
                         if let date = formatter.date(from: food["consumptionTime"] as! String) {
-                            let isoString = formatter.string(from: date)
-                            dates.append(isoString)
+                            dates.append(date)
                         }
                     }
                     
@@ -179,6 +187,7 @@ struct FirebaseManager {
         // Call completion handler with fibre goal (Int or nil)
         completion(fibreGoal)
     }
+    
     
     func fetchFoods(dateString: String, document: DocumentSnapshot?, completion: @escaping ([[Food]]) -> Void) {
         var tableData: [[Food]] = [[],[],[],[]]
@@ -272,7 +281,7 @@ struct FirebaseManager {
             fibrePerGram: food["fibrePerGram"] as! Double, brandName: food["brandName"] as! String,
             measures: measurements,
             selectedMeasure: Measure(measureExpression: selectedMeasure["measureExpression"] as! String, measureMass: selectedMeasure["measureMass"] as! Double),
-            multiplier: food["multiplier"] as! Double, consumptionTime: food["consumptionTime"] as! String
+            multiplier: food["multiplier"] as! Double, consumptionTime: food["consumptionTime"] as? String
         )
         
         return(foodObject)

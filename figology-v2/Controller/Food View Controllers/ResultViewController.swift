@@ -157,7 +157,20 @@ class ResultViewController: UIViewController {
             // Fetch fibre intake
             self.firebaseManager.fetchFibreIntake(dateString: self.dateString!, document: document) { intake in
                 self.fibreIntake = intake
+                
+                // Get current time to distinguish duplicate foods as Firebase's arrayUnion function will not save duplicate entries https://cloud.google.com/firestore/docs/manage-data/add-data ; code from https://stackoverflow.com/questions/24070450/how-to-get-the-current-time-as-datetime
+                
+                // Get the current date and time
+                let currentDateTime = Date()
 
+                // Initialize the date formatter and set the style
+                let formatter = DateFormatter()
+                formatter.locale = Locale(identifier: "en_US_POSIX")
+                formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+                
+                // Change selected food's consumption time attribute to current time
+                self.selectedFood?.consumptionTime = formatter.string(from: currentDateTime)
+                
                 // Log new modified food
                 self.firebaseManager.logFood(food: self.selectedFood!, meal: self.mealButton.currentTitle!, dateString: self.dateString!, fibreIntake: self.fibreIntake) { foodAdded in
                     

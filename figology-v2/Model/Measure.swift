@@ -14,6 +14,6 @@ struct Measure: Codable {
 
 struct RawMeasure: Decodable {
     let serving_weight: Double
-    let measure: String
     let qty: Int
+    let measure: String
 }

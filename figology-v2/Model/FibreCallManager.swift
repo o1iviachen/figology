@@ -18,53 +18,16 @@ struct FibreCallManager {
             "x-remote-user-id": "0"
     ]
     
-    func prepareFoodRequest(foodSearch: String) -> URLRequest {
-        
-        // Prepare request; code from https://docx.syndigo.com/developers/docs/natural-language-for-nutrients
-        let query = foodSearch
-        let url = URL(string: "https://trackapi.nutritionix.com/v2/search/instant")!
-        
-        let bodyString = "query=\(query)"
-        let bodyData = bodyString.data(using: .utf8)
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.allHTTPHeaderFields = headers
-        request.httpBody = bodyData
-        return request
-    }
     
-    func performFoodRequest(request: URLRequest, completion: @escaping ([String?]) -> Void) {
-        var fibreRequests: [String?] = []
+    func prepareRequest(requestString: String?, url: String) -> URLRequest? {
         
-        // Make sure request is not nil
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let e = error {
-                print(e.localizedDescription)
-            }
-            
-            // If data is received successfully
-            if let safeData = data {
-                
-                // Parse JSON into a food names optional Strings
-                fibreRequests = self.parseFoodJSON(foodData: safeData)
-            }
-            
-            // Call the completion handler with fibreRequests ([String?])
-            completion(fibreRequests)
-        }
         
-        // Start task
-        task.resume()
-    }
-    
-    func prepareFibreRequest(foodRequest: String?) -> URLRequest? {
         
         // If string is not nil
-        if let query = foodRequest {
+        if let query = requestString {
             
             // Prepare request; code from https://docx.syndigo.com/developers/docs/natural-language-for-nutrients
-            let url = URL(string: "https://trackapi.nutritionix.com/v2/natural/nutrients")!
+            let url = URL(string: url)!
             
             let bodyString = "query=\(query)"
             let bodyData = bodyString.data(using: .utf8)
@@ -78,6 +41,56 @@ struct FibreCallManager {
         return nil
     }
     
+    
+    func performFoodRequest(request: URLRequest?, completion: @escaping ([String?]) -> Void) {
+        var fibreRequests: [String?] = []
+        // Make sure request is not nil
+        if let safeRequest = request {
+            // Create a data task with the given request
+            let task = URLSession.shared.dataTask(with: safeRequest) { (data, response, error) in
+                
+                // If data is received successfully
+                if let safeData = data {
+                    
+                    // Parse JSON into food names
+                    fibreRequests = self.parseFoodJSON(foodData: safeData)
+                }
+                
+                // Call the completion handler with food names later used for fibre requests
+                completion(fibreRequests)
+            }
+            
+            // Start task
+            task.resume()
+        }
+    }
+    
+    
+    func parseFoodJSON(foodData: Data) -> [String?] {
+        var foodList: [String?] = []
+        let decoder = JSONDecoder()
+        
+        // Try to decode results from Nutritionix API from searching a food string
+        do {
+            let decodedData = try decoder.decode(FoodData.self, from: foodData)
+            
+            // Append food names to the food list
+            for food in decodedData.common {
+                foodList.append(food.food_name)
+            }
+            for food in decodedData.branded {
+                foodList.append(food.food_name)
+            }
+        }
+        
+        // If an error occurs in decoding, return an empty food list
+        catch {
+            return foodList
+        }
+        return foodList
+    }
+    
+    
     func performFibreRequest(request: URLRequest?, completion: @escaping (Food?) -> Void) {
         var fibreFood: Food? = nil
         
@@ -86,12 +99,10 @@ struct FibreCallManager {
             
             // Create a data task with the given request
             let task = URLSession.shared.dataTask(with: safeRequest) { (data, response, error) in
-                if let e = error {
-                    print(e.localizedDescription)
-                }
-                
+               
                 // If data is received successfully
                 if let safeData = data {
+                    
                     // Parse JSON into a Food object
                     if let food = self.parseFibreJSON(fibreData: safeData) {
                         fibreFood = food
@@ -105,33 +116,10 @@ struct FibreCallManager {
             // Start task
             task.resume()
         }
-    
-    }
-    
-    
-    func parseFoodJSON(foodData: Data) -> [String?] {
-        var foodList: [String?] = []
-        let decoder = JSONDecoder()
-        
-        // Try to decode data from Nutritionix API
-        do {
-            let decodedData = try decoder.decode(FoodData.self, from: foodData)
-            //print(String(decoding: decodedData, as: UTF8.self))
-            // Append food names to a foodList
-            for food in decodedData.common {
-                foodList.append(food.food_name)
-            }
-            for food in decodedData.branded {
-                foodList.append(food.food_name)
-            }
-        } catch {
-            print("error") // need to change
-        }
-        return foodList
-        
     }
 
-    // only unbranded? need to address
+    
+    // unbranded only
     func parseFibreJSON(fibreData: Data) -> Food? {
         let decoder = JSONDecoder()
         
@@ -143,7 +131,6 @@ struct FibreCallManager {
             let food = decodedData.foods[0]
             let foodName = food.food_name
             let brandName = food.brand_name ?? "unbranded"
-            let consumptionTime = food.consumed_at
             let servingFibre = food.nf_dietary_fiber
             let servingUnit = food.serving_unit
             let servingQuantity = food.serving_qty
@@ -166,14 +153,12 @@ struct FibreCallManager {
             }
             altMeasures.append(servingMeasure)
             
-            let parsedFood = Food(food: foodName, fibrePerGram: fibrePerGram, brandName: brandName, measures: altMeasures, selectedMeasure: servingMeasure, multiplier: 1.0, consumptionTime: consumptionTime)
+            let parsedFood = Food(food: foodName, fibrePerGram: fibrePerGram, brandName: brandName, measures: altMeasures, selectedMeasure: servingMeasure, multiplier: 1.0, consumptionTime: nil)
             return parsedFood
             
         } catch {
-            print(error)
             return nil
         }
-        
     }
 }
 
