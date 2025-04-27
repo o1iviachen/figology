@@ -14,20 +14,6 @@ struct FirebaseManager {
     let db = Firestore.firestore()
     
     
-    func formatDate() -> String {
-        
-        // Get the current date and time
-        let date = Date()
-        
-        // Initialize the date formatter and set the style
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX") 
-        dateFormatter.dateFormat = "yy_MM_dd"
-        let dateString = dateFormatter.string(from: date)
-        return dateString
-    }
-    
-    
     func logFood(food: Food, meal: String, dateString: String, fibreIntake: Double, completion: @escaping (Bool) -> Void) {
         var changedIntake = fibreIntake
         
@@ -101,58 +87,38 @@ struct FirebaseManager {
     }
     
     
-    func addToRecentFoods(food: Food, document: DocumentSnapshot?) {
+    func addToRecentFoods(food: Food, recentFoods: [Food]) {
+        let encoder = JSONEncoder()
         
-            // Decode document data into array of dictionary
-            if let recentFoods = document?.data()?["recentFoods"] as? [[String: Any]] {
-                
-                // If there are 10 or more recent foods, remove the earliest one added
-                if recentFoods.count >= 10 {
-                    let formatter = DateFormatter()
-                    formatter.locale = Locale(identifier: "en_US_POSIX")
-                    formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
-                    
-                    var dates: [Date] = []
-                    
-                    // Determine all the times the foods were added
-                    for food in recentFoods {
-                        if let date = formatter.date(from: food["consumptionTime"] as! String) {
-                            dates.append(date)
-                        }
-                    }
-                    
-                    // Determine the earliest added food
-                    if let earliest = dates.min() {
-                        
-                        // Retrieve index of earliest food
-                        let minIndex = dates.firstIndex(of: earliest)!
-                        let foodDictToDelete = recentFoods[minIndex]
-                        
-                        // Remove earliest food
-                        db.collection("users").document((Auth.auth().currentUser?.email)!).setData([
-                            "recentFoods": FieldValue.arrayRemove([foodDictToDelete])
-                        ], merge: true, completion: nil)
-                        
-                    }
-                }
-            }
-            
-            let encoder = JSONEncoder()
+        if recentFoods.count == 10 {
             do {
-                
                 // Encode food struct to transfer data to Firebase Firestore
-                let foodData = try encoder.encode(food)
-                if let foodDictionary = try JSONSerialization.jsonObject(with: foodData, options: []) as? [String: Any] {
+                let foodtoDeleteData = try encoder.encode(recentFoods[9])
+                if let foodtoDeleteDictionary = try JSONSerialization.jsonObject(with: foodtoDeleteData, options: []) as? [String: Any] {
                     
                     // Add corresponding food dictionary to user's document in Firebase Firestore
                     db.collection("users").document((Auth.auth().currentUser?.email)!).setData([
-                        "recentFoods": FieldValue.arrayUnion([foodDictionary])], merge: true, completion: nil)
+                        "recentFoods": FieldValue.arrayRemove([foodtoDeleteDictionary])
+                    ], merge: true, completion: nil)
                 }
             } catch { // not too sure
                 print("Error encoding food object: \(error)")
             }
-            
+        }
         
+        do {
+            
+            // Encode food struct to transfer data to Firebase Firestore
+            let foodData = try encoder.encode(food)
+            if let foodDictionary = try JSONSerialization.jsonObject(with: foodData, options: []) as? [String: Any] {
+                
+                // Add corresponding food dictionary to user's document in Firebase Firestore
+                db.collection("users").document((Auth.auth().currentUser?.email)!).setData([
+                    "recentFoods": FieldValue.arrayUnion([foodDictionary])], merge: true, completion: nil)
+            }
+        } catch { // not too sure
+            print("Error encoding food object: \(error)")
+        }
     }
     
     
@@ -249,11 +215,26 @@ struct FirebaseManager {
                 // Append food object to recent data
                 recentData.append(foodObject)
             }
+            
+            let dateManager = DateManager()
+            
+            for i in 0..<recentData.count - 1 {
+                var swapped = false
+                
+                for j in 0..<recentData.count-i-1 {
+                    if dateManager.formatString(dateString: recentData[j].consumptionTime!, stringFormat: "yy_MM_dd HH:mm:ss") < dateManager.formatString(dateString: recentData[j+1].consumptionTime!, stringFormat: "yy_MM_dd HH:mm:ss") {
+                        swapped = true
+                        recentData.swapAt(j, j+1)
+                    }
+                }
+                if !swapped {
+                    completion(recentData)
+                }
+            }
         }
-        // Call completion handler once all data is fetched
         completion(recentData)
     }
-
+    
     
     func parseFirebaseFood(food: [String: Any]) -> Food {
         var measurements: [Measure] = []

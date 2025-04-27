@@ -23,6 +23,7 @@ class ResultViewController: UIViewController {
     var originalMeal: String = "breakfast"
     var fibreGoal: Int? = nil
     let alertManager = AlertManager()
+    let dateManager = DateManager()
     
     @IBOutlet weak var foodLabel: UILabel!
     @IBOutlet weak var fibreLabel: UILabel!
@@ -46,7 +47,7 @@ class ResultViewController: UIViewController {
         // Set temporary measure (keep selected food unchanged in case user is updating)
         temporaryMeasure = selectedFood!.selectedMeasure
         if dateString == nil {
-            dateString = firebaseManager.formatDate()
+            dateString = dateManager.formatCurrentDate(dateFormat: "yy_MM_dd")
         }
         // Fetch user document
         firebaseManager.fetchUserDocument { document in
@@ -148,28 +149,20 @@ class ResultViewController: UIViewController {
         // Modify selected food to new values
         self.selectedFood!.multiplier = Double(self.servingTextField.text!)!
         self.selectedFood!.selectedMeasure = self.temporaryMeasure!
+        self.selectedFood!.consumptionTime = dateManager.formatCurrentDate(dateFormat: "yy_MM_dd HH:mm:ss")
         
         // Fetch user document
         firebaseManager.fetchUserDocument { document in
             // Add new modified food to recent foods array
-            self.firebaseManager.addToRecentFoods(food: self.selectedFood!, document: document)
+            self.firebaseManager.fetchRecentFoods(document: document) { recentFoods in
+                self.firebaseManager.addToRecentFoods(food: self.selectedFood!, recentFoods: recentFoods)
+            }
             
             // Fetch fibre intake
             self.firebaseManager.fetchFibreIntake(dateString: self.dateString!, document: document) { intake in
                 self.fibreIntake = intake
                 
                 // Get current time to distinguish duplicate foods as Firebase's arrayUnion function will not save duplicate entries https://cloud.google.com/firestore/docs/manage-data/add-data ; code from https://stackoverflow.com/questions/24070450/how-to-get-the-current-time-as-datetime
-                
-                // Get the current date and time
-                let currentDateTime = Date()
-
-                // Initialize the date formatter and set the style
-                let formatter = DateFormatter()
-                formatter.locale = Locale(identifier: "en_US_POSIX")
-                formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
-                
-                // Change selected food's consumption time attribute to current time
-                self.selectedFood?.consumptionTime = formatter.string(from: currentDateTime)
                 
                 // Log new modified food
                 self.firebaseManager.logFood(food: self.selectedFood!, meal: self.mealButton.currentTitle!, dateString: self.dateString!, fibreIntake: self.fibreIntake) { foodAdded in

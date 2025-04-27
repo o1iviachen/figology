@@ -13,15 +13,13 @@ struct FibreCallManager {
     
     let headers = [
             "Content-Type": "application/x-www-form-urlencoded",
-            "x-app-id": "c1358ca9",
-            "x-app-key": "2fc3f23569c0ca6b14767cab5f262e30",
+            "x-app-id": "b6dd821c",
+            "x-app-key": "24485ee0b77dd35e4d545096dab4a0f5",
             "x-remote-user-id": "0"
     ]
     
     
     func prepareRequest(requestString: String?, url: String) -> URLRequest? {
-        
-        
         
         // If string is not nil
         if let query = requestString {
@@ -44,8 +42,10 @@ struct FibreCallManager {
     
     func performFoodRequest(request: URLRequest?, completion: @escaping ([String?]) -> Void) {
         var fibreRequests: [String?] = []
+        
         // Make sure request is not nil
         if let safeRequest = request {
+            
             // Create a data task with the given request
             let task = URLSession.shared.dataTask(with: safeRequest) { (data, response, error) in
                 

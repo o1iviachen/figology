@@ -34,6 +34,7 @@ class SearchViewController: UIViewController {
             self.firebaseManager.fetchRecentFoods(document: document) { recentFoods in
                 self.loadingAnimation.isHidden = true
                 
+                print(recentFoods)
                 // Show recently consumed foods before user searches anything
                 self.searchList = recentFoods
                 

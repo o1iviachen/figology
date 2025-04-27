@@ -23,6 +23,7 @@ class FoodViewController: UIViewController {
     var selectedFood: Food? = nil
     var selectedMeal: String? = nil
     let alertManager = AlertManager()
+    let dateManager = DateManager()
     
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
@@ -51,7 +52,7 @@ class FoodViewController: UIViewController {
         
         // If the date string is nil, set the date as today; a non-nil date string signifies the food view controller was instantiated from the calendar view controller
         if dateString == nil {
-            dateString = firebaseManager.formatDate()
+            dateString = dateManager.formatCurrentDate(dateFormat: "yy_MM_dd")
         }
         
         // Fetch user document in Firebase Firestore
