@@ -14,7 +14,6 @@ struct FirebaseManager {
     
     
     func fetchUserDocument(completion: @escaping (DocumentSnapshot?) -> Void) {
-        
         db.collection("users").document((Auth.auth().currentUser?.email)!).getDocument { document, error in
             
             // If an error occurs in fetching document, call completion handler with no document snapshot (nil); code from https://cloud.google.com/firestore/docs/manage-data/add-data
@@ -91,13 +90,13 @@ struct FirebaseManager {
                     // If no error occurs in removing food, call completion handler with success (true)
                     if err == nil {
                         completion(true)
-                    } else {
-                        
-                        // Otherwise, call completion handler with failure (false)
+                    }
+                    
+                    // Otherwise, call completion handler with failure (false)
+                    else {
                         completion(false)
                     }
                 }
-                
             }
         }
         
@@ -105,7 +104,6 @@ struct FirebaseManager {
         catch {
             completion(false)
         }
-        
     }
     
     
@@ -125,7 +123,7 @@ struct FirebaseManager {
             
             let dateManager = DateManager()
             
-            // Sorts the foods from latest to earliest using bubble sort
+            // Sort the foods from latest to earliest using bubble sort
             for i in 0..<recentData.count - 1 {
                 var swapped = false
                 
@@ -188,18 +186,16 @@ struct FirebaseManager {
         
         // Unwrap document data for the requested date and optional downcast to dictionary
         if let safeData = document?.data()?[dateString] as? [String: Any] {
-            
-            // Loop through the meals
             for meal in mealNames {
                 
-                // Optional downcast to array of dictionaries
+                // Optional downcast each meal to array of dictionaries
                 if let foods = safeData[meal] as? [[String: Any]] {
                     
                     // Loop through the logged foods in each meal to initialise Food objects
                     for food in foods {
                         let foodObject = parseFirebaseFood(food: food)
                         
-                        // Append Food object to table data
+                        // Append Food object to table data, index of nested array depends on meal
                         tableData[mealNames.firstIndex(of: meal)!].append(foodObject)
                     }
                 }
@@ -208,7 +204,6 @@ struct FirebaseManager {
         
         // Call completion handler once all data is fetched
         completion(tableData)
-        
     }
     
     
@@ -226,7 +221,6 @@ struct FirebaseManager {
         
         // Call completion handler possibly with fibre intake
         completion(fibreIntake)
-        
     }
     
     
@@ -245,8 +239,6 @@ struct FirebaseManager {
         
         // Force downcast the food's measures to array of dictionaries since a food must have measures
         let retrievedMeasures = food["measures"] as! [[String: Any]]
-            
-        // Loop through corresponding measures of the food
         for measurement in retrievedMeasures {
             
             // Create Measure object using Firebase Firestore data

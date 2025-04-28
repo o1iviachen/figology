@@ -24,20 +24,23 @@ struct FibreCallManager {
         // If string is not nil
         if let query = requestString {
             
-            // If http method is "GET," the query must be appended to the URL.
+            // If HTTP method is "GET," the query must be appended to the URL; code from https://docx.syndigo.com/developers/docs/search-item-endpoint
             if httpMethod.uppercased() == "GET" {
                 let url = URL(string: "\(urlString)?nix_item_id=\(query)")!
                 var request = URLRequest(url: url)
                 request.httpMethod = httpMethod
                 request.allHTTPHeaderFields = headers
                 return request
-            } else {
+            }
+            
+            // Otherwise, encode the query string into Data and set it as the HTTP body; code from https://docx.syndigo.com/developers/docs/natural-language-for-nutrients
+            else {
                 let url = URL(string: urlString)!
                 let bodyString = "query=\(query)"
                 let bodyData = bodyString.data(using: .utf8)
                 var request = URLRequest(url: url)
-                request.httpMethod = httpMethod
                 request.httpBody = bodyData
+                request.httpMethod = httpMethod
                 request.allHTTPHeaderFields = headers
                 return request
             }
@@ -58,11 +61,11 @@ struct FibreCallManager {
                 // If data is received successfully
                 if let safeData = data {
                     
-                    // Parse JSON into food names
+                    // Parse JSON into food identifiers
                     fibreRequests = self.parseFoodJSON(foodData: safeData)
                 }
                 
-                // Call the completion handler possibly with food names later used for fibre requests
+                // Call the completion handler possibly with food identifiers later used for fibre requests
                 completion(fibreRequests)
             }
             
@@ -80,7 +83,7 @@ struct FibreCallManager {
         do {
             let decodedData = try decoder.decode(FoodData.self, from: foodData)
             
-            // Append food names to the food list
+            // Append food identifiers to the food list
             for food in decodedData.common {
                 foodList[0].append(food.food_name)
             }
@@ -104,7 +107,6 @@ struct FibreCallManager {
                 // If data is received successfully
                 if let safeData = data {
                     
-                    //print(String(decoding: safeData, as: UTF8.self))
                     // Parse JSON into a Food object
                     if let food = self.parseFibreJSON(fibreData: safeData) {
                         fibreFood = food
@@ -121,7 +123,6 @@ struct FibreCallManager {
     }
     
     
-    // unbranded only
     func parseFibreJSON(fibreData: Data) -> Food? {
         let decoder = JSONDecoder()
         

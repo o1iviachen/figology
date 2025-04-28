@@ -22,6 +22,4 @@ struct AlertManager {
         // Present alert on chosen view controller
         viewController.present(alert, animated: true, completion: nil)
     }
-    
-    
 }
