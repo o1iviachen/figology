@@ -86,7 +86,7 @@ class SearchViewController: UIViewController {
     
     func getFibreData(foodString: String, completion: @escaping () -> Void) {
         
-        let foodRequest = fibreCallManager.prepareRequest(requestString: foodString, url: "https://trackapi.nutritionix.com/v2/search/instant", httpMethod: "POST")
+        let foodRequest = fibreCallManager.prepareRequest(requestString: foodString, urlString: "https://trackapi.nutritionix.com/v2/search/instant", httpMethod: "POST")
         
         // Perform food request from Nutrionix API using prepared food request
         fibreCallManager.performFoodRequest(request: foodRequest) { results in
@@ -95,12 +95,12 @@ class SearchViewController: UIViewController {
             print(results)
             // Prepare a fibre request for all returned FoodRequests
             for result in results[0] {
-                let fibreRequest = self.fibreCallManager.prepareRequest(requestString: result, url: "https://trackapi.nutritionix.com/v2/natural/nutrients", httpMethod: "POST")
+                let fibreRequest = self.fibreCallManager.prepareRequest(requestString: result, urlString: "https://trackapi.nutritionix.com/v2/natural/nutrients", httpMethod: "POST")
                 fibreRequests.append(fibreRequest)
             }
             
             for result in results[1] {
-                let fibreRequest = self.fibreCallManager.prepareRequest(requestString: result, url: "https://trackapi.nutritionix.com/v2/search/item", httpMethod: "GET")
+                let fibreRequest = self.fibreCallManager.prepareRequest(requestString: result, urlString: "https://trackapi.nutritionix.com/v2/search/item", httpMethod: "GET")
                 print(fibreRequest)
                 print("YEEHAW")
                 fibreRequests.append(fibreRequest)

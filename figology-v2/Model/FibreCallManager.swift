@@ -19,38 +19,35 @@ struct FibreCallManager {
     ]
     
     
-    func prepareRequest(requestString: String?, url: String, httpMethod: String) -> URLRequest? {
-        // Prepare request; code from https://docx.syndigo.com/developers/docs/natural-language-for-nutrients
-        let url = URL(string: url)!
-        var request = URLRequest(url: url)
-
+    func prepareRequest(requestString: String?, urlString: String, httpMethod: String) -> URLRequest? {
+        
         // If string is not nil
         if let query = requestString {
+            
+            // If http method is "GET," the query must be appended to the URL.
             if httpMethod.uppercased() == "GET" {
-                // For GET, append query to URL
-                var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-                components?.queryItems = [URLQueryItem(name: "nix_item_id", value: query)]
-                guard let finalURL = components?.url else { return nil }
-                request = URLRequest(url: finalURL)
-                for (key, value) in headers {
-                    request.setValue(value, forHTTPHeaderField: key)
-                }
-            } else {
-                let bodyString = "query=\(query)"
-                let bodyData = bodyString.data(using: .utf8)
-                
+                let url = URL(string: "\(urlString)?nix_item_id=\(query)")!
+                var request = URLRequest(url: url)
                 request.httpMethod = httpMethod
                 request.allHTTPHeaderFields = headers
+                return request
+            } else {
+                let url = URL(string: urlString)!
+                let bodyString = "query=\(query)"
+                let bodyData = bodyString.data(using: .utf8)
+                var request = URLRequest(url: url)
+                request.httpMethod = httpMethod
                 request.httpBody = bodyData
+                request.allHTTPHeaderFields = headers
+                return request
             }
-            return request
         }
         return nil
     }
     
     
     func performFoodRequest(request: URLRequest?, completion: @escaping ([[String?]]) -> Void) {
-        var fibreRequests: [[String?]] = []
+        var fibreRequests: [[String?]] = [[], []]
         
         // Make sure request is not nil
         if let safeRequest = request {
