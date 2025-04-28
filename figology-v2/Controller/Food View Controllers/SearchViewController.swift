@@ -86,15 +86,23 @@ class SearchViewController: UIViewController {
     
     func getFibreData(foodString: String, completion: @escaping () -> Void) {
         
-        let foodRequest = fibreCallManager.prepareRequest(requestString: foodString, url: "https://trackapi.nutritionix.com/v2/search/instant")
+        let foodRequest = fibreCallManager.prepareRequest(requestString: foodString, url: "https://trackapi.nutritionix.com/v2/search/instant", httpMethod: "POST")
         
         // Perform food request from Nutrionix API using prepared food request
         fibreCallManager.performFoodRequest(request: foodRequest) { results in
             var fibreRequests: [URLRequest?] = []
             
+            print(results)
             // Prepare a fibre request for all returned FoodRequests
-            for result in results {
-                let fibreRequest = self.fibreCallManager.prepareRequest(requestString: result, url: "https://trackapi.nutritionix.com/v2/natural/nutrients")
+            for result in results[0] {
+                let fibreRequest = self.fibreCallManager.prepareRequest(requestString: result, url: "https://trackapi.nutritionix.com/v2/natural/nutrients", httpMethod: "POST")
+                fibreRequests.append(fibreRequest)
+            }
+            
+            for result in results[1] {
+                let fibreRequest = self.fibreCallManager.prepareRequest(requestString: result, url: "https://trackapi.nutritionix.com/v2/search/item", httpMethod: "GET")
+                print(fibreRequest)
+                print("YEEHAW")
                 fibreRequests.append(fibreRequest)
             }
             
@@ -107,7 +115,7 @@ class SearchViewController: UIViewController {
                 self.fibreCallManager.performFibreRequest(request: fibreRequest) { parsedFood in
                     if let safeFood = parsedFood {
                         self.searchList.append(safeFood)
-                    }
+                    } 
                     dispatchGroup.leave()
                 }
             }

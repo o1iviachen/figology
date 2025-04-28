@@ -49,14 +49,9 @@ class PasswordViewController: UIViewController {
                             self.alertManager.showAlert(alertMessage: "please check your email to resent your password", viewController: self)
                         }
                     }
-                                                   
                     )
-                    
-                    
                 }
-                
             }
         }
-        
     }
 }

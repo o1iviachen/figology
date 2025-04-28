@@ -20,15 +20,17 @@ struct DateManager {
         // Get the current date and time
         let date = Date()
         
-        // Initialize the date formatter and set the style
+        // Set formatter style to chosen format
         dateFormatter.dateFormat = dateFormat
         let dateString = dateFormatter.string(from: date)
         return dateString
     }
     
     func formatString(dateString: String, stringFormat: String) -> Date {
+        
+        // Set formatter style to chosen format
         dateFormatter.dateFormat = stringFormat
-        let date = dateFormatter.date(from: dateString)
-        return date!
+        let date = dateFormatter.date(from: dateString)!
+        return date
     }
 }

@@ -18,12 +18,16 @@ struct Food: Codable {
 }
 
 struct FoodData: Decodable {
-    let common: [FoodRequest]
-    let branded: [FoodRequest]
+    let common: [CommonFoodRequest]
+    let branded: [BrandedFoodRequest]
 }
 
-struct FoodRequest: Decodable {
+struct CommonFoodRequest: Decodable {
     let food_name: String
+}
+
+struct BrandedFoodRequest: Decodable {
+    let nix_item_id: String
 }
 
 struct FibreData: Decodable {
@@ -34,7 +38,7 @@ struct RawFood: Decodable {
     let food_name: String
     let nf_dietary_fiber: Double
     let brand_name: String?
-    let alt_measures: [RawMeasure]
+    let alt_measures: [RawMeasure]?
     let serving_qty: Int
     let serving_unit: String
     let serving_weight_grams: Double
