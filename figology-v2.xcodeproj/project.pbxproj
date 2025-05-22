@@ -70,6 +70,7 @@
 		58B29EB82D9D9BEC002F6FA0 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		58B29EBA2D9D9F96002F6FA0 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		58B29EBC2D9F5CEC002F6FA0 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
+		58D1E1602DDFE38300744671 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		58FC741C2D91CF500007FC3E /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		58FC741D2D91CF500007FC3E /* FoodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoodCell.xib; sourceTree = "<group>"; };
 		90E424712D78D0A400EF8B8C /* FoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
@@ -162,8 +163,9 @@
 				5892A86F2D7B5BA800304BF0 /* Model */,
 				589FAE0B2D6E363C007890AB /* View */,
 				589FAE0A2D6E3631007890AB /* Controller */,
-				589FADFF2D6E34DB007890AB /* Assets.xcassets */,
+				58D1E15E2DDFE30100744671 /* Configuration */,
 				9F1A2B4B2D7B661600A432CF /* Constants.swift */,
+				589FADFF2D6E34DB007890AB /* Assets.xcassets */,
 				589FAE012D6E34DB007890AB /* LaunchScreen.storyboard */,
 				582934A92D851215000033C7 /* GoogleService-Info.plist */,
 				589FAE042D6E34DB007890AB /* Info.plist */,
@@ -194,6 +196,14 @@
 				582BE0FA2D949ADF0059A4D1 /* LogOutCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		58D1E15E2DDFE30100744671 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				58D1E1602DDFE38300744671 /* Secrets.xcconfig */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 		846CE356C5EB6AFAB1D2EF6D /* Pods */ = {
@@ -376,6 +386,7 @@
 /* Begin XCBuildConfiguration section */
 		589FAE052D6E34DB007890AB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58D1E1602DDFE38300744671 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -436,6 +447,7 @@
 		};
 		589FAE062D6E34DB007890AB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58D1E1602DDFE38300744671 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

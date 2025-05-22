@@ -16,8 +16,8 @@ struct FibreCallManager {
     
     let headers = [
         "Content-Type": "application/x-www-form-urlencoded",
-        "x-app-id": "7156443e",
-        "x-app-key": "f506fd53cfd1a9006ed4a98e320a725b",
+        "x-app-id": Bundle.main.object(forInfoDictionaryKey: "NUTRITIONIX_APP_ID") as? String ?? "",
+        "x-app-key": Bundle.main.object(forInfoDictionaryKey: "NUTRITIONIX_APP_KEY") as? String ?? "",
         "x-remote-user-id": "0"
     ]
     
