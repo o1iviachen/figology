@@ -63,27 +63,27 @@ class SearchViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     @IBAction func searchPressed(_ sender: UIButton) {
-        loadingUIUpdate()
+        
+        // If the search text field is not empty, change UI to loading style
+        if searchTextField.text != "" {
+            loadingUIUpdate()
+        }
     }
     
     
     func loadingUIUpdate() {
         
-        // If the search text field is not empty, change UI to loading style
-        if searchTextField.text != "" {
-            
-            // Clear search list
-            searchList.removeAll()
-            
-            // Reload results table view such that results table view is empty
-            resultsTableView.reloadData()
-            
-            // Show loading animation
-            loadingAnimation.isHidden = false
-            
-            // End editing in search text field (will dismiss keyboard)
-            searchTextField.endEditing(true)
-        }
+        // Clear search list
+        searchList.removeAll()
+        
+        // Reload results table view such that results table view is empty
+        resultsTableView.reloadData()
+        
+        // Show loading animation
+        loadingAnimation.isHidden = false
+        
+        // End editing in search text field (will dismiss keyboard)
+        searchTextField.endEditing(true)
     }
     
     
@@ -132,7 +132,7 @@ class SearchViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        // If segue being prepared goes to results view controller, pass selectedFood for results view controller's attributes
+        // If segue being prepared goes to results view controller, pass selected food for results view controller's attributes
         if segue.identifier == K.searchResultSegue {
             let destinationVC = segue.destination as! ResultViewController
             destinationVC.selectedFood = selectedFood
@@ -145,9 +145,9 @@ extension SearchViewController: UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedFood = searchList[indexPath.row]
-
+        
         // If food is selected, perform segue to results view controller
+        selectedFood = searchList[indexPath.row]
         performSegue(withIdentifier: K.searchResultSegue, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -157,33 +157,24 @@ extension SearchViewController: UITableViewDelegate {
 extension SearchViewController: UITextFieldDelegate {
     
     
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        
-        // Before text field actually ends editing, check if the text field is empty. If not, allow editing to finish
-        if textField.text != "" {
-            return true
-        }
-        
-        // Otherwise, communicate to user to type something
-        else {
-            textField.placeholder = "enter a food"
-            return false
-        }
-    }
-    
-    
     func textFieldDidEndEditing(_ textField: UITextField) {
         if let food = searchTextField.text {
-            // Get fibre data. Upon completion, adjust results table view height, hide loading animation and reload results table view data.
+            
+            // Get fibre data; upon completion, hide loading animation
             getFibreData(foodString: food) {
-                DispatchQueue.main.async {
-                    self.loadingAnimation.isHidden = true
-                    if self.searchList.count == 0 {
-                        self.alertManager.showAlert(alertMessage: "no foods were found.", viewController: self)
-                    } else {
-                        self.resultsTableViewHeightConstraint.constant =  CGFloat(62*self.searchList.count)
-                        self.resultsTableView.reloadData()
+                self.loadingAnimation.isHidden = true
+                
+                // If no foods were found, display message to user
+                if self.searchList.count == 0 {
+                    self.alertManager.showAlert(alertMessage: "no foods were found.", viewController: self)
+                }
+                
+                // Otherwise, adjust results table view height and reload results table view data
+                else {
+                    DispatchQueue.main.async {
+                        self.resultsTableViewHeightConstraint.constant = CGFloat(62*self.searchList.count)
                     }
+                    self.resultsTableView.reloadData()
                 }
             }
         }
@@ -192,12 +183,16 @@ extension SearchViewController: UITextFieldDelegate {
         searchTextField.text = ""
     }
     
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        // Determine if text field should return logically depending on if it should finishing editing
-        loadingUIUpdate()
-        return searchTextField.placeholder != "enter a food"
+        // If the text field is not empty, change UI to loading style and end editing in text field (will dismiss keyboard)
+        if textField.text != "" {
+            loadingUIUpdate()
+            textField.endEditing(true)
+            return true
+        }
+        return false
     }
 }
 
@@ -213,12 +208,14 @@ extension SearchViewController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // Dequeue a food cell
         let cell = tableView.dequeueReusableCell(withIdentifier: K.foodCellIdentifier, for: indexPath) as! FoodCell
         
         // Get the required Food object
         let cellFood = searchList[indexPath.row]
         
-        // Access a food cell's attributes to customise the cells according to Food object
+        // Set the food cell's attributes according to the Food object
         cell.foodNameLabel.text = cellFood!.food
         
         // Calculate the consumed mass

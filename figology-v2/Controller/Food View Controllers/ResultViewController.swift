@@ -60,11 +60,6 @@ class ResultViewController: UIViewController {
                     self.fibreGoal = setFibreGoal
                 }
             }
-            
-            // Fetch fibre intake
-            self.firebaseManager.fetchFibreIntake(dateString: self.dateString!, document: document) { intake in
-                self.fibreIntake = intake
-            }
             self.updateUI()
         }
         
@@ -126,7 +121,7 @@ class ResultViewController: UIViewController {
                 // Therefore, remove the original selected food
                 firebaseManager.removeFood(food: selectedFood!, meal: originalMeal, dateString: dateString!, fibreIntake: fibreIntake) { foodRemoved in
                     
-                    // Communicate error to user using a popup
+                    // Communicate error to user
                     if !foodRemoved {
                         self.alertManager.showAlert(alertMessage: "could not remove previous food.", viewController: self)
                     }
@@ -137,28 +132,31 @@ class ResultViewController: UIViewController {
         // Modify selected food to new values
         self.selectedFood!.multiplier = Double(self.servingTextField.text!)!
         self.selectedFood!.selectedMeasure = self.temporaryMeasure!
+        
+        // Get current time to distinguish duplicate foods as Firebase's arrayUnion function will not save duplicate entries https://cloud.google.com/firestore/docs/manage-data/add-data ; code from https://stackoverflow.com/questions/24070450/how-to-get-the-current-time-as-datetime
         self.selectedFood!.consumptionTime = dateManager.formatCurrentDate(dateFormat: "yy_MM_dd HH:mm:ss")
         
         // Fetch user document
         firebaseManager.fetchUserDocument { document in
-            // Add new modified food to recent foods array
+            
+            // Add new modified food to user's recent foods
             self.firebaseManager.fetchRecentFoods(document: document) { recentFoods in
                 self.firebaseManager.addToRecentFoods(food: self.selectedFood!, recentFoods: recentFoods)
             }
             
             // Fetch fibre intake
             self.firebaseManager.fetchFibreIntake(dateString: self.dateString!, document: document) { intake in
-                self.fibreIntake = intake
-                
-                // Get current time to distinguish duplicate foods as Firebase's arrayUnion function will not save duplicate entries https://cloud.google.com/firestore/docs/manage-data/add-data ; code from https://stackoverflow.com/questions/24070450/how-to-get-the-current-time-as-datetime
-                
+                                
                 // Log new modified food
-                self.firebaseManager.logFood(food: self.selectedFood!, meal: self.mealButton.currentTitle!, dateString: self.dateString!, fibreIntake: self.fibreIntake) { foodAdded in
+                self.firebaseManager.logFood(food: self.selectedFood!, meal: self.mealButton.currentTitle!, dateString: self.dateString!, fibreIntake: intake) { foodAdded in
                     
-                    // Communicate error to user using a popup
+                    // If food was not logged, communicate error to user
                     if !foodAdded {
                         self.alertManager.showAlert(alertMessage: "could not add new food.", viewController: self)
-                    } else {
+                    }
+                    
+                    // Otherwise, return to previous view controller
+                    else {
                         self.navigationController?.popViewController(animated: true)
                     }
                 }
@@ -172,7 +170,7 @@ class ResultViewController: UIViewController {
         // Calculate fibre in consumed food
         let calculatedFibre = selectedFood!.fibrePerGram*temporaryMeasure!.measureMass*Double(self.servingTextField.text!)!
         
-        // Update UI with selected food's attributes
+        // Update UI with inputted values
         foodLabel.text = selectedFood!.food
         fibreLabel.text = "\(String(format: "%.1f", calculatedFibre)) g"
         descriptionLabel.text = "\(selectedFood!.brandName), \(String(format: "%.1f", temporaryMeasure!.measureMass*Double(self.servingTextField.text!)!)) g"
@@ -216,8 +214,8 @@ extension ResultViewController: PickerViewControllerDelegate {
             
             // Hold new selected measure as temporary measure, to keep selected food the same
             temporaryMeasure = value as? Measure
+            updateUI()
         }
-        updateUI()
     }
 }
 
@@ -232,7 +230,6 @@ extension ResultViewController: UITextFieldDelegate {
             textField.text = "1"
             return false
         }
-        
     }
 }
 
