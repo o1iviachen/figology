@@ -10,6 +10,9 @@ import Foundation
 
 
 struct FibreCallManager {
+    /**
+     A structure that interacts with the Nutritionix API to retrieve, process, and manage fibre information about foods.
+     */
     
     let headers = [
         "Content-Type": "application/x-www-form-urlencoded",
@@ -20,6 +23,16 @@ struct FibreCallManager {
     
     
     func prepareRequest(requestString: String?, urlString: String, httpMethod: String) -> URLRequest? {
+        /**
+         Prepares a request for the Nutritionix API given user-inputed information.
+     
+         - Parameters:
+            - requestString (Optional String): The identifier string to be sent to the API.
+            - urlString (String): The base URL string of the API endpoint.
+            - httpMethod (String): The HTTP method to use.
+         
+         - Returns: An optional URLRequest for the specified API call.
+         */
         
         // If string is not nil
         if let query = requestString {
@@ -50,6 +63,14 @@ struct FibreCallManager {
     
     
     func performFoodRequest(request: URLRequest?, completion: @escaping ([[String?]]) -> Void) {
+        /**
+         Performs a food request for the Nutrionix API with the prepared information.
+         
+         - Parameters:
+            - request (Optional URLRequest): Previously prepared to search the food.
+            - completion (2D Array with Optional String): A closure called with the first array containing the un-branded food names, and the second containing the branded name IDs.
+         */
+        
         var fibreRequests: [[String?]] = [[], []]
         
         // Make sure request is not nil
@@ -76,6 +97,15 @@ struct FibreCallManager {
     
     
     func parseFoodJSON(foodData: Data) -> [[String?]] {
+        /**
+         Parses JSON data from the Nutritionix API into a list of food names and IDs.
+         
+         - Parameters:
+            - foodData (Data): The raw data retrieved from the API.
+         
+         - Returns: A 2D array with list of common food names, and a second list of branded food IDs.
+         */
+        
         var foodList: [[String?]] = [[], []]
         let decoder = JSONDecoder()
         
@@ -96,6 +126,14 @@ struct FibreCallManager {
     
     
     func performFibreRequest(request: URLRequest?, completion: @escaping (Food?) -> Void) {
+        /**
+         Performs a fibre request for the Nutrionix API with the prepared information.
+         
+         - Parameters:
+            - request (Optional URLRequest): Previously prepared to search the food.
+            - completion (Optional Food): A closure called with fiber and measurement data.
+         */
+        
         var fibreFood: Food? = nil
         
         // Make sure request is not nil
@@ -124,6 +162,15 @@ struct FibreCallManager {
     
     
     func parseFibreJSON(fibreData: Data) -> Food? {
+        /**
+         Parses JSON data from the Nutritionix API to retrieve food, fiber, and measurement information.
+         
+         - Parameters:
+            - fibreData (Data): The raw data retrieved from the API.
+         
+         - Returns: An Optional Food object parsed from the JSON.
+         */
+        
         let decoder = JSONDecoder()
         
         // Try to decode food-specific nutrient data from Nutritionix API
@@ -171,4 +218,3 @@ struct FibreCallManager {
         }
     }
 }
-
