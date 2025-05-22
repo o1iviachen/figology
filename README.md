@@ -16,7 +16,7 @@ This iOS app is only supported for Mac.
 XCode and CocoaPods need to be installed to run this application. 
 If these are already installed, skip this section. 
 1. Install XCode from the App Store. 
-2. Open the Terminal and instal CocoaPods by entering ``sudo gem install cocoapods``.
+2. Open the Terminal and install CocoaPods by entering ``sudo gem install cocoapods``.
 3. To setup CocoaPods, enter ``pod setup`` in the Terminal.
 
 ### Cloning and running _figology._
@@ -39,4 +39,6 @@ This bug doesn't hinder the functionality of the application.
 
 ## Sources 
 |Source |Description |
-|--     |--          |
+|---     |---          |
+|https://www.udemy.com/course/ios-13-app-development-bootcamp/?couponCode=ST20MT190425G1|We followed many videos from this course to develop various parts of your project, including familiarising ourselves with Swift, learning how to use CocoaPods, and working with APIs.|
+|https://www.youtube.com/watch?v=B_VFHeg2LH4&t=7s|We used this tutorial to develop and implement the Calendar UI on _figology._|
