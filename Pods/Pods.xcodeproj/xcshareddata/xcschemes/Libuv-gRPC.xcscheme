@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "589FADEF2D6E34DA007890AB"
-            BuildableName = "figology-v2.app"
-            BlueprintName = "figology-v2"
-            ReferencedContainer = "container:../figology-v2.xcodeproj">
+            BuildableName = "figology.app"
+            BlueprintName = "figology"
+            ReferencedContainer = "container:../figology.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>

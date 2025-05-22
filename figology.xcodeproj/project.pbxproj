@@ -60,7 +60,7 @@
 		58528F222D9D937700A107F0 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		5880C36C2DBE1CA100A4B51D /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		5892A8702D7B5BB400304BF0 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
-		589FADF02D6E34DA007890AB /* figology-v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "figology-v2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		589FADF02D6E34DA007890AB /* figology.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = figology.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		589FADF32D6E34DA007890AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		589FADF52D6E34DA007890AB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		589FADFA2D6E34DA007890AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -141,7 +141,7 @@
 		589FADE72D6E34DA007890AB = {
 			isa = PBXGroup;
 			children = (
-				589FADF22D6E34DA007890AB /* figology-v2 */,
+				589FADF22D6E34DA007890AB /* figology */,
 				589FADF12D6E34DA007890AB /* Products */,
 				846CE356C5EB6AFAB1D2EF6D /* Pods */,
 			);
@@ -150,12 +150,12 @@
 		589FADF12D6E34DA007890AB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				589FADF02D6E34DA007890AB /* figology-v2.app */,
+				589FADF02D6E34DA007890AB /* figology.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		589FADF22D6E34DA007890AB /* figology-v2 */ = {
+		589FADF22D6E34DA007890AB /* figology */ = {
 			isa = PBXGroup;
 			children = (
 				589FADF32D6E34DA007890AB /* AppDelegate.swift */,
@@ -170,7 +170,7 @@
 				582934A92D851215000033C7 /* GoogleService-Info.plist */,
 				589FAE042D6E34DB007890AB /* Info.plist */,
 			);
-			path = "figology-v2";
+			path = figology;
 			sourceTree = "<group>";
 		};
 		589FAE0A2D6E3631007890AB /* Controller */ = {
@@ -218,9 +218,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		589FADEF2D6E34DA007890AB /* figology-v2 */ = {
+		589FADEF2D6E34DA007890AB /* figology */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 589FAE072D6E34DB007890AB /* Build configuration list for PBXNativeTarget "figology-v2" */;
+			buildConfigurationList = 589FAE072D6E34DB007890AB /* Build configuration list for PBXNativeTarget "figology" */;
 			buildPhases = (
 				27AA9496A47F4F02608AC21A /* [CP] Check Pods Manifest.lock */,
 				589FADEC2D6E34DA007890AB /* Sources */,
@@ -232,9 +232,9 @@
 			);
 			dependencies = (
 			);
-			name = "figology-v2";
+			name = figology;
 			productName = "figology-v2";
-			productReference = 589FADF02D6E34DA007890AB /* figology-v2.app */;
+			productReference = 589FADF02D6E34DA007890AB /* figology.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -252,7 +252,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 589FADEB2D6E34DA007890AB /* Build configuration list for PBXProject "figology-v2" */;
+			buildConfigurationList = 589FADEB2D6E34DA007890AB /* Build configuration list for PBXProject "figology" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -265,7 +265,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				589FADEF2D6E34DA007890AB /* figology-v2 */,
+				589FADEF2D6E34DA007890AB /* figology */,
 			);
 		};
 /* End PBXProject section */
@@ -510,7 +510,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4CMVBFM2BQ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "figology-v2/Info.plist";
+				INFOPLIST_FILE = figology/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -539,7 +539,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4CMVBFM2BQ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "figology-v2/Info.plist";
+				INFOPLIST_FILE = figology/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -561,7 +561,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		589FADEB2D6E34DA007890AB /* Build configuration list for PBXProject "figology-v2" */ = {
+		589FADEB2D6E34DA007890AB /* Build configuration list for PBXProject "figology" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				589FAE052D6E34DB007890AB /* Debug */,
@@ -570,7 +570,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		589FAE072D6E34DB007890AB /* Build configuration list for PBXNativeTarget "figology-v2" */ = {
+		589FAE072D6E34DB007890AB /* Build configuration list for PBXNativeTarget "figology" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				589FAE082D6E34DB007890AB /* Debug */,
