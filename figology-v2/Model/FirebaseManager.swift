@@ -9,11 +9,20 @@ import Foundation
 import Firebase
 
 struct FirebaseManager {
+    /**
+     A structure that manages the food logging with Firebase.
+     */
     
     let db = Firestore.firestore()
     
     
     func fetchUserDocument(completion: @escaping (DocumentSnapshot?) -> Void) {
+        /**
+         Fetches a Firestone document authorized through the user's email.
+         
+         - Parameters:
+            - completion (Optional DocumentSnapshot): Stores the Firestone information at the time of the call.
+         */
         
         db.collection("users").document((Auth.auth().currentUser?.email)!).getDocument { document, error in
             
@@ -35,6 +44,16 @@ struct FirebaseManager {
     
     
     func logFood(food: Food, meal: String, dateString: String, fibreIntake: Double, completion: @escaping (Bool) -> Void) {
+        /**
+         Logs the fibre from the user's food input to the user's daily fibre intake.
+         
+         - Parameters:
+            - food (Food): Food object with identification, fibre, and consumption information.
+            - meal (String): The meal during which the food was consumed.
+            - dateString (String): The date (YYYY-MM-DD) the food was logged.
+            - fibreIntake (Double): The current daily total fibre intake.
+            - completion (Bool):  Indicates if the Firestore update was successful.
+         */
         
         // Add food's fibre to the user's daily fibre intake; learned that arguments in Swift are immutable https://stackoverflow.com/questions/40268619/why-are-function-parameters-immutable-in-swift
         let changedIntake = fibreIntake + food.fibrePerGram*food.selectedMeasure.measureMass*food.multiplier
@@ -72,6 +91,12 @@ struct FirebaseManager {
     
     
     func removeFood(food: Food, meal: String, dateString: String, fibreIntake: Double, completion: @escaping (Bool) -> Void) {
+        /**
+         Removes the food idem and associated fibre measurement from the user's log.
+         
+         - Parameters:
+            - food (Food):
+         */
         
         // Subtract food's fibre from user's daily fibre intake; learned that arguments in Swift are immutable https://stackoverflow.com/questions/40268619/why-are-function-parameters-immutable-in-swift
         let changedIntake = fibreIntake - food.fibrePerGram*food.selectedMeasure.measureMass*food.multiplier
@@ -269,5 +294,3 @@ struct FirebaseManager {
         return(foodObject)
     }
 }
-
-
