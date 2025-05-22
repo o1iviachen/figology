@@ -13,14 +13,7 @@ class CalculatorViewController: UIViewController {
     var backButtonShow: Bool = false
     let db = Firestore.firestore()
     let alertManager = AlertManager()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Set the back button visibility based on backButtonShow
-        navigationItem.hidesBackButton = !backButtonShow
-    }
-    
+    let firebaseManager = FirebaseManager()
     let bmrValues: [Range<Float>: (multiplier: Float, label: String)] = [
         0.0..<0.2: (1.2, "sedentary"),
         0.2..<0.4: (1.375, "slightly active"),
@@ -38,13 +31,24 @@ class CalculatorViewController: UIViewController {
     @IBOutlet weak var activityLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Set the back button visibility based on backButtonShow
+        navigationItem.hidesBackButton = !backButtonShow
+    }
+    
+    
     @IBAction func ageChanged(_ sender: UISlider) {
         ageLabel.text = "\(String(format: "%.0f", sender.value)) years"
     }
     
+    
     @IBAction func heightChanged(_ sender: UISlider) {
         heightLabel.text = "\(String(format: "%.2f", sender.value)) m"
     }
+    
     
     @IBAction func weightChanged(_ sender: UISlider) {
         weightLabel.text = "\(Int(sender.value)) kg"
@@ -73,26 +77,28 @@ class CalculatorViewController: UIViewController {
         // Calculate BMR following https://www.calculator.net/bmr-calculator.html
         let bmr = (10*weight+625*height-5*age-78)
         
-        // Multiple BMR by multiplier from bmrValues dictionary
+        // Multiply BMR by multiplier from bmrValues dictionary
         for (range, (multiplier, _)) in bmrValues {
             if range.contains(activity) {
                 
                 // Calculate fibre goal following https://macrofactorapp.com/does-fiber-have-calories/
-                let baselineFibre = bmr/1000*14
-                let calculatedGoal = Int(multiplier*baselineFibre)
-                db.collection("users").document((Auth.auth().currentUser?.email)!).setData(["fibreGoal": calculatedGoal], merge: true)
+                let calculatedGoal = Int(bmr*multiplier/1000*14)
                 
+                // Save calculated fibre amount to user document on Firebase Firestore
+                firebaseManager.setFibreGoal(fibreAmount: calculatedGoal)
                 alertManager.showAlert(alertMessage: "your fibre goal is now \(calculatedGoal) g. you can change this at any time on the profile page", viewController: self) {
-                    // Make sure there is two or more view controllers
+                    
+                    // Make sure there is two or more view controllers and determine the type of last view controller; code from https://stackoverflow.com/questions/16608536/how-to-get-the-previous-viewcontroller-that-pushed-my-current-view
                     if let navController = self.navigationController, navController.viewControllers.count >= 2 {
                         let viewController = navController.viewControllers[navController.viewControllers.count - 2]
                         
-                        // If the last view controller is a profile view controller, the use did not just sign up. Therefore, pop view controller to profile view controller
+                        // If the last view controller is a profile view controller, the user did not just sign up. Therefore, pop view controller to profile view controller
                         if viewController is ProfileViewController {
                             self.navigationController?.popViewController(animated: true)
-                        } else {
-                            
-                            // Otherwise, go to tab bar controller as user is using the application for the first time
+                        }
+                        
+                        // Otherwise, go to tab bar controller as user is using the application for the first time
+                        else {
                             self.performSegue(withIdentifier: K.calculatorTabSegue, sender: self)
                         }
                     }

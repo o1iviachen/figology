@@ -30,13 +30,14 @@ class FoodViewController: UIViewController {
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set the view controller as the delegate of the table view to handle user interactions
+        // Set self as the table view's delegate to handle user interactions
         tableView.delegate = self
 
-        // Set the view controller as the data source of the table view to provide the data
+        // Set self as the table view's data source to provide the data
         tableView.dataSource = self
 
         // Register food cell in table view
@@ -44,8 +45,8 @@ class FoodViewController: UIViewController {
         
         // Start with progress bar hidden
         progressBar.isHidden = true
-        
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -55,10 +56,10 @@ class FoodViewController: UIViewController {
             dateString = dateManager.formatCurrentDate(dateFormat: "yy_MM_dd")
         }
         
-        // Fetch user document in Firebase Firestore
+        // Fetch user document in Firebase Firestore; code from https://firebase.google.com/docs/firestore/query-data/get-data
         firebaseManager.fetchUserDocument { document in
             
-            // Fetch current date's consumed foods
+            // Fetch current date's consumed foods and populate table view with foods
             self.firebaseManager.fetchFoods(dateString: self.dateString!, document: document) { data in
                 self.tableData = data
                 self.tableView.reloadData()
@@ -69,7 +70,7 @@ class FoodViewController: UIViewController {
                 self.fibreIntake = Double(intake)
             }
             
-            // Fetch fibre goal
+            // Fetch fibre goal and update progress UI
             self.firebaseManager.fetchFibreGoal(document: document) { goal in
                 self.fibreGoal = goal
                 self.updateProgressUI()
@@ -85,24 +86,6 @@ class FoodViewController: UIViewController {
         }
     }
     
-    func updateProgressUI() {
-        
-        // If fibre goal exists
-        if let setFibreGoal = fibreGoal {
-            
-            // Update progress label
-            self.progressLabel.text = "you have consumed \(self.fibreIntake) g out of your \(setFibreGoal) g fibre goal! way to go."
-            
-            // Show decimal progress on progress bar
-            self.progressBar.progress = Float(self.fibreIntake/Double(setFibreGoal))
-            self.progressBar.isHidden = false
-        } else {
-            
-            // Communicate to user to set their fibre goal
-            self.progressLabel.text = "please set your fibre goal."
-        }
-        
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -117,15 +100,38 @@ class FoodViewController: UIViewController {
     }
     
     
+    func updateProgressUI() {
+        
+        // If fibre goal is not nil
+        if let setFibreGoal = fibreGoal {
+            
+            // Update progress label
+            self.progressLabel.text = "you have consumed \(self.fibreIntake) g out of your \(setFibreGoal) g fibre goal! way to go."
+            
+            // Show decimal progress on progress bar
+            self.progressBar.progress = Float(self.fibreIntake/Double(setFibreGoal))
+            self.progressBar.isHidden = false
+        }
+        
+        // If fibre goal is nil
+        else {
+            
+            // Communicate to user to set their fibre goal
+            self.progressLabel.text = "please set your fibre goal."
+        }
+    }
 }
 
 //MARK: - UITableViewDataSource
 extension FoodViewController: UITableViewDataSource {
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         
         // Required to populate the correct number of sections (number of meal types)
         return tableData.count
     }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -133,28 +139,30 @@ extension FoodViewController: UITableViewDataSource {
         return tableData[section].count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.foodCellIdentifier, for: indexPath) as! FoodCell
         
         // Get the required Food object
         let cellFood = tableData[indexPath.section][indexPath.row]
         
-        // Access a food cell's attributes to customise the cells according to Food object
+        // Access the Food object's attributes to customise the cell accordingly
         cell.foodNameLabel.text = cellFood.food
         
         // Calculate the consumed mass
         let descriptionString = "\(cellFood.brandName), \(String(format: "%.1f", cellFood.multiplier*cellFood.selectedMeasure.measureMass)) g"
         cell.foodDescriptionLabel.text = descriptionString
         
-        // Calculate the fibre mass per consumed mass
+        // Calculate the fibre mass for the consumed mass
         cell.fibreMassLabel.text = "\(String(format: "%.1f", cellFood.fibrePerGram*cellFood.multiplier*cellFood.selectedMeasure.measureMass)) g"
         
         return cell
     }
     
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        // As long as there are more header titles, name sections
+        // As long as there are more header titles, continue naming the sections
         if section < headerTitles.count {
             return headerTitles[section]
         }
@@ -164,7 +172,10 @@ extension FoodViewController: UITableViewDataSource {
 
 //MARK: - UITableViewDelegate
 extension FoodViewController: UITableViewDelegate {
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         // Check if UIHostingController is in navigation stack
         let exists = navigationController?.viewControllers.contains {
             $0 is UIHostingController<AnyView>
@@ -179,8 +190,10 @@ extension FoodViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        // Makes editing style delete upon swiping left; code from https://stackoverflow.com/questions/24103069/add-swipe-to-delete-uitableviewcell
+        
+        // Makes editing style the delete style upon swiping left; code from https://stackoverflow.com/questions/24103069/add-swipe-to-delete-uitableviewcell
         if editingStyle == .delete {
             
             // Get the food to delete
@@ -210,13 +223,11 @@ extension FoodViewController: UITableViewDelegate {
                         }
                     }
                     
-                // Otherwise, show error message to user using pop up
+                // Otherwise, show error to user
                 } else {
                     self.alertManager.showAlert(alertMessage: "could not remove food.", viewController: self)
                 }
             }
-            
-            
         }
     }
 }
@@ -227,7 +238,6 @@ struct FoodView: UIViewControllerRepresentable {
     let date: Date
 
     func updateUIViewController(_ uiViewController: FoodViewController, context: Context) {
-        // ?
     }
         
     func makeUIViewController(context: Context) -> FoodViewController {

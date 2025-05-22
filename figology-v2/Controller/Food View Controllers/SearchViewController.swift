@@ -8,59 +8,59 @@
 import UIKit
 import Firebase
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var searchList: [Food?] = []
     var selectedFood: Food? = nil
     let fibreCallManager = FibreCallManager()
     let firebaseManager = FirebaseManager()
     let alertManager = AlertManager()
+    var tapGesture: UITapGestureRecognizer?
+    var swipeGesture: UISwipeGestureRecognizer?
     
     @IBOutlet weak var resultsTableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var loadingAnimation: UIActivityIndicatorView!
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Show loading animation
         loadingAnimation.isHidden = false
-        
         
         // Fetch user document
         firebaseManager.fetchUserDocument { document in
             
             // Fetch user's recently consumed foods
             self.firebaseManager.fetchRecentFoods(document: document) { recentFoods in
-                self.loadingAnimation.isHidden = true
-                
-                print(recentFoods)
-                // Show recently consumed foods before user searches anything
                 self.searchList = recentFoods
                 
-                // Adjust results table view height to fit recent foods
+                // Adjust results table view height to fit recent foods; learned why to use DispatchQueue.main.async using https://medium.com/@prabhatkasera/dispatch-async-in-ios-bd32295b042f
                 DispatchQueue.main.async {
-                    self.resultsTableViewHeightConstraint.constant =  CGFloat(62*self.searchList.count)
-                    self.loadingAnimation.isHidden = true
+                    self.resultsTableViewHeightConstraint.constant = CGFloat(62*self.searchList.count)
                 }
+                
+                // Hide loading animation and display recent foods
+                self.loadingAnimation.isHidden = true
                 self.resultsTableView.reloadData()
             }
         }
         
-        
-        // Set the view controller as the delegate of the results table view to handle user interactions
+        // Set self as the results table view's delegate to handle user interactions
         resultsTableView.delegate = self
 
-        // Set the view controller as the data source of the results table view to provide the data
+        // Set self as the results table view's data source to provide the data
         resultsTableView.dataSource = self
         
-        // Set the view controller as the delegate of the search text field to handle user interactions
+        // Set self as the search text field's delegate to handle user interactions
         searchTextField.delegate = self
         
         // Register food cell
         resultsTableView.register(UINib(nibName: K.foodCellIdentifier, bundle: nil), forCellReuseIdentifier: K.foodCellIdentifier)
-        
     }
+    
     
     @IBAction func searchPressed(_ sender: UIButton) {
         loadingUIUpdate()
@@ -68,51 +68,53 @@ class SearchViewController: UIViewController {
     
     
     func loadingUIUpdate() {
+        
+        // If the search text field is not empty, change UI to loading style
         if searchTextField.text != "" {
-            // Clear seach list
+            
+            // Clear search list
             searchList.removeAll()
             
             // Reload results table view such that results table view is empty
             resultsTableView.reloadData()
             
-            searchTextField.endEditing(true)
+            // Show loading animation
             loadingAnimation.isHidden = false
-        } else {
             
-            // If searchTextField is empty, tell user to enter food.
-            searchTextField.placeholder = "Enter a food"
+            // End editing in search text field (will dismiss keyboard)
+            searchTextField.endEditing(true)
         }
     }
     
+    
     func getFibreData(foodString: String, completion: @escaping () -> Void) {
-        
         let foodRequest = fibreCallManager.prepareRequest(requestString: foodString, urlString: "https://trackapi.nutritionix.com/v2/search/instant", httpMethod: "POST")
         
-        // Perform food request from Nutrionix API using prepared food request
+        // Perform food request from Nutritionix API using the prepared food request
         fibreCallManager.performFoodRequest(request: foodRequest) { results in
             var fibreRequests: [URLRequest?] = []
             
-            print(results)
-            // Prepare a fibre request for all returned FoodRequests
+            // Prepare fibre requests for all returned common foods
             for result in results[0] {
                 let fibreRequest = self.fibreCallManager.prepareRequest(requestString: result, urlString: "https://trackapi.nutritionix.com/v2/natural/nutrients", httpMethod: "POST")
                 fibreRequests.append(fibreRequest)
             }
             
+            // Prepare fibre requests for all returned branded foods
             for result in results[1] {
                 let fibreRequest = self.fibreCallManager.prepareRequest(requestString: result, urlString: "https://trackapi.nutritionix.com/v2/search/item", httpMethod: "GET")
-                print(fibreRequest)
-                print("YEEHAW")
                 fibreRequests.append(fibreRequest)
             }
             
-            // Create a dispatch group
+            // Create a dispatch group; code from https://stackoverflow.com/questions/49376157/swift-dispatchgroup-notify-before-task-finish
             let dispatchGroup = DispatchGroup()
             
+            // Perform fibre requests for all foods
             for fibreRequest in fibreRequests {
                 dispatchGroup.enter()
-                
                 self.fibreCallManager.performFibreRequest(request: fibreRequest) { parsedFood in
+                    
+                    // If food data was returned, append food data to search list
                     if let safeFood = parsedFood {
                         self.searchList.append(safeFood)
                     } 
@@ -127,6 +129,7 @@ class SearchViewController: UIViewController {
         }
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         // If segue being prepared goes to results view controller, pass selectedFood for results view controller's attributes
@@ -139,9 +142,11 @@ class SearchViewController: UIViewController {
 
 //MARK: - UITableViewDelegate
 extension SearchViewController: UITableViewDelegate {
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedFood = searchList[indexPath.row]
-        
+
         // If food is selected, perform segue to results view controller
         performSegue(withIdentifier: K.searchResultSegue, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
@@ -150,20 +155,23 @@ extension SearchViewController: UITableViewDelegate {
 
 //MARK: - UITextFieldDelegate
 extension SearchViewController: UITextFieldDelegate {
+    
+    
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         
-        // Before text field actually ends editing, check if the textfield is empty. If not, allow editing to finish
+        // Before text field actually ends editing, check if the text field is empty. If not, allow editing to finish
         if textField.text != "" {
             return true
         }
         
         // Otherwise, communicate to user to type something
         else {
-            textField.placeholder = "Type something"
+            textField.placeholder = "enter a food"
             return false
         }
-        
     }
+    
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         if let food = searchTextField.text {
             // Get fibre data. Upon completion, adjust results table view height, hide loading animation and reload results table view data.
@@ -179,24 +187,30 @@ extension SearchViewController: UITextFieldDelegate {
                 }
             }
         }
+        
         // Clear search text field
         searchTextField.text = ""
     }
+    
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         // Determine if text field should return logically depending on if it should finishing editing
         loadingUIUpdate()
-        return searchTextField.placeholder != "Type something"
+        return searchTextField.placeholder != "enter a food"
     }
 }
 
 //MARK: - UITableViewDataSource
 extension SearchViewController: UITableViewDataSource {
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         // Required to populate the correct number of foods
         return searchList.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.foodCellIdentifier, for: indexPath) as! FoodCell

@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             // Instantiate Storyboard
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            // Determine if there if a user logged in
+            // Determine if there if a user logged in; code from https://stackoverflow.com/questions/37873608/how-do-i-detect-if-a-user-is-already-logged-in-firebase
             handle = Auth.auth().addStateDidChangeListener { auth, user in
                 
                 // If a user is logged in, go to tab bar view controller

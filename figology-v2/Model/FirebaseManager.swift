@@ -223,8 +223,11 @@ struct FirebaseManager {
         completion(fibreIntake)
     }
     
+    func setFibreGoal(fibreAmount: Int) {
+        db.collection("users").document((Auth.auth().currentUser?.email)!).setData([ "fibreGoal": fibreAmount], merge: true)
+    }
     
-    func fetchFibreGoal(document: DocumentSnapshot?,completion: @escaping (Int?) -> Void) {
+    func fetchFibreGoal(document: DocumentSnapshot?, completion: @escaping (Int?) -> Void) {
         
         // Fetch fibre goal, which may be nil
         let fibreGoal = document?.data()?["fibreGoal"] as? Int

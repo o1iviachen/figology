@@ -13,12 +13,10 @@ class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("CalendarViewController loaded")
         setupSwiftUICalendar()
     }
     
     private func setupSwiftUICalendar() {
-        print("Setting up SwiftUI calendar")
         
         let calendarScene = CalendarScene()
         

@@ -21,19 +21,20 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set the view controller as the data source of the table view to provide the data
+        // Set self as the table view's data source to provide the data
         tableView.dataSource = self
         
-        // Set the view controller as the delegate of the table view to handle user interactions
+        // Set self as the table view's delegate to handle user interaction
         tableView.delegate = self
         
         // Register employed cells
         tableView.register(UINib(nibName: K.profileCellIdentifier, bundle: nil), forCellReuseIdentifier: K.profileCellIdentifier)
         tableView.register(UINib(nibName: K.logOutCellNib, bundle: nil), forCellReuseIdentifier: K.logOutCellIdentifier)
         
-        // Make the seperation rounded
+        // Make the cells rounded
         tableView.separatorStyle = .none
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -48,14 +49,15 @@ class ProfileViewController: UIViewController {
                 if let safeFibreGoal = fibreGoal {
                     self.fibreLabel.text = "fibre goal: \(safeFibreGoal) g"
                 }
+                
                 // Otherwise, ask user to set their fibre goal
                 else {
                     self.fibreLabel.text = "please set your fibre goal."
                 }
             }
         }
-        
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -65,16 +67,18 @@ class ProfileViewController: UIViewController {
             destinationVC.backButtonShow = true
         }
     }
-    
 }
 
 //MARK: - UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         
         // Required to populate the correct number of sections
         return data.count
     }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -82,9 +86,10 @@ extension ProfileViewController: UITableViewDataSource {
         return data[section].count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        // If the element is a Setting, create a Profile Cell
+        // If the element is a Setting, create a Profile cell
         if data[indexPath.section][indexPath.row] is Setting {
             let cellData = data[indexPath.section][indexPath.row] as! Setting
             let cell = tableView.dequeueReusableCell(withIdentifier: K.profileCellIdentifier, for: indexPath) as! ProfileCell
@@ -94,27 +99,29 @@ extension ProfileViewController: UITableViewDataSource {
             cell.iconImage.image = cellData.image
             return cell
         }
+        
         // Otherwise, create a log out cell
         else {
             let logOutCell = tableView.dequeueReusableCell(withIdentifier: K.logOutCellIdentifier, for: indexPath) 
             return logOutCell
         }
     }
-    
 }
 
 //MARK: - UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         // If log out button is pressed
         if indexPath == [2,0] {
             let alert = UIAlertController(title: "are you sure?", message: "do you want to log out?", preferredStyle: .alert)
             
             let cancelAction = UIAlertAction(title: "cancel", style: .default)
             
-            // Add an UIAlertAction with a handler to perform the segue
+            // Add a log out UIAlertAction with a handler to perform the segue
             let logOutAction = UIAlertAction(title: "log out", style: .default) { (action) in
                 do {
+                    
                     // Sign user out
                     try Auth.auth().signOut()
                     
@@ -122,7 +129,7 @@ extension ProfileViewController: UITableViewDelegate {
                     self.navigationController?.popToRootViewController(animated: true)
                 }
                 
-                // If there is a sign out error, communicate to user there is an error using a popup
+                // If there is a sign out error, communicate to user there is an error
                 catch let signOutError as NSError {
                     self.alertManager.showAlert(alertMessage: signOutError.localizedDescription, viewController: self)
                 }
@@ -134,9 +141,10 @@ extension ProfileViewController: UITableViewDelegate {
             
             // Present the alert
             self.present(alert, animated: true, completion: nil)
-            
+        }
+        
         // Segue to corresponding view controller based on selected cell
-        } else if indexPath == [0, 1] {
+        else if indexPath == [0, 1] {
             performSegue(withIdentifier: K.profileSelectorSegue, sender: self)
         } else if indexPath == [0, 0] {
             performSegue(withIdentifier: K.profileCalculatorSegue, sender: self)
@@ -158,5 +166,4 @@ extension ProfileViewController: UITableViewDelegate {
         headerView.backgroundColor = .clear
         return headerView
     }
-
 }

@@ -189,8 +189,8 @@
 				589FADF92D6E34DA007890AB /* Main.storyboard */,
 				58FC741D2D91CF500007FC3E /* FoodCell.xib */,
 				58FC741C2D91CF500007FC3E /* FoodCell.swift */,
-				582BE0F52D9499460059A4D1 /* ProfileCell.swift */,
 				582BE0F62D9499460059A4D1 /* ProfileCell.xib */,
+				582BE0F52D9499460059A4D1 /* ProfileCell.swift */,
 				582BE0FA2D949ADF0059A4D1 /* LogOutCell.xib */,
 			);
 			path = View;

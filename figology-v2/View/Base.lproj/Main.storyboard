@@ -977,7 +977,22 @@
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i2n-Zm-Wkz">
                                         <rect key="frame" x="0.0" y="91" width="333" height="471"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="always" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cKS-lO-81W">
+                                                <rect key="frame" x="10" y="10" width="313" height="451"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="textColor" name="TextColour"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="cKS-lO-81W" secondAttribute="trailing" constant="10" id="EYk-Sf-y1W"/>
+                                            <constraint firstItem="cKS-lO-81W" firstAttribute="top" secondItem="i2n-Zm-Wkz" secondAttribute="top" constant="10" id="SVE-k6-bLm"/>
+                                            <constraint firstAttribute="bottom" secondItem="cKS-lO-81W" secondAttribute="bottom" constant="10" id="ePe-ZD-4of"/>
+                                            <constraint firstItem="cKS-lO-81W" firstAttribute="leading" secondItem="i2n-Zm-Wkz" secondAttribute="leading" constant="10" id="joG-1w-RgQ"/>
+                                        </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kjq-8Y-qJ5">
                                         <rect key="frame" x="136" y="592" width="61.333333333333343" height="34"/>
@@ -1013,6 +1028,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="cam-ky-3dG"/>
                     <connections>
+                        <outlet property="textView" destination="cKS-lO-81W" id="M9f-be-UqQ"/>
                         <outlet property="viewHolder" destination="i2n-Zm-Wkz" id="0UH-hy-HYy"/>
                     </connections>
                 </viewController>
@@ -1329,7 +1345,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="5cV-Le-WvS"/>
         <segue reference="0fQ-Cv-ylB"/>
-        <segue reference="snc-Vg-Qu0"/>
+        <segue reference="59y-vI-ggX"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="Dark Purple"/>
     <resources>

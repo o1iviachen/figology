@@ -34,21 +34,23 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var servingMeasureButton: UIButton!
     @IBOutlet weak var mealButton: UIButton!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set the view controller as the delegrate of the text field to manage user interaction
+        // Set self as the serving text field's delegate to manage user interaction
         servingTextField.delegate = self
         
-        // Initially configure UI with unmodified Food
+        // Initially configure UI with unmodified food
         mealButton.setTitle(originalMeal, for: .normal)
         servingTextField.text = String(selectedFood!.multiplier)
         
         // Set temporary measure (keep selected food unchanged in case user is updating)
         temporaryMeasure = selectedFood!.selectedMeasure
-        if dateString == nil {
-            dateString = dateManager.formatCurrentDate(dateFormat: "yy_MM_dd")
-        }
+        
+        // Set date string
+        dateString = dateManager.formatCurrentDate(dateFormat: "yy_MM_dd")
+        
         // Fetch user document
         firebaseManager.fetchUserDocument { document in
             
@@ -66,78 +68,64 @@ class ResultViewController: UIViewController {
             self.updateUI()
         }
         
+        // Picker goes down when screen is tapped outside and swipped
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(tapGesture)
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
         swipeGesture.direction = .down
         view.addGestureRecognizer(swipeGesture)
-        
     }
 
-    func updateUI() {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        // Calculate fibre in consumed food
-        let calculatedFibre = selectedFood!.fibrePerGram*temporaryMeasure!.measureMass*Double(self.servingTextField.text!)!
-        
-        // Update UI with selected food's attributes
-        foodLabel.text = selectedFood!.food
-        fibreLabel.text = "\(String(format: "%.1f", calculatedFibre)) g"
-        descriptionLabel.text = "\(selectedFood!.brandName), \(String(format: "%.1f", temporaryMeasure!.measureMass*Double(self.servingTextField.text!)!)) g"
-        
-        // Truncate text button if measure expression length is greater than 9
-        if temporaryMeasure!.measureExpression.count < 10 {
-            servingMeasureButton.setTitle(temporaryMeasure!.measureExpression, for: .normal)
-        } else {
-            servingMeasureButton.setTitle("\(String(temporaryMeasure!.measureExpression.prefix(9)))...", for: .normal)
-        }
-        
-        // If fibre goal is not nil, calculate the percent of the daily goal the food accounts for
-        if let safeFibreGoal = fibreGoal {
-            let progressPercent = calculatedFibre/Double(safeFibreGoal)
-            progressLabel.text = "this is \(Int(progressPercent*100))% of your fibre goal!"
-            progressBar.progress = Float(progressPercent)
-            progressBar.isHidden = false
-        }
-        
-        // Otherwise, tell user to set their fibre goal
-        else {
-            progressLabel.text = "please set your fibre goal."
-            progressBar.isHidden = true
+        // If segue is to picker view controller
+        if segue.identifier == K.resultPickerSegue {
+            let destinationVC = segue.destination as! PickerViewController
+            
+            // Set self as the picker view controller's delegate to manage user interaction
+            destinationVC.delegate = self
+            
+            // Determine the picker options depending on the selected button
+            destinationVC.options = rawPickerOptions
         }
     }
+    
     
     @objc func handleSwipe() {
         updateUI()
         servingTextField.resignFirstResponder()
     }
     
+    
     @objc func handleTap() {
         updateUI()
         servingTextField.resignFirstResponder()
     }
+    
     
     @IBAction func mealButtonSelected(_ sender: UIButton) {
         rawPickerOptions = ["breakfast", "lunch", "dinner", "snacks"]
         performSegue(withIdentifier: K.resultPickerSegue, sender: self)
     }
     
+    
     @IBAction func servingButtonSelected(_ sender: UIButton) {
         rawPickerOptions = selectedFood!.measures
         performSegue(withIdentifier: K.resultPickerSegue, sender: self)
-        
     }
     
     
     @IBAction func addFood(_ sender: UIBarButtonItem) {
         
-        // If previous view controller is a FoodViewController, the user was updating their food
+        // If previous view controller is a FoodViewController, the user was updating their food; code from https://stackoverflow.com/questions/16608536/how-to-get-the-previous-viewcontroller-that-pushed-my-current-view
         if let navController = self.navigationController, navController.viewControllers.count >= 2 {
             let viewController = navController.viewControllers[navController.viewControllers.count - 2]
             if viewController is FoodViewController {
                 
                 // Therefore, remove the original selected food
                 firebaseManager.removeFood(food: selectedFood!, meal: originalMeal, dateString: dateString!, fibreIntake: fibreIntake) { foodRemoved in
-                    print(self.fibreIntake)
+                    
                     // Communicate error to user using a popup
                     if !foodRemoved {
                         self.alertManager.showAlert(alertMessage: "could not remove previous food.", viewController: self)
@@ -178,15 +166,38 @@ class ResultViewController: UIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == K.resultPickerSegue {
-            let destinationVC = segue.destination as! PickerViewController
-            destinationVC.delegate = self
-            destinationVC.options = rawPickerOptions
-            
+    
+    func updateUI() {
+        
+        // Calculate fibre in consumed food
+        let calculatedFibre = selectedFood!.fibrePerGram*temporaryMeasure!.measureMass*Double(self.servingTextField.text!)!
+        
+        // Update UI with selected food's attributes
+        foodLabel.text = selectedFood!.food
+        fibreLabel.text = "\(String(format: "%.1f", calculatedFibre)) g"
+        descriptionLabel.text = "\(selectedFood!.brandName), \(String(format: "%.1f", temporaryMeasure!.measureMass*Double(self.servingTextField.text!)!)) g"
+        
+        // Truncate text button if measure expression length is greater than 9
+        if temporaryMeasure!.measureExpression.count < 10 {
+            servingMeasureButton.setTitle(temporaryMeasure!.measureExpression, for: .normal)
+        } else {
+            servingMeasureButton.setTitle("\(String(temporaryMeasure!.measureExpression.prefix(9)))...", for: .normal)
+        }
+        
+        // If fibre goal is not nil, calculate the percent of the daily goal the food accounts for
+        if let safeFibreGoal = fibreGoal {
+            let progressPercent = calculatedFibre/Double(safeFibreGoal)
+            progressLabel.text = "this is \(Int(progressPercent*100))% of your fibre goal!"
+            progressBar.progress = Float(progressPercent)
+            progressBar.isHidden = false
+        }
+        
+        // Otherwise, tell user to set their fibre goal
+        else {
+            progressLabel.text = "please set your fibre goal."
+            progressBar.isHidden = true
         }
     }
-    
 }
 
 //MARK: - PickerViewControllerDelegate
