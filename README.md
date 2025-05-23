@@ -26,10 +26,11 @@ If these are already installed, skip this section.
 5. Log in to [Firebase](https://firebase.google.com/) and go to console.
 6. Create a Firebase project. At the following screen, select the iOS+ icon. Only follow the shown steps 1 and 2. Ensure to use your Bundle Identifier as the Apple bundle ID. 
 7. To install CocoaPods to this specific project, quit the project and open the Terminal and navigate to the folder containing the cloned repository using ``cd`` and the entire pathway of the file.
+8. On the left-side panel, click the Build dropdown and select Authentication. Add Email/Password and Google as authentication methods. Click the Build dropdown again and select Firebase Database. Create a new database.
    This may look like ``cd /Users/su/Desktop/figology``.
    Once navigated to the folder of the workspace, enter ``pod install``. From now on, only open the new .xcworkspace file.
-8. Create a new Configuration Settings File in the project folder titled "Secrets." Include your Nutritionix API Key and ID as variables named ``NUTRITIONIX_API_KEY`` and ``NUTRITIONIX_API_ID``.
-9. In XCode, click the Run button at the top of the left sidebar or press ``Cmd + R`` to run _figology._ 
+9. Create a new Configuration Settings File in the project folder titled "Secrets." Include your Nutritionix API Key and ID as variables named ``NUTRITIONIX_API_KEY`` and ``NUTRITIONIX_API_ID``.
+10. In XCode, click the Run button at the top of the left sidebar or press ``Cmd + R`` to run _figology._ 
 
 ## Known Bugs
 After signing up, the user will not be directed to the calculator page automatically. 
