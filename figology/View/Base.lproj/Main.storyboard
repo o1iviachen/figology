@@ -1272,7 +1272,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7vq-6I-F19" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5453" y="-218"/>
+            <point key="canvasLocation" x="5318" y="-218"/>
         </scene>
         <!--Food View Controller-->
         <scene sceneID="Tv2-UW-qH1">
@@ -1343,8 +1343,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5cV-Le-WvS"/>
-        <segue reference="0fQ-Cv-ylB"/>
+        <segue reference="Mqm-F3-hHP"/>
+        <segue reference="WRm-FH-wBV"/>
         <segue reference="59y-vI-ggX"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="Dark Purple"/>
