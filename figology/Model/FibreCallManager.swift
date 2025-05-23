@@ -72,7 +72,7 @@ struct FibreCallManager {
          
          - Parameters:
             - request (Optional URLRequest): Previously prepared to search the food.
-            - completion (2D Array with Optional String): A closure called with the first array containing the un-branded food names, and the second containing the branded name IDs.
+            - completion ([[Optional String]]): A closure called with the first array containing the un-branded food names, and the second containing the branded name IDs.
          */
         
         var fibreRequests: [[String?]] = [[], []]
@@ -135,7 +135,7 @@ struct FibreCallManager {
          
          - Parameters:
             - request (Optional URLRequest): Previously prepared to search the food.
-            - completion (Optional Food): A closure called with fiber and measurement data.
+            - completion (Optional Food): A closure called with Food objects the user can log.
          */
         
         var fibreFood: Food? = nil

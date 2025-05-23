@@ -15,6 +15,13 @@ import Firebase
 
 
 class LogInViewController: UIViewController {
+    /**
+     A class that allows the View Controller to manage the user log-in and subsequent navigation, compatible with email/password and Google Sign-In.
+     
+     - Properties:
+        - passwordTextField (Unwrapped UITextField): Allows the user to enter their password.
+        - emailTextField (Unwrapped UITextFIeld): Allows the user to enter their email address.
+     */
     
     let db = Firestore.firestore()
     let alertManager = AlertManager()
@@ -24,6 +31,13 @@ class LogInViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        /**
+         Passes the user's email address before the user navigates to the password screen.
+         
+         - Parameters:
+            - segue (UIStoryboardSegue): Indicates the View Controllers involved in the segue.
+            - sender (Optional Any): Indicates the object that initiated the segue.
+         */
                 
         // If segue that will be performed goes to password view controller
         if segue.identifier == K.logInPasswordSegue {
@@ -40,6 +54,12 @@ class LogInViewController: UIViewController {
     
     
     @IBAction func loginPressed(_ sender: UIButton) {
+        /**
+         Allows the user to log-in using their email and password, and performs the appropriate segue if the attempt is successful.
+         
+         - Parameters:
+            - sender (UIButton): Triggers the log-in.
+         */
         
         // Code from https://firebase.google.com/docs/auth/ios/password-auth
 
@@ -67,6 +87,12 @@ class LogInViewController: UIViewController {
     
     
     @IBAction func googleLogInPressed(_ sender: GIDSignInButton) {
+        /**
+         Allows the user to log-in using Google Sign-In, and performs the appropriate segue if the attempt is successful.
+         
+         - Parameters:
+            - sender (GIDSignInButton): Triggers Google Sign-In.
+         */
         
         // Code from https://firebase.google.com/docs/auth/ios/google-signin
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }

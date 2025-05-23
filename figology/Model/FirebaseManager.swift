@@ -14,7 +14,7 @@ import Firebase
 
 struct FirebaseManager {
     /**
-     A structure that manages the food logging with Firebase.
+     A structure that manages the food and fibre logging with Firebase, including fetching, adding, updating, and removing food entries in the user's daily logs stored in Firebase Firestore.
      */
     
     let db = Firestore.firestore()
@@ -22,10 +22,10 @@ struct FirebaseManager {
     
     func fetchUserDocument(completion: @escaping (DocumentSnapshot?) -> Void) {
         /**
-         Fetches a Firestore document corresponding to the user's email.
+         Fetches a Firebase Firestore document authorized through the user's email.
          
          - Parameters:
-            - completion (Optional DocumentSnapshot): Stores the Firestone information at the time of the call.
+            - completion (Optional DocumentSnapshot): Stores the Firebase Firestore information at the time of the call.
          */
         
         db.collection("users").document((Auth.auth().currentUser?.email)!).getDocument { document, error in
@@ -54,9 +54,9 @@ struct FirebaseManager {
          - Parameters:
             - food (Food): Food object with identification, fibre, and consumption information.
             - meal (String): The meal during which the food was consumed.
-            - dateString (String): The date (YYYY-MM-DD) the food was logged.
+            - dateString (String): The date (yy_MM_dd HH:mm:ss) the food was logged.
             - fibreIntake (Double): The current daily total fibre intake.
-            - completion (Bool):  Indicates if the Firestore update was successful.
+            - completion (Bool):  Indicates if the Firebase Firestore update was successful.
          */
         
         // Add food's fibre to the user's daily fibre intake; learned that arguments in Swift are immutable https://stackoverflow.com/questions/40268619/why-are-function-parameters-immutable-in-swift
@@ -96,10 +96,14 @@ struct FirebaseManager {
     
     func removeFood(food: Food, meal: String, dateString: String, fibreIntake: Double, completion: @escaping (Bool) -> Void) {
         /**
-         Removes the food idem and associated fibre measurement from the user's log.
+         Removes the food item and associated fibre measurement from the user's log.
          
          - Parameters:
-            - food (Food):
+            - food (Food): Food object with identification, fibre, and consumption information.
+            - meal (String): The meal during which the food was consumed.
+            - dateString (String): The date (yy_MM_dd HH:mm:ss) the food was logged.
+            - fibreIntake (Double): The current daily total fibre intake.
+            - completion (Bool):  Indicates if the Firebase Firestore update was successful.
          */
         
         // Subtract food's fibre from user's daily fibre intake; learned that arguments in Swift are immutable https://stackoverflow.com/questions/40268619/why-are-function-parameters-immutable-in-swift
@@ -138,6 +142,14 @@ struct FirebaseManager {
     
     
     func fetchRecentFoods(document: DocumentSnapshot?, completion: @escaping ([Food]) -> Void) {
+        /**
+         Fetches and organizes the recent food logs chronologically.
+         
+         - Parameters:
+            - document (Optional DocumentSnapshot): Stores the Firebase Firestore information at the time of the call.
+            - completion ([Food]): A sorted array with the Food logs from most recent to least recent.
+         */
+        
         var recentData: [Food] = []
         
         // Unwrap document data recent foods and optional downcast to list of dictionaries
@@ -178,6 +190,14 @@ struct FirebaseManager {
     
     
     func addToRecentFoods(food: Food, recentFoods: [Food]) {
+        /**
+         Stores the user's food input.
+         
+         - Parameters:
+            - food (Food): Food object with identification, fibre, and consumption information.
+            - recentFoods ([Food]): An array containing a maximum of the 10 most recent foods.
+         */
+        
         let encoder = JSONEncoder()
         
         // Limit recent foods list to 10 foods
@@ -211,6 +231,15 @@ struct FirebaseManager {
     
     
     func fetchFoods(dateString: String, document: DocumentSnapshot?, completion: @escaping ([[Food]]) -> Void) {
+        /**
+         Fetches the stored food items and prepares them for UI display.
+         
+         - Parameters:
+            - dateString (String): The date (yy_MM_dd HH:mm:ss) the food was logged.
+            - document (Optional DocumentSnapshot): Stores the Firebase Firestore information at the time of the call.
+            - completion ([[Food]]): A sorted array with the Food logs grouped by meal type.
+         */
+        
         var tableData: [[Food]] = [[],[],[],[]]
         let mealNames = ["breakfast", "lunch", "dinner", "snacks"]
         
@@ -238,6 +267,15 @@ struct FirebaseManager {
     
     
     func fetchFibreIntake(dateString: String, document: DocumentSnapshot?, completion: @escaping (Double) -> Void) {
+        /**
+         Fetches the fibre intake for the stored food items and prepares the data for UI display.
+         
+         - Parameters:
+            - dateString (String): The date (yy_MM_dd HH:mm:ss) the food was logged.
+            - document (Optional DocumentSnapshot): Stores the Firebase Firestore information at the time of the call.
+            - completion (Double): Stores the total fibre intake for that day.
+         */
+        
         var fibreIntake: Double = 0.0
         
         // Unwrap document data for the requested date and optional downcast to dictionary
@@ -258,6 +296,13 @@ struct FirebaseManager {
     }
     
     func fetchFibreGoal(document: DocumentSnapshot?, completion: @escaping (Int?) -> Void) {
+        /**
+         Fetches the user's fibre goal.
+         
+         - Parameters:
+            - document (Optional DocumentSnapshot): Stores the Firebase Firestore information at the time of the call.
+            - completion (Optional Int): Stores the user's daily fibre goal.
+         */
         
         // Fetch fibre goal, which may be nil
         let fibreGoal = document?.data()?["fibreGoal"] as? Int
@@ -268,6 +313,15 @@ struct FirebaseManager {
     
     
     func parseFirebaseFood(food: [String: Any]) -> Food {
+        /**
+         Parses and converts a dictionary from Firebase Firestore into a Food object.
+         
+         - Parameters:
+            - food (Dictionary): Represents a single food entry in Firebase.
+        
+         - Returns: A Food object created from the Firebase Firestore dictionary.
+         */
+        
         var measurements: [Measure] = []
         
         // Force downcast the food's measures to array of dictionaries since a food must have measures

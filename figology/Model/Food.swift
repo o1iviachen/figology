@@ -13,13 +13,15 @@ import Foundation
 struct Food: Codable {
     /**
      A structure that organises properties of food items, and allows properties to be readable and writable.
-     - parameter food (String): The name of the food item.
-     - parameter fibrePerGram (Double): The amount of fibre per gram for the food item.
-     - parameter brandName (String): The brand for the food item.
-     - parameter measures (Array): An array of potential measurement units.
-     - parameter selectedMeasure (Measure): The measurement unit selected by the user.
-     - parameter multiplier (Double): A value to convert between measures.
-     - parameter consumptionTime (Optional String): The timestamp at which the food was consumed, if applicable.
+     
+     - Properties:
+        - food (String): The name of the food item.
+        - fibrePerGram (Double): The amount of fibre per gram for the food item.
+        - brandName (String): The brand for the food item.
+        - measures (Array): An array of potential measurement units.
+        - selectedMeasure (Measure): The measurement unit selected by the user.
+        - multiplier (Double): A value to convert between measures.
+        - consumptionTime (Optional String): The timestamp at which the food was consumed, if applicable.
      */
     
     let food: String
@@ -34,17 +36,22 @@ struct Food: Codable {
 struct FoodData: Decodable {
     /**
      A structure that reads the food data from a JSON response and separates the food items in different categories.
-     - parameter common (Array): An array of common food items.
-     - parameter branded (Array): An array of branded food products.
-     */
+     
+     - Properties:
+        - common (Array): An array of common food items.
+        - branded (Array): An array of branded food products.
+    */
+    
     let common: [CommonFoodRequest]
     let branded: [BrandedFoodRequest]
 }
 
 struct CommonFoodRequest: Decodable {
     /**
-    A structure that reads common food item returned from a JSON response.
-    - parameter food_name (String): The name of the food item.
+     A structure that reads common food item returned from a JSON response.
+     
+     - Properties:
+        - food_name (String): The name of the food item.
     */
     
     let food_name: String
@@ -52,8 +59,10 @@ struct CommonFoodRequest: Decodable {
 
 struct BrandedFoodRequest: Decodable {
     /**
-    A structure that reads a branded food product returned from a JSON response.
-    - parameter nix_item_id (String): The unique Nutritionix API identifier for the branded item in the food database.
+     A structure that reads a branded food product returned from a JSON response.
+     
+     - Properties:
+        - nix_item_id (String): The unique Nutritionix API identifier for the branded item in the food database.
     */
     
     let nix_item_id: String
@@ -62,7 +71,9 @@ struct BrandedFoodRequest: Decodable {
 struct FibreData: Decodable {
     /**
      A structure that reads the root object returned by a JSON response.
-     - parameter food (Array): An array of raw food items containing fibre and measurement information.
+     
+     - Properties:
+        - food (Array): An array of raw food items containing fibre and measurement information.
      */
     
     let foods: [RawFood]
@@ -71,13 +82,15 @@ struct FibreData: Decodable {
 struct RawFood: Decodable {
     /**
      A structure that organizes the properties of food items read from a JSON reponse.
-     - parameter food_name (String): The name of the food item.
-     - parameter nf_dietary_fiber (Double): The amount of fibre per unit.
-     - parameter brand_name (Optional String): The brand of the food, if applicable.
-     - parameter alt_measures (Optional Array): An array of alternative measurement units, if available.
-     - parameter serving_qty (Int): The default serving quantity.
-     - parameter serving_unit (String): The unit for the default serving quantity.
-     - parameter serving_weight_grams (Double): The weight in grams for the default serving size.
+     
+     - Properties:
+         - food_name (String): The name of the food item.
+         - nf_dietary_fiber (Double): The amount of fibre per unit.
+         - brand_name (Optional String): The brand of the food, if applicable.
+         - alt_measures (Optional Array): An array of alternative measurement units, if available.
+         - serving_qty (Int): The default serving quantity.
+         - serving_unit (String): The unit for the default serving quantity.
+         - serving_weight_grams (Double): The weight in grams for the default serving size.
      */
     
     let food_name: String

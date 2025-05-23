@@ -25,13 +25,12 @@ If these are already installed, skip this section.
 4. Go to the Project File icon at the top of the Project Navigator (left-side panel) and change the Bundle Identifier. Apple recommends the following format: ``com.[your-organization-or-name].[app-name]``.
 5. Log in to [Firebase](https://firebase.google.com/) and go to console.
 6. Create a Firebase project. At the following screen, select the iOS+ icon. Only follow the shown steps 1 and 2. Ensure to use your Bundle Identifier as the Apple bundle ID. 
-7. To install CocoaPods to this specific project, quit the project and open the Terminal and navigate to the folder containing the cloned repository using ``cd`` and the entire pathway of the file.
-   This may look like ``cd /Users/su/Desktop/figology``.
-   Once navigated to the folder of the workspace, enter ``pod install``. From now on, only open the new .xcworkspace file.
-8. Create a new Configuration Settings File in the project folder titled "Secrets." Include your Nutritionix API Key and ID as variables named ``NUTRITIONIX_API_KEY`` and ``NUTRITIONIX_API_ID``.
-9. After the workspace is opened in XCode and CocoaPods is installed to this project, select your target device from the toolbar at the top of the XCode window.
-   This can either be a physical device connected to your Mac or a simulator (e.g., iPhone 16 Pro).
-10. In XCode, click the Run button at the top of the left sidebar or press ``Cmd + R`` to run _figology._ 
+7. To install CocoaPods to this specific project, quit the project, open the Terminal and navigate to the folder containing the cloned repository using ``cd`` and the entire pathway of the file.
+8. On the left-side panel, click the Build dropdown and select Authentication. Add Email/Password and Google as authentication methods. Click the Build dropdown again and select Firebase Database. Create a new database.
+9. To install CocoaPods, open the Terminal and navigate to the folder containing the cloned repository using ``cd`` and the entire pathway of the file.
+   This may look like ``cd /Users/su/Desktop/figology``. Once navigated to the folder of the workspace, enter ``pod install``. From now on, only open the new .xcworkspace file.
+10. Create a new Configuration Settings File in the project folder titled "Secrets." Create your Nutritionix API Key and ID at [Nutritionix](https://developer.nutritionix.com/signup) and store them as variables named ``NUTRITIONIX_API_KEY`` and ``NUTRITIONIX_API_ID``.
+11. In XCode, click the Run button at the top of the left sidebar or press ``Cmd + R`` to run _figology._ 
 
 ## Known Bugs
 After signing up, the user will not be directed to the calculator page automatically. 
@@ -46,3 +45,23 @@ Contact olivia63chen@gmail.com directly or through the support page on _figology
 |---     |---          |
 |https://www.udemy.com/course/ios-13-app-development-bootcamp/?couponCode=ST20MT190425G1|We followed many videos from this course to develop various parts of your project, including familiarising ourselves with Swift, learning how to use CocoaPods, and working with APIs.|
 |https://www.youtube.com/watch?v=B_VFHeg2LH4&t=7s|We used this tutorial to develop and implement the Calendar UI on _figology._|
+|https://stackoverflow.com/questions/37873608/how-do-i-detect-if-a-user-is-already-logged-in-firebase|We used this source to check if a user is already authenticated in Firebase when launching the app.|
+|https://docx.syndigo.com/developers/docs/search-item-endpoint|We used this as reference for integrating a search functionality with an external API.|
+|https://cloud.google.com/firestore/docs/manage-data/add-data|This source helped us add user-generated content to our Firestore database.|
+|https://stackoverflow.com/questions/40268619/why-are-function-parameters-immutable-in-swift|This source helped us understand how to use function parameter immutability in Swift.|
+|https://firebase.google.com/docs/auth/ios/password-auth|We used this source to implement Firebase email/password authentication in our login screen.|
+|https://firebase.google.com/docs/auth/ios/google-signin|We referenced this website when integrating Google Sign-In for user authentication.|
+|https://firebase.google.com/docs/auth/ios/manage-users|This website provided information about managing user profiles, including updating and deleting logs.|
+|https://firebase.google.com/docs/firestore/query-data/get-data|This source was useful in helping us retrieve data from Firestone to create cells and text fields with user-specific content.|
+|https://stackoverflow.com/questions/24103069/add-swipe-to-delete-uitableviewcell|We used code from this source to implement swipe-to-delete functionality in our Table View Food Cells.|
+|https://medium.com/@prabhatkasera/dispatch-async-in-ios-bd32295b042f|This article helped us manage background tasks to improve the performance of our application.|
+|https://stackoverflow.com/questions/49376157/swift-dispatchgroup-notify-before-task-finish|This thread helped us solve issues with DispatchGroup completing before all the tasks were finished.|
+|https://stackoverflow.com/questions/16608536/how-to-get-the-previous-viewcontroller-that-pushed-my-current-view|We use this source to learn how to determine the previous View Controller for navigation logic.|
+|https://cloud.google.com/firestore/docs/manage-data/add-data|We used this source to store new user data entries.|
+|https://stackoverflow.com/questions/24070450/how-to-get-the-current-time-as-datetime|We used code from this source to learn how to log timestamps for the user's food consumption.|
+|https://stackoverflow.com/questions/68107275/swift-5-present-viewcontroller-half-way|This source helped us learn how to present a view controller halfway up the screen to vary our UI designs.|
+|https://stackoverflow.com/questions/1509547/giving-uiview-rounded-corners|This thread taught us how to style UI elements with rounded corners.|
+|https://stackoverflow.com/questions/65743004/swiftui-send-email-using-mfmailcomposeviewcontroller|We used this source to implement email support.|
+|https://www.calculator.net/bmr-calculator.html|We referenced this calculator to implement the logic behind our fibre goal calculator.|
+|https://macrofactorapp.com/does-fiber-have-calories/|We used this source as a scientific reference to calculate calories from fibre, again to develop our fibre goal calculator.|
+|https://www.youtube.com/watch?v=B_VFHeg2LH4&t=7s|We followed this tutorial for Firebase authentication setup in iOS environments.|

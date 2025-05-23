@@ -11,6 +11,20 @@ import UIKit
 import Firebase
 
 class ResultViewController: UIViewController {
+    /**
+     A class that allows the Results View Controller to display the details for the food items. It also allows the user to log their specific food intake, and trakcs the user's progress towards their daily fibre intake goal.
+     
+     - Properties:
+        - foodLabel (Unwrapped UILabel): Displays the name of the food item.
+        - fibreLabel (Unwrapped UILabel): Shows the calculated fibre content of the specific amount of food logged.
+        - progressBar (Unwrapped UIProgressView): Visually indicates the percent of fibre intake goal achieved.
+        - descriptionLabel (Unwrapped UILabel): Displays additional information about the food item.
+        - progressLabel (Unwrapped UILabel): Shows the user's daily fibre consumption progress relative to their goal.
+        - servingTextField (Unwrapped UITextField): Allows the user to enter the quantity of food consumed.
+        - servingMeasureButton (Unwrapped UIButton): Allows the user to select a unit of measurement.
+        - mealButton (Unwrapped UIButton): Allows the user to select a meal category.
+     */
+    
     var rawPickerOptions: [Any] = []
     var measureQuantity = 0.0
     var fibreMass = 0.0
@@ -38,6 +52,10 @@ class ResultViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        /**
+         Called after the View Controller is loaded and displays the relevant food details from Firebase.
+         */
+        
         super.viewDidLoad()
         
         // Set self as the serving text field's delegate to manage user interaction
@@ -80,6 +98,13 @@ class ResultViewController: UIViewController {
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        /**
+         Passes data to the Picker View Controller in preparation for this segue.
+         
+         - Parameters:
+            - segue (UIStoryboardSegue): Indicates the View Controllers involved in the segue.
+            - sender (Optional Any): Indicates the object that initiated the segue.
+         */
         
         // If segue is to picker view controller
         if segue.identifier == K.resultPickerSegue {
@@ -95,30 +120,58 @@ class ResultViewController: UIViewController {
     
     
     @objc func handleSwipe() {
+        /**
+         Dimisses the keyboard and refreshes the UI when the user swipes downwards.
+         */
+        
         updateUI()
         servingTextField.resignFirstResponder()
     }
     
     
     @objc func handleTap() {
+        /**
+         Dismisses the keyboard and refreshes the UI when the user taps outside of the Text Field.
+         */
+        
         updateUI()
         servingTextField.resignFirstResponder()
     }
     
     
     @IBAction func mealButtonSelected(_ sender: UIButton) {
+        /**
+         Prepares the meal selector and performs the segue.
+         
+         - Parameters:
+            - sender (UIButton): Triggers the meal selection flow.
+         */
+        
         rawPickerOptions = ["breakfast", "lunch", "dinner", "snacks"]
         performSegue(withIdentifier: K.resultPickerSegue, sender: self)
     }
     
     
     @IBAction func servingButtonSelected(_ sender: UIButton) {
+        /**
+         Prepares the measurement picker and performs the segue.
+         
+         - Parameters:
+            - sender (UIButton): Triggers the serving measure flow.
+         */
+        
         rawPickerOptions = selectedFood!.measures
         performSegue(withIdentifier: K.resultPickerSegue, sender: self)
     }
     
     
     @IBAction func addFood(_ sender: UIBarButtonItem) {
+        /**
+         Logs the newly added food item to Firebase, updates the array of recent foods, and navigates to the previous View Controller.
+         
+         - Parameters:
+            - sender (UIBarButtonItem): Indicates that the user has confirmed their entry and triggers the updates for adding a food item.
+         */
         
         // If previous view controller is a FoodViewController, the user was updating their food; code from https://stackoverflow.com/questions/16608536/how-to-get-the-previous-viewcontroller-that-pushed-my-current-view
         if let navController = self.navigationController, navController.viewControllers.count >= 2 {
@@ -173,6 +226,9 @@ class ResultViewController: UIViewController {
     
     
     func updateUI() {
+        /**
+         Updates the Results View Controller with the selected food's information, including updating the fibre quantity and progress.
+         */
         
         // Calculate fibre in consumed food
         let calculatedFibre = selectedFood!.fibrePerGram*temporaryMeasure!.measureMass*Double(self.servingTextField.text!)!
@@ -207,7 +263,18 @@ class ResultViewController: UIViewController {
 
 //MARK: - PickerViewControllerDelegate
 extension ResultViewController: PickerViewControllerDelegate {
+    /**
+     An extension that processes the data that is to be displayed in the Picker View Controller and updates the UI to reflect these choices.
+     */
+    
+    
     func didSelectValue(value: Any) {
+        /**
+         Updates the UI depending on if the user wishes to update the meal or serving measure.
+         
+         - Parameters:
+            - value (Any): Contains the value selected by the user, either a String of the meal or a Measure object for the serving size unit.
+         */
         
         // If the value is a string, it is a meal title
         if value is String {
@@ -228,7 +295,20 @@ extension ResultViewController: PickerViewControllerDelegate {
 
 //MARK: - UITextFieldDelegate
 extension ResultViewController: UITextFieldDelegate {
+    /**
+     An extension that validates the user's serving size input.
+     */
+    
+    
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        /**
+         Validates the user's input in the Text Field when the user finishes editing their input.
+         
+         - Parameters:
+            - textField (UITextField): Allows the user to enter their desired serving.
+         
+         - Returns: A Bool indicating if the current Text Field is valid and the user can stop editing.
+         */
         
         // If serving text field is empty or is not a number when user tries to stop editing, write 1 as placeholder value
         if Double(textField.text ?? "empty") != nil {
@@ -239,4 +319,3 @@ extension ResultViewController: UITextFieldDelegate {
         }
     }
 }
-

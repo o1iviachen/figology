@@ -13,6 +13,20 @@ import UIKit
 import Firebase
 
 class CalculatorViewController: UIViewController {
+    /**
+     A class that allows the user to calculate their commended daily fibre goal based on some health information collected with sliders in the Calculator View Controller.
+     
+     - Properties:
+        - heightSlider (Unwrapped UISlider): Allows the user to use a slider to select their height.
+        - ageSlider (Unwrapped UISlider): Allows the user to use a slider to select their age.
+        - activitySlider (Unwrapped UISlider): Allows the user to use a slider to indicate their activity level.
+        - weightSlider (Unwrapped UISlider): Allows the user to use a slider to select htier weight.
+        - heightLabel (Unwrapped UILabel): Displays the user's height.
+        - weightLabel (Unwrapped UILabel): Displays the user's weight.
+        - activityLabel (Unwrapped UILabel): Displays the user's activity.
+        - ageLabel (Unwrapped UILabel): Displays the user's age.
+     */
+    
     var backButtonShow: Bool = false
     let db = Firestore.firestore()
     let alertManager = AlertManager()
@@ -36,6 +50,10 @@ class CalculatorViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        /**
+         Called after the View Controller is loaded to update the navigation bar.
+         */
+        
         super.viewDidLoad()
         
         // Set the back button visibility based on backButtonShow
@@ -44,21 +62,49 @@ class CalculatorViewController: UIViewController {
     
     
     @IBAction func ageChanged(_ sender: UISlider) {
+        /**
+         Updates the age label based on the user's slider input.
+         
+         - Parameters:
+            - sender (UISlider): Indicates the user's age.
+         */
+        
         ageLabel.text = "\(String(format: "%.0f", sender.value)) years"
     }
     
     
     @IBAction func heightChanged(_ sender: UISlider) {
+        /**
+        Updates the height label based on the user's slider input.
+         
+         - Parameters:
+            - sender (UISlider): Indicates the user's height.
+         */
+        
         heightLabel.text = "\(String(format: "%.2f", sender.value)) m"
     }
     
     
     @IBAction func weightChanged(_ sender: UISlider) {
+        /**
+         Updates the weight label based on the user's slider input.
+         
+         - Parameters:
+            - sender (UISlider): Indicates the user's weight.
+         */
+        
         weightLabel.text = "\(Int(sender.value)) kg"
     }
     
     
     @IBAction func activityChanged(_ sender: UISlider) {
+        /**
+         Updates the activity label based on the user's slider input.
+         
+         - Parameters:
+            - sender (UISlider): Indicates the user's activity level.
+         */
+        
         for (range, (_, label)) in bmrValues {
             
             // If a range in the bmrValues dictionary includes the sender value, display corresponding expression
@@ -70,6 +116,12 @@ class CalculatorViewController: UIViewController {
     
     
     @IBAction func calculateGoal(_ sender: UIButton) {
+        /**
+         Calculates the user's daily fibre intake goal based on their provided health information, then saves their intake goal to Firebase Firestore.
+         
+         - Parameters:
+            - sender (UIButton): Triggers the calculation to take place.
+         */
         
         // Get all values for calculation
         let activity = activitySlider.value
