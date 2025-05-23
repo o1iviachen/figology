@@ -1,7 +1,7 @@
 # README
 
 ## Name
-_figology._
+_figology._ is a fibre-tracking application.
 
 ## Features
 - Facilitates logging in using email and password, or Google accounts.
@@ -17,7 +17,6 @@ XCode and CocoaPods need to be installed to run this application.
 If these are already installed, skip this section. 
 1. Install XCode from the App Store. 
 2. Open the Terminal and install CocoaPods by entering ``sudo gem install cocoapods``.
-3. To setup CocoaPods, enter ``pod setup`` in the Terminal.
 
 ### Cloning and running _figology._
 1. Open XCode and select **Clone Git Repository**. 
@@ -25,7 +24,7 @@ If these are already installed, skip this section.
 3. Select a file to save the repository to and select **Clone** to complete the cloning process.
 4. To install CocoaPods to this specific project, open the Terminal and navigate to the folder containing the repository using ``cd`` and the entire pathway of the file.
    This may look like ``cd /Users/su/Desktop/figology``.
-   Once navigated to the folder of the workspace, enter ``pod install``. 
+   Once navigated to the folder of the workspace, enter ``pod init`` then ``pod install``. 
 5. After the workspace is opened in XCode and CocoaPods is installed to this project, select your target device from the toolbar at the top of the XCode window.
    This can either be a physical device connected to your Mac or a simulator (e.g., iPhone 16 Pro).
 6. In XCode, click the Run button at the top of the left sidebar or press ``Cmd + R`` to run _figology._ 
@@ -36,6 +35,7 @@ However, the user should direct themselves to this page to set their fibre goal.
 This bug doesn't hinder the functionality of the application. 
 
 ## Support
+Contact olivia63chen@gmail.com directly or through the support page on _figology._ if help is required. 
 
 ## Sources 
 |Source |Description |
