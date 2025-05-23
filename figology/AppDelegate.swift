@@ -14,8 +14,20 @@ import GoogleSignIn
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    /**
+     A default class that handles higher level application tasks with some modifications.
+     */
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        /**
+         Called after the application is launched to initialise Firebase and set up the overall UI for navigation and tab bars.
+         
+         - Parameters:
+            - application (UIApplication): Represents the app object.
+            - launchOptions (Dictionary): Indicates why the app was launched.
+         
+         - Returns: A Bool indicating if the app was launched successfully.
+         */
         
         // Use Firebase library to configure APIs
         FirebaseApp.configure()
@@ -51,14 +63,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(_ app: UIApplication,
-                     open url: URL,
-                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        /**
+         Allows Google Sign In to open URLs.
+         
+         - Parameters:
+            - app (UIApplication): Represents the app object.
+            - url (URL): Contains the URL to be opened.
+            - options (Dictionary): Contains a set of URL handling options
+         
+         - Returns: A Bool indicating if the URL was successfully opened.
+         */
+        
       return GIDSignIn.sharedInstance.handle(url)
     }
     
-    // MARK: UISceneSession Lifecycle
+    // MARK: - UISceneSession Lifecycle
 
+    // Pre-existing, default function
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.

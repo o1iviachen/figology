@@ -10,6 +10,13 @@
 import UIKit
 
 class ProfileCell: UITableViewCell {
+    /**
+     A custom UITableViewCell subclass that displays the user's profile information.
+     
+     - Properties:
+        - label (Unwrapped UILabel): Displays text.
+        - iconImage (Unwrapped UIImageView): Displays an icon image.
+     */
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var iconImage: UIImageView!

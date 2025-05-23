@@ -11,6 +11,15 @@ import UIKit
 import Firebase
 
 class SearchViewController: UIViewController, UIGestureRecognizerDelegate {
+    /**
+     A class that allows the Search View Controller to search for food items. Its features include displaying recently consumed foods, allowing users to search for new foods, and navigating the user to a new View Controller to view more details about a food item.
+     
+     - Properties:
+        - resultsTableViewHeightConstraint (Unwrapped NSLayoutConstraint): Dynamically adjusts the height of the Table View.
+        - loadingAnimation (Unwrapped UIActivityIndicatorView): Shows a loading animation when the data is being fetched.
+        - resultsTableView (Unwrapped UITableView): Displays the food search results or recently added food items.
+        - searchTextField ( Unwrapped UITextField): Allows the user to enter the food item to search.
+     */
     
     var searchList: [Food?] = []
     var selectedFood: Food? = nil
@@ -27,6 +36,10 @@ class SearchViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     override func viewDidLoad() {
+        /**
+         Called after the View Controller is loaded and displays the user's recently consumed foods.
+         */
+        
         super.viewDidLoad()
         
         // Show loading animation
@@ -65,6 +78,12 @@ class SearchViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     @IBAction func searchPressed(_ sender: UIButton) {
+        /**
+         Calls for the UI to update for a new search.
+         
+         - Parameters:
+            - sender (UIButton): Triggers the search.
+         */
         
         // If the search text field is not empty, change UI to loading style
         if searchTextField.text != "" {
@@ -74,6 +93,9 @@ class SearchViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     func loadingUIUpdate() {
+        /**
+         Updates the UI in preparation for a food search.
+         */
         
         // Clear search list
         searchList.removeAll()
@@ -90,6 +112,14 @@ class SearchViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     func getFibreData(foodString: String, completion: @escaping () -> Void) {
+        /**
+         Gets the fibre data after performing a food search with the Nutritionix API.
+         
+         - Parameters:
+            - foodString (String): Indicates the food name to search.
+            - completion: Signals when the API call is complete.
+         */
+        
         let foodRequest = fibreCallManager.prepareRequest(requestString: foodString, urlString: "https://trackapi.nutritionix.com/v2/search/instant", httpMethod: "POST")
         
         // Perform food request from Nutritionix API using the prepared food request
@@ -133,6 +163,13 @@ class SearchViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        /**
+         Prepares and passes the selected foor item data before transitioning to the Results View Controller.
+         
+         - Parameters:
+            - segue (UIStoryboardSegue): Indicates the View Controllers involved in the segue.
+            - sender (Optional Any): Indicates the object that initiated the segue.
+         */
         
         // If segue being prepared goes to results view controller, pass selected food for results view controller's attributes
         if segue.identifier == K.searchResultSegue {
@@ -144,9 +181,19 @@ class SearchViewController: UIViewController, UIGestureRecognizerDelegate {
 
 //MARK: - UITableViewDelegate
 extension SearchViewController: UITableViewDelegate {
+    /**
+     An extension that navigates through the application based on the user's interactions with the Results Table View.
+     */
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        /**
+         Performs a segue when the user selects a row in the Results Table View.
+         
+         - Parameters:
+            - tableView (UITableView): Contains the row selection information.
+            - indexPath (IndexPath): Specifies the row of the selected information.
+         */
         
         // If food is selected, perform segue to results view controller
         selectedFood = searchList[indexPath.row]
@@ -157,9 +204,19 @@ extension SearchViewController: UITableViewDelegate {
 
 //MARK: - UITextFieldDelegate
 extension SearchViewController: UITextFieldDelegate {
+    /**
+     An extension that handles the user's interactions with the search bar, including validating and initiating a search.
+     */
     
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        /**
+         Performs the search, retrieves fibre data, and adjusts the Results Table View accordingly.
+         
+         - Parameters:
+            - textField (UITextField): Contains the user's food item to search for.
+         */
+        
         if let food = searchTextField.text {
             
             // Get fibre data; upon completion, hide loading animation
@@ -187,6 +244,14 @@ extension SearchViewController: UITextFieldDelegate {
     
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        /**
+         Verifies if the user's search should proceed oncer they press the Return button on their keyboard.
+         
+         - Parameters:
+            - textField (UITextField): Contains the user's food item to search for.
+         
+         - Returns: A Bool indicating if the editing should end and the keyboard should be minimised.
+         */
         
         // If the text field is not empty, change UI to loading style and end editing in text field (will dismiss keyboard)
         if textField.text != "" {
@@ -200,9 +265,21 @@ extension SearchViewController: UITextFieldDelegate {
 
 //MARK: - UITableViewDataSource
 extension SearchViewController: UITableViewDataSource {
+    /**
+     An extension that prepares the food cells to display in the Results Table View when a food search is performed.
+     */
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        /**
+         Determines and retunrs the number of rows to display in the Results Table View.
+         
+         - Parameters:
+            - tableView (UITableView): Requests this information.
+            - section (Int): Contains the number of rows in this section.
+         
+         - Returns: An Int indicating the number of results from the search, which corresponds to the number of cells to display.
+         */
         
         // Required to populate the correct number of foods
         return searchList.count
@@ -210,6 +287,15 @@ extension SearchViewController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        /**
+         Prepares a reusable Food Cell that is used to display the information for each food item result from the search.
+         
+         - Parameters:
+            - tableView (UITableView): Requests this information
+            - indexPath (IndexPath): Indicates the row location of the cell.
+         
+         - Returns: A UITableViewCell with labels for the corresponding Food object data from the search.
+         */
         
         // Dequeue a food cell
         let cell = tableView.dequeueReusableCell(withIdentifier: K.foodCellIdentifier, for: indexPath) as! FoodCell

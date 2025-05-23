@@ -11,6 +11,10 @@ import Foundation
 import UIKit
 
 struct K {
+    /**
+     A structure to store static Strings used throughout the app.
+     */
+    
     static let logInTabSegue = "logInToTab"
     static let signUpTabSegue = "signUpToTab"
     static let profileCellIdentifier = "ProfileCell"

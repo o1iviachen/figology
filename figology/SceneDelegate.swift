@@ -11,6 +11,7 @@
 import UIKit
 import Firebase
 
+// Default class with pre-existing functions, slightly modified to prevent repetitive login (Line 32-46) 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?

@@ -11,6 +11,15 @@ import UIKit
 import Firebase
 // delegate design change
 class ProfileViewController: UIViewController {
+    /**
+     A class that allows the Profile View Controller to display the user's profile information and settings. The information that it displays includes the user's email, fibre goal, and a list of available edits for the user's profile.
+     
+     - Properties:
+        - tableView (Unwrapped UITableView): Displays the user's profile options.
+        - userLabel (Unwrapped UILabel): Displays the user's email.
+        - fibreLabel (Unwrapped UILabel): Displays the user's fibre goal.
+     */
+    
     let data = [[Setting(image: UIImage(systemName: "plusminus")!, setting: "fibre calculator"), Setting(image: UIImage(systemName: "square.and.pencil")!, setting: "edit fibre goal")], [Setting(image: UIImage(systemName: "wrench.adjustable")!, setting: "support")], ["Log out"]]
     let firebaseManager = FirebaseManager()
     let alertManager = AlertManager()
@@ -21,6 +30,10 @@ class ProfileViewController: UIViewController {
 
     
     override func viewDidLoad() {
+        /**
+         Called after the View Controller is loaded to set up the Profile View Controller's Table View with custom cells.
+         */
+        
         super.viewDidLoad()
         
         // Set self as the table view's data source to provide the data
@@ -39,6 +52,12 @@ class ProfileViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
+        /**
+         Called just before the View Controller is loaded and updates the View Controller based on the user's specific information.
+         
+         - Parameters:
+            - animated (Bool): Indicates if the appearance is animated.
+         */
         
         // Set user label text to include user's email
         userLabel.text = "current user: \((Auth.auth().currentUser?.email)!)"
@@ -62,6 +81,13 @@ class ProfileViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        /**
+         Updates the UI in preparation for the segue to the Calculator View Controller.
+         
+         - Parameters:
+            - segue (UIStoryboardSegue): Indicates the View Controllers involved in the segue.
+            - sender (Optional Any): Indicates the object that initiated the segue.
+         */
         
         // If user is going from profile to calculator, make back button visible
         if segue.identifier == "profileToCalculator" {
@@ -73,9 +99,20 @@ class ProfileViewController: UIViewController {
 
 //MARK: - UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
+    /**
+     An extension that specifies the sections, rows, and cells for the Table View.
+     */
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        /**
+         Returns the number of sections needed.
+         
+         - Parameters:
+            - tableView (UITableView): Requests this information.
+         
+         - Returns: An Int indicating the number of sections.
+         */
         
         // Required to populate the correct number of sections
         return data.count
@@ -83,6 +120,15 @@ extension ProfileViewController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        /**
+         Returns the number of rows for a given section.
+         
+         - Parameters:
+            - tableView (UITableView): Requests this information.
+            - section (Int): Indicates the section.
+         
+         - Returns: An Int indicating the number of rows.
+         */
         
         // Required to populate the correct number of cells per section
         return data[section].count
@@ -90,6 +136,15 @@ extension ProfileViewController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        /**
+         Sets up and return the cell for a given section and row.
+         
+         - Parameters:
+            - tableView (UITableView): Requests this information.
+            - indexPath(IndexPath): Specifies the section and row.
+         
+         - Returns: A UITableViewCell with the correct formal and information.
+         */
         
         // If the element is a Setting, create a Profile cell
         if data[indexPath.section][indexPath.row] is Setting {
@@ -112,7 +167,19 @@ extension ProfileViewController: UITableViewDataSource {
 
 //MARK: - UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {
+    /**
+     An extention that allows the user to edit their profile.
+     */
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        /**
+         Performs different actions based on the cell that the user selects, including navigating and logging out.
+         
+         - Parameters:
+            - tableView (UITableView): Informs the delegate of the row selection.
+            - indexPath (IndexPath): Specifies the row the user selected.
+         */
         
         // If log out button is pressed
         if indexPath == [2,0] {
@@ -159,11 +226,31 @@ extension ProfileViewController: UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        /**
+         Sets the height for the header in each section in the Table View.
+         
+         - Parameters:
+            - tableView (UITableView): Requests this information.
+            - section (Int): Specifies the section the header is for.
+         
+         - Returns: A CGFloat indicating the height of the header.
+         */
+        
         return 10.0
     }
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        /**
+         Creates a transparent UI View to separate the different sections of the Table View.
+         
+         - Parameters:
+            - tableVIew (UITableView): Requests this information.
+            - section (Int): Specifieis the section the header is for.
+         
+         - Returns: An Optional UIView with a clear background for spacing and separation.
+         */
+        
         let headerView = UIView()
         headerView.backgroundColor = .clear
         return headerView

@@ -14,6 +14,13 @@ import Firebase
 
 
 class SignUpViewController: UIViewController {
+    /**
+     A class that allows the View Controller to manage the user sign-up, compatible with email/password registration and Google Sign-In. It also uses Firebase Authentication to create new accounts, handle errors, and guide the app navigation.
+     
+     - Properties:
+        - passwordTextField (Unwrapped UITextField): Allows the user to enter their password.
+        - emailTextField (Unwrapped UITextFIeld): Allows the user to enter their email address.
+     */
     
     let db = Firestore.firestore()
     let alertManager = AlertManager()
@@ -24,6 +31,12 @@ class SignUpViewController: UIViewController {
     
     
     @IBAction func signUpPressed(_ sender: UIButton) {
+        /**
+         Attempts to create a new user with the entered email and password, and navigates the user to the appropriate View Controller.
+         
+         - Parameters:
+            - sender (UIButton): Triggers the sign-up.
+         */
         
         // Code from https://firebase.google.com/docs/auth/ios/password-auth
         
@@ -51,6 +64,12 @@ class SignUpViewController: UIViewController {
     
     
     @IBAction func googleSignUpPressed(_ sender: GIDSignInButton) {
+        /**
+         Initiates Google Sign-In to authenticate the user, and navigates the user to the appropriate View Controller.
+         
+         - Parameters:
+            - sender (GIDSignInButton): Triggers Google Sign-In.
+         */
         
         // Code from https://firebase.google.com/docs/auth/ios/google-signin
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }

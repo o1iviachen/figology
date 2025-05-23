@@ -11,6 +11,13 @@ import UIKit
 import Firebase
 
 class PasswordViewController: UIViewController {
+    /**
+     A class that allows the user to reset their password in the Password View Controller.
+     
+     - Properties:
+       - email (Optional String): Contains the user's email address from the previous View Controller.
+       - emailTextField (Unwrapped UITextField): Displays the user's email and allows the user to edit their email address.
+     */
     
     var email: String? = ""
     let alertManager = AlertManager()
@@ -19,6 +26,10 @@ class PasswordViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        /**
+         Called after the View Controller is loaded and displays the user's email address on the screen.
+         */
+        
         super.viewDidLoad()
         
         // Set email text field text as email
@@ -27,6 +38,12 @@ class PasswordViewController: UIViewController {
     
     
     @IBAction func sendEmailPressed(_ sender: UIButton) {
+        /**
+         Sends a password reset email to the address currently entered in the text box.
+         
+         - Parameters:
+            - sender (UIButton): Triggers the password-reset email to be sent.
+         */
         
         // Code from https://firebase.google.com/docs/auth/ios/manage-users
         
