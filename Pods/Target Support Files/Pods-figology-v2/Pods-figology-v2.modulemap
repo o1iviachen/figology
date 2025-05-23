@@ -1,6 +1,0 @@
-framework module Pods_figology_v2 {
-  umbrella header "Pods-figology-v2-umbrella.h"
-
-  export *
-  module * { export * }
-}
