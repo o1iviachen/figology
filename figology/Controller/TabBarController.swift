@@ -1,9 +1,11 @@
-//
-//  TabBarController.swift
-//  
-//
-//  Created by olivia chen on 2025-03-18.
-//
+/**
+ TabBarController.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file runs the tab bar
+ History:
+ Mar 18, 2025: File creation
+*/
 
 import Foundation
 import UIKit

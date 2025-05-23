@@ -1,9 +1,13 @@
-//
-//  LogInViewController.swift
-//  
-//
-//  Created by olivia chen on 2025-03-07.
-//
+/**
+ LogInViewController.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file runs the log in components
+ History:
+ Mar 7, 2025: File creation
+ Mar 7, 2025: Added Google log in
+ Mar 18, 2025: Added email and password log in
+*/
 
 import UIKit
 import GoogleSignIn

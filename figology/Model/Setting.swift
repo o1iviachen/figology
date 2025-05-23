@@ -1,9 +1,12 @@
-//
-//  Setting.swift
-//  
-//
-//  Created by olivia chen on 2025-03-26.
-//
+/**
+ Setting.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file initialises the setting structures
+ History:
+ Mar 26, 2025: File creation
+ Mar 26, 2025: Added setting structure
+*/
 
 import UIKit
 

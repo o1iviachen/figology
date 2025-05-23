@@ -1,9 +1,11 @@
-//
-//  AppDelegate.swift
-//  
-//
-//  Created by olivia chen on 2025-02-25.
-//
+/**
+ AppDelegate.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file configures Firebase related applications, the navigation UI, and the tab bar UI
+ History:
+ Feb 25, 2025: File creation
+*/
 
 import UIKit
 import CoreData

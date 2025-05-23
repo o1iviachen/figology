@@ -1,9 +1,13 @@
-//
-//  DateManager.swift
-//  
-//
-//  Created by olivia chen on 2025-04-27.
-//
+/**
+ DateManager.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file runs the date functionalities
+ History:
+ Apr 27, 2025: File creation
+ Apr 27, 2025: Increased modularity of date functionalities
+ Apr 27, 2025: Added branded foods
+*/
 
 import Foundation
 

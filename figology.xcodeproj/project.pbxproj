@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		581EBF612DDFF1B300C250DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 581EBF602DDFF1B300C250DD /* GoogleService-Info.plist */; };
 		582934AC2D8514E2000033C7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582934AB2D8514E2000033C7 /* SignUpViewController.swift */; };
 		582934AE2D851A4B000033C7 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582934AD2D851A4B000033C7 /* LogInViewController.swift */; };
 		582934B02D89E195000033C7 /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582934AF2D89E195000033C7 /* Measure.swift */; };
@@ -38,12 +37,12 @@
 		9F1A2B4C2D7B661600A432CF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A2B4B2D7B661600A432CF /* Constants.swift */; };
 		9F2358AB2D942F3D001B3F1A /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2358AA2D942F3D001B3F1A /* CalendarViewController.swift */; };
 		9F8594A52D88F40200E21AE2 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */; };
+		9F970F442DE0131F00C3F7B8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F970F432DE0131F00C3F7B8 /* GoogleService-Info.plist */; };
 		9FF16E1B2DA431C70043F90D /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF16E1A2DA431C70043F90D /* ErrorManager.swift */; };
 		BE6C5A904D6630D896E4D5EC /* Pods_figology.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17AB91BFB78ACA7E57B3FA9 /* Pods_figology.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		581EBF602DDFF1B300C250DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		582934AB2D8514E2000033C7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		582934AD2D851A4B000033C7 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		582934AF2D89E195000033C7 /* Measure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
@@ -77,6 +76,7 @@
 		9F1A2B4B2D7B661600A432CF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9F2358AA2D942F3D001B3F1A /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+		9F970F432DE0131F00C3F7B8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9FF16E1A2DA431C70043F90D /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
 		DCCE33F1BA1EE034628BF865 /* Pods-figology.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-figology.debug.xcconfig"; path = "Target Support Files/Pods-figology/Pods-figology.debug.xcconfig"; sourceTree = "<group>"; };
 		F17AB91BFB78ACA7E57B3FA9 /* Pods_figology.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_figology.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,7 +171,7 @@
 				9F1A2B4B2D7B661600A432CF /* Constants.swift */,
 				589FADFF2D6E34DB007890AB /* Assets.xcassets */,
 				589FAE012D6E34DB007890AB /* LaunchScreen.storyboard */,
-				581EBF602DDFF1B300C250DD /* GoogleService-Info.plist */,
+				9F970F432DE0131F00C3F7B8 /* GoogleService-Info.plist */,
 				589FAE042D6E34DB007890AB /* Info.plist */,
 			);
 			path = figology;
@@ -293,7 +293,7 @@
 				582BE0FC2D949ADF0059A4D1 /* LogOutCell.xib in Resources */,
 				589FAE002D6E34DB007890AB /* Assets.xcassets in Resources */,
 				589FADFB2D6E34DA007890AB /* Main.storyboard in Resources */,
-				581EBF612DDFF1B300C250DD /* GoogleService-Info.plist in Resources */,
+				9F970F442DE0131F00C3F7B8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

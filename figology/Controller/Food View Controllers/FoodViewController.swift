@@ -1,9 +1,11 @@
-//
-//  FoodViewController.swift
-//  
-//
-//  Created by su huang on 2025-03-05.
-//
+/**
+ FoodViewController.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file retrieves the user's logged food
+ History:
+ Mar 5, 2025: File creation
+*/
 
 import Foundation
 import UIKit

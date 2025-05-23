@@ -1,9 +1,11 @@
-//
-//  PasswordViewController.swift
-//  
-//
-//  Created by emily zhang on 2025-03-17.
-//
+/**
+ PasswordViewController.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file runs the password components of the log in
+ History:
+ Mar 18, 2025: File creation
+*/
 
 import UIKit
 import Firebase

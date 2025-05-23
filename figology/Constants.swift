@@ -1,9 +1,11 @@
-//
-//  Constants.swift
-//  
-//
-//  Created by emily zhang on 2025-03-07.
-//
+/**
+ Constants.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file stores the constants
+ History:
+ Mar 7, 2025: File creation
+*/
 
 import Foundation
 import UIKit

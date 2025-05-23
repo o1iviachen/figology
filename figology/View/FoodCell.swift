@@ -1,9 +1,11 @@
-//
-//  FoodCell.swift
-//  
-//
-//  Created by olivia chen on 2025-03-24.
-//
+/**
+ FoodCell.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file initialises the food class
+ History:
+ Mar 24, 2025: File creation
+*/
 
 import UIKit
 

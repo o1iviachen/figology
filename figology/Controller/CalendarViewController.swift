@@ -1,9 +1,12 @@
-//
-//  CalendarViewController.swift
-//  
-//
-//  Created by emily zhang on 2025-03-24.
-//
+/**
+ CalendarViewController.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file runs calendar components
+ History:
+ Mar 26, 2025: File creation
+ Apr 4, 2025: Added segues between the calendar and logged foods
+*/
 
 import SwiftUI
 import UIKit

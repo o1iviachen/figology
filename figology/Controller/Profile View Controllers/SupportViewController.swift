@@ -1,9 +1,11 @@
-//
-//  SupportViewController.swift
-//  
-//
-//  Created by olivia chen on 2025-03-26.
-//
+/**
+ SupportViewController.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file runs the email support component
+ History:
+ Mar 26, 2025: File creation
+*/
 
 import UIKit
 import MessageUI
