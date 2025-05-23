@@ -167,8 +167,8 @@
 				5892A86F2D7B5BA800304BF0 /* Model */,
 				589FAE0B2D6E363C007890AB /* View */,
 				589FAE0A2D6E3631007890AB /* Controller */,
-				58D1E15E2DDFE30100744671 /* Configuration */,
 				9F1A2B4B2D7B661600A432CF /* Constants.swift */,
+				58D1E1602DDFE38300744671 /* Secrets.xcconfig */,
 				589FADFF2D6E34DB007890AB /* Assets.xcassets */,
 				589FAE012D6E34DB007890AB /* LaunchScreen.storyboard */,
 				9F970F432DE0131F00C3F7B8 /* GoogleService-Info.plist */,
@@ -200,14 +200,6 @@
 				582BE0FA2D949ADF0059A4D1 /* LogOutCell.xib */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		58D1E15E2DDFE30100744671 /* Configuration */ = {
-			isa = PBXGroup;
-			children = (
-				58D1E1602DDFE38300744671 /* Secrets.xcconfig */,
-			);
-			path = Configuration;
 			sourceTree = "<group>";
 		};
 		68A186531B18696D5F0AE868 /* Frameworks */ = {
