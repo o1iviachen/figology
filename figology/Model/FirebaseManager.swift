@@ -1,9 +1,13 @@
-//
-//  FirebaseManager.swift
-//  
-//
-//  Created by olivia chen on 2025-04-02.
-//
+/**
+ FirebaseManager.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file updates the database
+ History:
+ Apr 2, 2025: File creation
+ Apr 16, 2025: Implemented completion handler
+ Apr 17, 2025: Removed code redundancy
+*/
 
 import Foundation
 import Firebase

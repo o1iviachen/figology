@@ -1,9 +1,12 @@
-//
-//  Measure.swift
-//  
-//
-//  Created by olivia chen on 2025-03-18.
-//
+/**
+ Measure.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file initialises the measure structures
+ History:
+ Mar 18, 2025: File creation
+ Mar 18, 2025: Added measure structures
+*/
 
 import Foundation
 

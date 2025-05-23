@@ -1,9 +1,11 @@
-//
-//  SelectorViewController.swift
-//  
-//
-//  Created by olivia chen on 2025-03-26.
-//
+/**
+ SelectorViewController.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file runs the manual fibre goal selector
+ History:
+ Mar 26, 2025: File creation
+*/
 
 import UIKit
 import Firebase

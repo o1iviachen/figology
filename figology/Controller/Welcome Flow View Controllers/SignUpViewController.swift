@@ -1,9 +1,12 @@
-//
-//  SignUpViewController.swift
-//  
-//
-//  Created by olivia chen on 2025-03-07.
-//
+/**
+ SignUpViewController.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file runs the sign up components
+ History:
+ Mar 7, 2025: File creation
+ Mar 14, 2025: Fixed Google authentication flow
+*/
 
 import UIKit
 import GoogleSignIn

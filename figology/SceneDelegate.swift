@@ -1,9 +1,12 @@
-//
-//  SceneDelegate.swift
-//  
-//
-//  Created by olivia chen on 2025-02-25.
-//
+/**
+ SceneDelegate.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file manages the lifecycle and events of a specific instance of the app's UI
+ History:
+ Feb 25, 2025: File creation
+ Mar 18, 2025: Added prevention for repetitive login
+*/
 
 import UIKit
 import Firebase

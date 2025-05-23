@@ -1,9 +1,12 @@
-//
-//  CalculatorViewController.swift
-//  
-//
-//  Created by olivia chen on 2025-03-26.
-//
+/**
+ CalculatorViewController.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file runs the fibre goal calculator
+ History:
+ Mar 26, 2025: File creation
+ Apr 78 2025: Updated fibre goal calculations logic
+*/
 
 
 import UIKit

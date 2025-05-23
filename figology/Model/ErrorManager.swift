@@ -1,9 +1,11 @@
-//
-//  ErrorManager.swift
-//  
-//
-//  Created by emily zhang on 2025-04-07.
-//
+/**
+ ErrorManager.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file runs the app alerts
+ History:
+ Apr 7, 2025: File creation
+*/
 
 import UIKit
 

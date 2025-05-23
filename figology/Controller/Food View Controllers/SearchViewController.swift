@@ -1,9 +1,11 @@
-//
-//  SearchViewController.swift
-//  
-//
-//  Created by olivia chen on 2025-04-02.
-//
+/**
+ SearchViewController.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file runs the food searching component
+ History:
+ Apr 4, 2025: File creation
+*/
 
 import UIKit
 import Firebase

@@ -1,9 +1,12 @@
-//
-//  Food.swift
-//  
-//
-//  Created by olivia chen on 2025-03-07.
-//  refer to dr angela
+/**
+ Food.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file initialises the food structures
+ History:
+ Mar 7, 2025: File creation
+ Mar 18, 2025: Added food structures
+*/
 
 import Foundation
 

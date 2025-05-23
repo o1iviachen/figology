@@ -1,9 +1,11 @@
-//
-//  SheetViewController.swift
-//  
-//
-//  Created by olivia chen on 2025-04-03.
-//
+/**
+ PickerViewController.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file delegates the information from the user's picked foods
+ History:
+ Apr 3, 2025: File creation
+*/
 
 import UIKit
 

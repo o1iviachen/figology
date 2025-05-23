@@ -1,9 +1,13 @@
-//
-//  FibreCallManager.swift
-//  
-//
-//  Created by olivia chen on 2025-03-18.
-//
+/**
+ FibreCallManager.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file calls data from the API and formats it
+ History:
+ Mar 18, 2025: File creation
+ Mar 18, 2025: Retrieved food data
+ Mar 20, 2025: Added JSON parsing
+*/
 
 
 import Foundation

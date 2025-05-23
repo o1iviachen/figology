@@ -1,9 +1,11 @@
-//
-//  ResultViewController.swift
-//  
-//
-//  Created by olivia chen on 2025-04-02.
-//
+/**
+ ResultViewController.swift
+ figology-v2
+ Emily, Olivia, and Su
+ This file updates the UI after food logging
+ History:
+ Apr 2, 2025: File creation
+*/
 
 import UIKit
 import Firebase
