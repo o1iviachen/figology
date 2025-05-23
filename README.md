@@ -1,7 +1,7 @@
 # README
 
 ## Name
-_figology._
+_figology._ is a fibre-tracking application.
 
 ## Features
 - Facilitates logging in using email and password, or Google accounts.
@@ -36,6 +36,7 @@ However, the user should direct themselves to this page to set their fibre goal.
 This bug doesn't hinder the functionality of the application. 
 
 ## Support
+Contact olivia63chen@gmail.com directly or through the support page on _figology._ if help is required. 
 
 ## Sources 
 |Source |Description |
