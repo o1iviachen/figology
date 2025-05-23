@@ -60,6 +60,11 @@ class ResultViewController: UIViewController {
                     self.fibreGoal = setFibreGoal
                 }
             }
+            
+            // Fetch fibre intake
+            self.firebaseManager.fetchFibreIntake(dateString: self.dateString!, document: document) { fibreIntake in
+                    self.fibreIntake = fibreIntake
+            }
             self.updateUI()
         }
         
@@ -145,10 +150,10 @@ class ResultViewController: UIViewController {
             }
             
             // Fetch fibre intake
-            self.firebaseManager.fetchFibreIntake(dateString: self.dateString!, document: document) { intake in
+            self.firebaseManager.fetchFibreIntake(dateString: self.dateString!, document: document) { newIntake in
                                 
                 // Log new modified food
-                self.firebaseManager.logFood(food: self.selectedFood!, meal: self.mealButton.currentTitle!, dateString: self.dateString!, fibreIntake: intake) { foodAdded in
+                self.firebaseManager.logFood(food: self.selectedFood!, meal: self.mealButton.currentTitle!, dateString: self.dateString!, fibreIntake: newIntake) { foodAdded in
                     
                     // If food was not logged, communicate error to user
                     if !foodAdded {

@@ -18,7 +18,7 @@ struct FirebaseManager {
     
     func fetchUserDocument(completion: @escaping (DocumentSnapshot?) -> Void) {
         /**
-         Fetches a Firestone document authorized through the user's email.
+         Fetches a Firestore document corresponding to the user's email.
          
          - Parameters:
             - completion (Optional DocumentSnapshot): Stores the Firestone information at the time of the call.
@@ -108,9 +108,9 @@ struct FirebaseManager {
             let foodData = try encoder.encode(food)
             if let foodDictionary = try JSONSerialization.jsonObject(with: foodData, options: []) as? [String: Any] {
                 
-                // Remove corresponding food dictionary and add changed fibre intake to user's document in Firebase Firestore; code from https://cloud.google.com/firestore/docs/manage-data/add-data
+                // Remove corresponding food dictionary and add changed fibre intake (absolute value to account for -0.0 calculations) to user's document in Firebase Firestore; code from https://cloud.google.com/firestore/docs/manage-data/add-data
                 db.collection("users").document((Auth.auth().currentUser?.email)!).setData([
-                    dateString: [meal: FieldValue.arrayRemove([foodDictionary]), "fibreIntake": changedIntake]
+                    dateString: [meal: FieldValue.arrayRemove([foodDictionary]), "fibreIntake": abs(changedIntake)]
                 ], merge: true) { err in
                     
                     // If no error occurs in removing food, call completion handler with success (true)
