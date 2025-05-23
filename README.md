@@ -28,7 +28,7 @@ If these are already installed, skip this section.
 7. To install CocoaPods to this specific project, quit the project and open the Terminal and navigate to the folder containing the cloned repository using ``cd`` and the entire pathway of the file.
    This may look like ``cd /Users/su/Desktop/figology``.
    Once navigated to the folder of the workspace, enter ``pod install``. From now on, only open the new .xcworkspace file.
-8. Create a new Configuration Settings File in Configurations folder titled "Secrets." Include your Nutritionix API Key and ID as variables named ``NUTRITIONIX_API_KEY`` and ``NUTRITIONIX_API_ID``.
+8. Create a new Configuration Settings File in Configuration folder titled "Secrets." Include your Nutritionix API Key and ID as variables named ``NUTRITIONIX_API_KEY`` and ``NUTRITIONIX_API_ID``.
 9. After the workspace is opened in XCode and CocoaPods is installed to this project, select your target device from the toolbar at the top of the XCode window.
    This can either be a physical device connected to your Mac or a simulator (e.g., iPhone 16 Pro).
 10. In XCode, click the Run button at the top of the left sidebar or press ``Cmd + R`` to run _figology._ 
