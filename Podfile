@@ -1,9 +1,9 @@
 platform :ios, '11.0'
 
-target 'figology-v2' do
+target 'figology' do
   use_frameworks!
 
-  # Pods for figology-v2
+  # Pods for figology
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'GoogleSignIn'
