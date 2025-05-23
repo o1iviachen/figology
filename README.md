@@ -25,11 +25,11 @@ If these are already installed, skip this section.
 4. Go to the Project File icon at the top of the Project Navigator (left-side panel) and change the Bundle Identifier. Apple recommends the following format: ``com.[your-organization-or-name].[app-name]``.
 5. Log in to [Firebase](https://firebase.google.com/) and go to console.
 6. Create a Firebase project. At the following screen, select the iOS+ icon. Only follow the shown steps 1 and 2. Ensure to use your Bundle Identifier as the Apple bundle ID. 
-7. To install CocoaPods to this specific project, quit the project and open the Terminal and navigate to the folder containing the cloned repository using ``cd`` and the entire pathway of the file.
+7. To install CocoaPods to this specific project, quit the project, open the Terminal and navigate to the folder containing the cloned repository using ``cd`` and the entire pathway of the file.
 8. On the left-side panel, click the Build dropdown and select Authentication. Add Email/Password and Google as authentication methods. Click the Build dropdown again and select Firebase Database. Create a new database.
-9. To install CocoaPods to this specific project, open the Terminal and navigate to the folder containing the repository using ``cd`` and the entire pathway of the file.
+9. To install CocoaPods, open the Terminal and navigate to the folder containing the cloned repository using ``cd`` and the entire pathway of the file.
    This may look like ``cd /Users/su/Desktop/figology``. Once navigated to the folder of the workspace, enter ``pod install``. From now on, only open the new .xcworkspace file.
-10. Create a new Configuration Settings File in the project folder titled "Secrets." Include your Nutritionix API Key and ID as variables named ``NUTRITIONIX_API_KEY`` and ``NUTRITIONIX_API_ID``.
+10. Create a new Configuration Settings File in the project folder titled "Secrets." Create your Nutritionix API Key and ID at [Nutritionix](https://developer.nutritionix.com/signup) and store them as variables named ``NUTRITIONIX_API_KEY`` and ``NUTRITIONIX_API_ID``.
 11. In XCode, click the Run button at the top of the left sidebar or press ``Cmd + R`` to run _figology._ 
 
 ## Known Bugs
