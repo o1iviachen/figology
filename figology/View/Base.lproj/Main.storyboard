@@ -73,7 +73,7 @@
         <!--Log In View Controller-->
         <scene sceneID="e18-jn-gXG">
             <objects>
-                <viewController id="CWC-4b-Nch" customClass="LogInViewController" customModule="figology_v2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="CWC-4b-Nch" customClass="LogInViewController" customModule="figology" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1qr-2r-pp1">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -199,7 +199,7 @@
         <!--Food View Controller-->
         <scene sceneID="AUz-Iq-qsL">
             <objects>
-                <viewController storyboardIdentifier="FoodViewController" id="pWb-v8-cQy" customClass="FoodViewController" customModule="figology_v2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FoodViewController" id="pWb-v8-cQy" customClass="FoodViewController" customModule="figology" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q6g-18-mSQ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -253,7 +253,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Mlb-FU-bvK">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="sYS-9u-fpk">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="sYS-9u-fpk">
                             <color key="tintColor" name="Dark Purple"/>
                             <connections>
                                 <segue destination="ZI1-TW-gr8" kind="show" identifier="foodToSearch" id="19a-nC-0su"/>
@@ -275,7 +275,7 @@
         <!--Search View Controller-->
         <scene sceneID="nPp-BQ-nea">
             <objects>
-                <viewController id="ZI1-TW-gr8" customClass="SearchViewController" customModule="figology_v2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ZI1-TW-gr8" customClass="SearchViewController" customModule="figology" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zrm-gn-bjO">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -353,7 +353,7 @@
         <!--Result View Controller-->
         <scene sceneID="R0Z-gZ-B2G">
             <objects>
-                <viewController id="qrR-6c-Uej" customClass="ResultViewController" customModule="figology_v2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="qrR-6c-Uej" customClass="ResultViewController" customModule="figology" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S1k-Wt-K0m">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -510,7 +510,7 @@
         <!--Picker View Controller-->
         <scene sceneID="GCy-1G-8s5">
             <objects>
-                <viewController id="ehC-y6-r2d" customClass="PickerViewController" customModule="figology_v2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ehC-y6-r2d" customClass="PickerViewController" customModule="figology" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ENs-pS-q9p">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -541,7 +541,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="vRi-lt-AFt">
             <objects>
-                <viewController id="1CK-Va-YbC" customClass="SignUpViewController" customModule="figology_v2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1CK-Va-YbC" customClass="SignUpViewController" customModule="figology" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Z7-Yy-ETR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -661,7 +661,7 @@
         <!--Password View Controller-->
         <scene sceneID="qt1-Sa-CZm">
             <objects>
-                <viewController title="Password View Controller" id="pYR-e6-3zg" customClass="PasswordViewController" customModule="figology_v2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Password View Controller" id="pYR-e6-3zg" customClass="PasswordViewController" customModule="figology" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fgA-Pe-jQ6">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -719,7 +719,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="OmX-gB-A5t">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarController" automaticallyAdjustsScrollViewInsets="NO" id="yR5-F8-941" customClass="TabBarController" customModule="figology_v2" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" automaticallyAdjustsScrollViewInsets="NO" id="yR5-F8-941" customClass="TabBarController" customModule="figology" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="USd-ad-NvM"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SGt-Pd-kgD">
@@ -741,7 +741,7 @@
         <!--Calendar View Controller -->
         <scene sceneID="lPx-k9-IqG">
             <objects>
-                <viewController title="Calendar View Controller " id="yOb-dV-oQU" customClass="CalendarViewController" customModule="figology_v2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Calendar View Controller " id="yOb-dV-oQU" customClass="CalendarViewController" customModule="figology" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fVm-d8-4ln" customClass="CalendarView">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -763,7 +763,7 @@
         <!--Profile View Controller-->
         <scene sceneID="lvB-eF-8bl">
             <objects>
-                <viewController id="q05-KG-Fpa" customClass="ProfileViewController" customModule="figology_v2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="q05-KG-Fpa" customClass="ProfileViewController" customModule="figology" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hYd-y3-Ci7">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -837,7 +837,7 @@
         <!--Selector View Controller-->
         <scene sceneID="bGe-Dy-yWg">
             <objects>
-                <viewController id="Z5u-ja-QZK" customClass="SelectorViewController" customModule="figology_v2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Z5u-ja-QZK" customClass="SelectorViewController" customModule="figology" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ahb-It-IHv">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -961,7 +961,7 @@
         <!--Support View Controller-->
         <scene sceneID="2Hd-6K-fqR">
             <objects>
-                <viewController id="YBj-av-j3z" customClass="SupportViewController" customModule="figology_v2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="YBj-av-j3z" customClass="SupportViewController" customModule="figology" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HfD-bW-5YA">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1039,7 +1039,7 @@
         <!--Calculator View Controller-->
         <scene sceneID="xMF-Ld-4i9">
             <objects>
-                <viewController id="Scl-M2-haP" customClass="CalculatorViewController" customModule="figology_v2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Scl-M2-haP" customClass="CalculatorViewController" customModule="figology" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JfE-QS-me4">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1277,7 +1277,7 @@
         <!--Food View Controller-->
         <scene sceneID="Tv2-UW-qH1">
             <objects>
-                <viewController id="Xdr-YT-b9k" customClass="FoodViewController" customModule="figology_v2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Xdr-YT-b9k" customClass="FoodViewController" customModule="figology" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sCd-S3-73r">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1329,7 +1329,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ev4-I2-8wO">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="dY3-Af-MOX">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dY3-Af-MOX">
                             <color key="tintColor" name="Dark Purple"/>
                         </barButtonItem>
                     </navigationItem>
