@@ -23,18 +23,18 @@ class FoodViewController: UIViewController {
         - progressBar (Unwrapped UIProgressView): Visually indicates the percent of fibre intake goal achieved.
      */
     
-    var dateString: String? = nil
     let fibreCallManager = FibreCallManager()
+    let firebaseManager = FirebaseManager()
+    let alertManager = AlertManager()
+    let dateManager = DateManager()
+    let headerTitles = ["breakfast", "lunch", "dinner", "snacks"]
+    var dateString: String? = nil
     var fibreRequests: [URLRequest?] = []
     var fibreGoal: Int? = nil
     var tableData: [[Food]] = []
-    let headerTitles = ["breakfast", "lunch", "dinner", "snacks"]
-    let firebaseManager = FirebaseManager()
     var fibreIntake = 0.0
     var selectedFood: Food? = nil
     var selectedMeal: String? = nil
-    let alertManager = AlertManager()
-    let dateManager = DateManager()
     
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!

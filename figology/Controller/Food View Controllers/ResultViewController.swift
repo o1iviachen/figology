@@ -25,6 +25,10 @@ class ResultViewController: UIViewController {
         - mealButton (Unwrapped UIButton): Allows the user to select a meal category.
      */
     
+    let firebaseManager = FirebaseManager()
+    let alertManager = AlertManager()
+    let dateManager = DateManager()
+    let db = Firestore.firestore()
     var rawPickerOptions: [Any] = []
     var measureQuantity = 0.0
     var fibreMass = 0.0
@@ -33,13 +37,9 @@ class ResultViewController: UIViewController {
     var temporaryMeasure: Measure? = nil
     var fibreIntake: Double = 0.0
     var measureDescriptionList: [String] = []
-    let firebaseManager = FirebaseManager()
-    let db = Firestore.firestore()
     var dateString: String? = nil
     var originalMeal: String = "breakfast"
     var fibreGoal: Int? = nil
-    let alertManager = AlertManager()
-    let dateManager = DateManager()
     
     @IBOutlet weak var foodLabel: UILabel!
     @IBOutlet weak var fibreLabel: UILabel!

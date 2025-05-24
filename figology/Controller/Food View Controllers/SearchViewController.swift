@@ -21,11 +21,11 @@ class SearchViewController: UIViewController, UIGestureRecognizerDelegate {
         - searchTextField ( Unwrapped UITextField): Allows the user to enter the food item to search.
      */
     
-    var searchList: [Food?] = []
-    var selectedFood: Food? = nil
     let fibreCallManager = FibreCallManager()
     let firebaseManager = FirebaseManager()
     let alertManager = AlertManager()
+    var searchList: [Food?] = []
+    var selectedFood: Food? = nil
     var tapGesture: UITapGestureRecognizer?
     var swipeGesture: UISwipeGestureRecognizer?
     
