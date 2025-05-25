@@ -32,8 +32,8 @@ If these are already installed, skip this section.
 10. In XCode, click the Run button at the top of the left sidebar or press ``Cmd + R`` to run _figology._ 
 
 ## Known Bugs
-After signing up, the user will not be directed to the calculator page automatically. 
-However, the user should direct themselves to this page to set their fibre goal. 
+After signing up, users will not be directed to the calculator page automatically. 
+However, users should direct themselves to this page to set their fibre goal. 
 This bug doesn't hinder the functionality of the application. 
 
 ## Support
@@ -57,7 +57,7 @@ Contact olivia63chen@gmail.com directly or through the support page on _figology
 |https://stackoverflow.com/questions/49376157/swift-dispatchgroup-notify-before-task-finish|This thread helped us solve issues with DispatchGroup completing before all the tasks were finished.|
 |https://stackoverflow.com/questions/16608536/how-to-get-the-previous-viewcontroller-that-pushed-my-current-view|We use this source to learn how to determine the previous View Controller for navigation logic.|
 |https://cloud.google.com/firestore/docs/manage-data/add-data|We used this source to store new user data entries.|
-|https://stackoverflow.com/questions/24070450/how-to-get-the-current-time-as-datetime|We used code from this source to learn how to log timestamps for the user's food consumption.|
+|https://stackoverflow.com/questions/24070450/how-to-get-the-current-time-as-datetime|We used code from this source to learn how to log timestamps for users' food consumption.|
 |https://stackoverflow.com/questions/68107275/swift-5-present-viewcontroller-half-way|This source helped us learn how to present a view controller halfway up the screen to vary our UI designs.|
 |https://stackoverflow.com/questions/1509547/giving-uiview-rounded-corners|This thread taught us how to style UI elements with rounded corners.|
 |https://stackoverflow.com/questions/65743004/swiftui-send-email-using-mfmailcomposeviewcontroller|We used this source to implement email support.|
