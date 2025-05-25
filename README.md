@@ -5,8 +5,8 @@ _figology._ is a fibre-tracking application.
 
 ## Features
 - Facilitates authentication using email and password or Google accounts.
-- Allows users to input their fibre goal or calculate their fibre goal based on their age, height, weight and activity level.
-- Allows users to log, edit, and delete their intake of various foods, from which their fibre intake is calculated and updated. 
+- Allows users to input their fibre goal or calculate their fibre goal based on their age, height, weight, and activity level.
+- Allows users to log, edit, and delete their intake of various foods, from which their fibre intake is calculated. 
 - Organises and displays fibre intake by meal, including historical data. 
 
 ## Installation
