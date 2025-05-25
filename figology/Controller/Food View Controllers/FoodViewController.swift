@@ -23,7 +23,6 @@ class FoodViewController: UIViewController {
         - progressBar (Unwrapped UIProgressView): Visually indicates the percent of fibre intake goal achieved.
      */
     
-    let fibreCallManager = FibreCallManager()
     let firebaseManager = FirebaseManager()
     let alertManager = AlertManager()
     let dateManager = DateManager()
