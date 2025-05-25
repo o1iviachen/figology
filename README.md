@@ -52,7 +52,7 @@ Contact olivia63chen@gmail.com directly or through the support page on _figology
 |https://docx.syndigo.com/developers/docs/natural-language-for-nutrients|We used this source to access unbranded food data from Nutritionix.|
 |https://cloud.google.com/firestore/docs/manage-data/add-data|This source helped us log user data to our Firestore database.|
 |https://stackoverflow.com/questions/40268619/why-are-function-parameters-immutable-in-swift|This source helped us understand function parameter immutability in Swift.|
-|https://firebase.google.com/docs/auth/ios/password-auth|We used this source to implement Firebase email/password authentication in our login screen.|
+|https://firebase.google.com/docs/auth/ios/password-auth|We used this source to implement Firebase email/password login and sign up.|
 |https://firebase.google.com/docs/auth/ios/google-signin|We referenced this website when integrating Google Sign In for user authentication.|
 |https://firebase.google.com/docs/auth/ios/manage-users|This website provided code for resetting users' passwords.|
 |https://firebase.google.com/docs/firestore/query-data/get-data|This source was useful in helping us retrieve data from Firestore to create user-specific interfaces.|
