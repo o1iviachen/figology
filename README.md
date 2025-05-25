@@ -54,7 +54,7 @@ Contact olivia63chen@gmail.com directly or through the support page on _figology
 |https://docx.syndigo.com/developers/docs/natural-language-for-nutrients|We used this source to access unbranded food data from Nutritionix.|
 |https://cloud.google.com/firestore/docs/manage-data/add-data|This source helped us log user data to our Firestore database.|
 |https://stackoverflow.com/questions/40268619/why-are-function-parameters-immutable-in-swift|This source helped us understand function parameter immutability in Swift.|
-|https://firebase.google.com/docs/auth/ios/password-auth|We used this source to implement Firebase email/password login and sign up.|
+|https://firebase.google.com/docs/auth/ios/password-auth|We used this source to implement Firebase email/password login and sign-up.|
 |https://firebase.google.com/docs/auth/ios/google-signin|We referenced this website when integrating Google authentication.|
 |https://firebase.google.com/docs/auth/ios/manage-users|This website provided code for resetting users' passwords.|
 |https://firebase.google.com/docs/firestore/query-data/get-data|This source helped us retrieve data from Firestore to create user-specific interfaces.|
@@ -62,7 +62,7 @@ Contact olivia63chen@gmail.com directly or through the support page on _figology
 |https://medium.com/@prabhatkasera/dispatch-async-in-ios-bd32295b042f|This article helped us use concurrency to improve our application's performance.|
 |https://stackoverflow.com/questions/49376157/swift-dispatchgroup-notify-before-task-finish|This thread helped us solve issues with dispatch groups completing before loops were finished.|
 |https://stackoverflow.com/questions/16608536/how-to-get-the-previous-viewcontroller-that-pushed-my-current-view|We used this source to learn how to determine the previous view controller for navigation logic.|
-|https://stackoverflow.com/questions/24070450/how-to-get-the-current-time-as-datetime|We used code from this source to learn how to produce timestamps associated users' consumed foods.|
+|https://stackoverflow.com/questions/24070450/how-to-get-the-current-time-as-datetime|We used code from this source to learn how to produce timestamps associated with users' consumed foods.|
 |https://stackoverflow.com/questions/68107275/swift-5-present-viewcontroller-half-way|This source helped us learn how to present a view controller halfway up the screen for the pickers.|
 |https://stackoverflow.com/questions/1509547/giving-uiview-rounded-corners|This thread taught us how to style UI elements with rounded corners.|
 |https://stackoverflow.com/questions/65743004/swiftui-send-email-using-mfmailcomposeviewcontroller|We used this source to implement email support.|
