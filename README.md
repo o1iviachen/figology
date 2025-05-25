@@ -61,6 +61,6 @@ Contact olivia63chen@gmail.com directly or through the support page on _figology
 |https://stackoverflow.com/questions/68107275/swift-5-present-viewcontroller-half-way|This source helped us learn how to present a view controller halfway up the screen to vary our UI designs.|
 |https://stackoverflow.com/questions/1509547/giving-uiview-rounded-corners|This thread taught us how to style UI elements with rounded corners.|
 |https://stackoverflow.com/questions/65743004/swiftui-send-email-using-mfmailcomposeviewcontroller|We used this source to implement email support.|
-|https://www.calculator.net/bmr-calculator.html|We referenced this calculator to implement the logic behind our fibre goal calculator.|
-|https://macrofactorapp.com/does-fiber-have-calories/|We used this source as a reference to calculate fibre from calorie intake, again to develop our fibre goal calculator.|
+|https://www.calculator.net/bmr-calculator.html|We referenced this calculator to calculate users' calorie intake to develop our fibre goal calculator.|
+|https://macrofactorapp.com/does-fiber-have-calories/|We referenced this source to calculate fibre intake from calorie intake, again to develop our fibre goal calculator.|
 |https://www.youtube.com/watch?v=B_VFHeg2LH4&t=7s|We followed this tutorial for Firebase authentication setup in iOS environments.|
