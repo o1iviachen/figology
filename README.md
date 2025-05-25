@@ -44,7 +44,7 @@ Contact olivia63chen@gmail.com directly or through the support page on _figology
 |---     |---          |
 |https://www.udemy.com/course/ios-13-app-development-bootcamp/?couponCode=ST20MT190425G1|We followed many videos from this course to develop our project. Using this course, we familiarised ourselves with Swift, CocoaPods, and working with APIs.|
 |https://www.youtube.com/watch?v=B_VFHeg2LH4&t=7s|We used this tutorial to develop and implement the Calendar UI on _figology._|
-|https://stackoverflow.com/questions/37873608/how-do-i-detect-if-a-user-is-already-logged-in-firebase|We used this source to check if a user is already authenticated in Firebase when launching the app.|
+|https://stackoverflow.com/questions/37873608/how-do-i-detect-if-a-user-is-already-logged-in-firebase|We used this source to check if a user is already authenticated via Firebase when launching the application.|
 |https://docx.syndigo.com/developers/docs/search-item-endpoint|We used this as reference for integrating a search functionality with an external API.|
 |https://cloud.google.com/firestore/docs/manage-data/add-data|This source helped us add user-generated content to our Firestore database.|
 |https://stackoverflow.com/questions/40268619/why-are-function-parameters-immutable-in-swift|This source helped us understand how to use function parameter immutability in Swift.|
