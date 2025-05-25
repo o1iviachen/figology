@@ -34,7 +34,7 @@ If these are already installed, skip this section.
 ## Known Bugs
 After signing up, users will not be directed to the calculator page automatically. 
 However, users should direct themselves to this page to set their fibre goal. 
-This bug doesn't hinder the functionality of the application. 
+This bug does not hinder the functionality of the application. 
 
 ## Support
 Contact olivia63chen@gmail.com directly or through the support page on _figology._ if help is required. 
