@@ -16,7 +16,7 @@ This version of the application is only supported by macOS devices.
 Xcode and CocoaPods need to be installed to run this application. 
 If these are already installed, skip this section. 
 1. Install Xcode from the App Store. 
-2. Open the Terminal and install CocoaPods by entering ``sudo gem install cocoapods``.
+2. Open the Terminal and install CocoaPods by entering ``brew install cocoapods``.
 
 ### Cloning and running _figology._
 1. Open Xcode and select **Clone Git Repository**. 
