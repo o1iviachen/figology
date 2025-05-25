@@ -25,7 +25,7 @@ If these are already installed, skip this section.
 4. Go to the Project File icon at the top of the Project Navigator (left-side panel) and change the Bundle Identifier. Apple recommends the following format: ``com.[your-organization-or-name].[app-name]``.
 5. Log in to [Firebase](https://firebase.google.com/) and go to console.
 6. Create a Firebase project. At the following screen, select the iOS+ icon. Only follow the shown steps 1 and 2, but click through all steps to reach the Project page. Ensure to use your Bundle Identifier as the Apple bundle ID.
-7. On the left-side panel, click the Build dropdown and select Authentication. Add Email/Password and Google as authentication methods. Click the Build dropdown again and select Firebase Database. Create a new database.
+7. On the left-side panel, click the Build dropdown and select Authentication. Add Email/Password and Google as authentication methods. Click the Build dropdown again and select Firebase Database. Create a new Cloud Firestore database titled "users."
 8. To install CocoaPods dependencies, open the Terminal and navigate to the folder containing the cloned repository using ``cd`` and the file's entire pathway.
    This terminal command may look like ``cd /Users/su/Desktop/figology``. Then, enter ``pod install``. From now on, only open the new .xcworkspace file.
 9. Create a new Configuration Settings File in the project folder titled "Secrets." Create your Nutritionix API Key and ID at [Nutritionix](https://developer.nutritionix.com/signup) and store them as variables named ``NUTRITIONIX_API_KEY`` and ``NUTRITIONIX_API_ID``. Go to the GoogleService-Info.plist, copy the value belonging to the ``REVERSED_CLIENT_ID`` key and store it as a variable named ``GOOGLE_URL_SCHEME``.
