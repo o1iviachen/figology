@@ -10,7 +10,7 @@ _figology._ is a fibre-tracking application.
 - Organises and displays fibre intake by meal, including historical data. 
 
 ## Installation
-This iOS application is only supported for Mac. 
+This application is only supported by macOS devices. 
 
 ### Installing the required software and dependencies 
 XCode and CocoaPods need to be installed to run this application. 
