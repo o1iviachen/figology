@@ -59,7 +59,6 @@ Contact olivia63chen@gmail.com directly or through the support page on _figology
 |https://medium.com/@prabhatkasera/dispatch-async-in-ios-bd32295b042f|This article helped us manage background tasks to improve the performance of our application.|
 |https://stackoverflow.com/questions/49376157/swift-dispatchgroup-notify-before-task-finish|This thread helped us solve issues with DispatchGroup completing before all the tasks were finished.|
 |https://stackoverflow.com/questions/16608536/how-to-get-the-previous-viewcontroller-that-pushed-my-current-view|We use this source to learn how to determine the previous View Controller for navigation logic.|
-|https://cloud.google.com/firestore/docs/manage-data/add-data|We used this source to store new user data entries.|
 |https://stackoverflow.com/questions/24070450/how-to-get-the-current-time-as-datetime|We used code from this source to learn how to produce timestamps associated users' consumed foods.|
 |https://stackoverflow.com/questions/68107275/swift-5-present-viewcontroller-half-way|This source helped us learn how to present a view controller halfway up the screen for the pickers.|
 |https://stackoverflow.com/questions/1509547/giving-uiview-rounded-corners|This thread taught us how to style UI elements with rounded corners.|
