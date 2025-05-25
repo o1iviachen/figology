@@ -59,7 +59,7 @@ Contact olivia63chen@gmail.com directly or through the support page on _figology
 |https://firebase.google.com/docs/auth/ios/manage-users|This website provided code for resetting users' passwords.|
 |https://firebase.google.com/docs/firestore/query-data/get-data|This source helped us retrieve data from Firestore to create user-specific interfaces.|
 |https://stackoverflow.com/questions/24103069/add-swipe-to-delete-uitableviewcell|We used code from this source to implement swipe-to-delete functionality in our Food View Controller Food Cells.|
-|https://medium.com/@prabhatkasera/dispatch-async-in-ios-bd32295b042f|This article helped us use concurrency to improve the performance of our application.|
+|https://medium.com/@prabhatkasera/dispatch-async-in-ios-bd32295b042f|This article helped us use concurrency to improve our application's performance.|
 |https://stackoverflow.com/questions/49376157/swift-dispatchgroup-notify-before-task-finish|This thread helped us solve issues with DispatchGroup completing before all the tasks were finished.|
 |https://stackoverflow.com/questions/16608536/how-to-get-the-previous-viewcontroller-that-pushed-my-current-view|We use this source to learn how to determine the previous view controller for navigation logic.|
 |https://stackoverflow.com/questions/24070450/how-to-get-the-current-time-as-datetime|We used code from this source to learn how to produce timestamps associated users' consumed foods.|
