@@ -13,13 +13,13 @@ _figology._ is a fibre-tracking application.
 This version of the application is only supported by macOS devices. 
 
 ### Installing the required software 
-XCode and CocoaPods need to be installed to run this application. 
+Xcode and CocoaPods need to be installed to run this application. 
 If these are already installed, skip this section. 
-1. Install XCode from the App Store. 
+1. Install Xcode from the App Store. 
 2. Open the Terminal and install CocoaPods by entering ``sudo gem install cocoapods``.
 
 ### Cloning and running _figology._
-1. Open XCode and select **Clone Git Repository**. 
+1. Open Xcode and select **Clone Git Repository**. 
 2. Enter the [repository link](https://github.com/o1iviachen/figology.git) and select **Clone**.
 3. Select a location to save the cloned repository and select **Clone** to complete the cloning process.
 4. Go to the Project File icon at the top of the Project Navigator (left-side panel) and change the Bundle Identifier. Apple recommends the following format: ``com.[your-organization-or-name].[app-name]``.
@@ -29,7 +29,7 @@ If these are already installed, skip this section.
 8. To install CocoaPods dependencies, open the Terminal and navigate to the folder containing the cloned repository using ``cd`` and the file's entire pathway.
    This terminal command may look like ``cd /Users/su/Desktop/figology``. Then, enter ``pod install``. From now on, only open the new .xcworkspace file.
 9. Create a new Configuration Settings File in the project folder titled "Secrets." Create your Nutritionix API Key and ID at [Nutritionix](https://developer.nutritionix.com/signup) and store them as variables named ``NUTRITIONIX_API_KEY`` and ``NUTRITIONIX_API_ID``. Go to the GoogleService-Info.plist, copy the value belonging to the ``REVERSED_CLIENT_ID`` key and store it as a variable named ``GOOGLE_URL_SCHEME``.
-10. In XCode, click the Run button at the top of the left sidebar or press ``Cmd + R`` to run _figology._ 
+10. In Xcode, click the Run button at the top of the left sidebar or press ``Cmd + R`` to run _figology._ 
 
 ## Known Bugs
 After signing up, users will not be directed to the calculator page automatically. 
