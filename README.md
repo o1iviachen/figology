@@ -49,16 +49,16 @@ Contact olivia63chen@gmail.com directly or through the support page on _figology
 |https://www.youtube.com/watch?v=B_VFHeg2LH4&t=7s|We used this tutorial to develop and implement the Calendar UI on _figology._|
 |https://stackoverflow.com/questions/37873608/how-do-i-detect-if-a-user-is-already-logged-in-firebase|We used this source to check if a user was already authenticated upon launching the application.|
 |https://docx.syndigo.com/developers/docs/search-item-endpoint|We used this as reference for integrating the application's search functionality using Nutritionix API.|
-|https://cloud.google.com/firestore/docs/manage-data/add-data|This source helped us add user-generated content to our Firestore database.|
-|https://stackoverflow.com/questions/40268619/why-are-function-parameters-immutable-in-swift|This source helped us understand how to use function parameter immutability in Swift.|
+|https://cloud.google.com/firestore/docs/manage-data/add-data|This source helped us add log user data to our Firestore database.|
+|https://stackoverflow.com/questions/40268619/why-are-function-parameters-immutable-in-swift|This source helped us understand function parameter immutability in Swift.|
 |https://firebase.google.com/docs/auth/ios/password-auth|We used this source to implement Firebase email/password authentication in our login screen.|
-|https://firebase.google.com/docs/auth/ios/google-signin|We referenced this website when integrating Google Sign-In for user authentication.|
-|https://firebase.google.com/docs/auth/ios/manage-users|This website provided information about managing user profiles, including updating and deleting logs.|
-|https://firebase.google.com/docs/firestore/query-data/get-data|This source was useful in helping us retrieve data from Firestone to create cells and text fields with user-specific content.|
+|https://firebase.google.com/docs/auth/ios/google-signin|We referenced this website when integrating Google Sign In for user authentication.|
+|https://firebase.google.com/docs/auth/ios/manage-users|This website provided code for resetting users' passwords.|
+|https://firebase.google.com/docs/firestore/query-data/get-data|This source was useful in helping us retrieve data from Firestore to create user-specific interfaces.|
 |https://stackoverflow.com/questions/24103069/add-swipe-to-delete-uitableviewcell|We used code from this source to implement swipe-to-delete functionality in our Table View Food Cells.|
-|https://medium.com/@prabhatkasera/dispatch-async-in-ios-bd32295b042f|This article helped us manage background tasks to improve the performance of our application.|
+|https://medium.com/@prabhatkasera/dispatch-async-in-ios-bd32295b042f|This article helped us use concurrency to improve the performance of our application.|
 |https://stackoverflow.com/questions/49376157/swift-dispatchgroup-notify-before-task-finish|This thread helped us solve issues with DispatchGroup completing before all the tasks were finished.|
-|https://stackoverflow.com/questions/16608536/how-to-get-the-previous-viewcontroller-that-pushed-my-current-view|We use this source to learn how to determine the previous View Controller for navigation logic.|
+|https://stackoverflow.com/questions/16608536/how-to-get-the-previous-viewcontroller-that-pushed-my-current-view|We use this source to learn how to determine the previous view controller for navigation logic.|
 |https://stackoverflow.com/questions/24070450/how-to-get-the-current-time-as-datetime|We used code from this source to learn how to produce timestamps associated users' consumed foods.|
 |https://stackoverflow.com/questions/68107275/swift-5-present-viewcontroller-half-way|This source helped us learn how to present a view controller halfway up the screen for the pickers.|
 |https://stackoverflow.com/questions/1509547/giving-uiview-rounded-corners|This thread taught us how to style UI elements with rounded corners.|
