@@ -62,5 +62,5 @@ Contact olivia63chen@gmail.com directly or through the support page on _figology
 |https://stackoverflow.com/questions/1509547/giving-uiview-rounded-corners|This thread taught us how to style UI elements with rounded corners.|
 |https://stackoverflow.com/questions/65743004/swiftui-send-email-using-mfmailcomposeviewcontroller|We used this source to implement email support.|
 |https://www.calculator.net/bmr-calculator.html|We referenced this calculator to calculate users' calorie intake to develop our fibre goal calculator.|
-|https://macrofactorapp.com/does-fiber-have-calories/|We referenced this source to calculate fibre intake from calorie intake, again to develop our fibre goal calculator.|
+|https://macrofactorapp.com/does-fiber-have-calories/|We referenced this source to calculate users' fibre intake from their calorie intake, again to develop our fibre goal calculator.|
 |https://www.youtube.com/watch?v=B_VFHeg2LH4&t=7s|We followed this tutorial for Firebase authentication setup in iOS environments.|
