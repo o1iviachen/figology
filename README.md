@@ -35,9 +35,11 @@ If these are already installed, skip this section.
    - Create your Nutritionix API Key and ID at [Nutritionix](https://developer.nutritionix.com/signup) and store them as variables named ``NUTRITIONIX_API_KEY`` and ``NUTRITIONIX_API_ID``.
    - Go to the GoogleService-Info.plist, copy the value belonging to the ``REVERSED_CLIENT_ID`` key and store it as a variable named ``GOOGLE_URL_SCHEME``.
    - The file should now look like the following:
-```NUTRITIONIX_API_KEY = <YOUR_API_KEY>```
-```NUTRITIONIX_API_ID = <YOUR_API_ID>```
-```GOOGLE_URL_SCHEME = <YOUR_URL_SCHEME>```
+```
+NUTRITIONIX_API_KEY = <YOUR_API_KEY>
+NUTRITIONIX_API_ID = <YOUR_API_ID>
+GOOGLE_URL_SCHEME = <YOUR_URL_SCHEME>
+```
 11. In Xcode, click the Run button or press ``Cmd + R`` to run _figology._ 
 
 ## Known Bugs
