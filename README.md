@@ -32,7 +32,7 @@ If these are already installed, skip this section.
 8. To install CocoaPods dependencies, open the Terminal and navigate to the folder containing the cloned repository using ``cd`` and the file's entire pathway.
    This terminal command may look like ``cd /Users/su/Desktop/figology``. Then, enter ``pod install``. From now on, only open the new .xcworkspace file.
 9. Create a new Configuration Settings File in the project folder titled "Secrets."
-   - Create your Nutritionix API Key and ID at [Nutritionix](https://developer.nutritionix.com/signup) and store them as variables named ``NUTRITIONIX_API_KEY`` and ``NUTRITIONIX_API_ID``.
+   - Create your Nutritionix API Key and ID at [Nutritionix](https://developer.nutritionix.com/signup) and store them as variables named ``NUTRITIONIX_APP_KEY`` and ``NUTRITIONIX_APP_ID``.
    - Go to the GoogleService-Info.plist, copy the value belonging to the ``REVERSED_CLIENT_ID`` key and store it as a variable named ``GOOGLE_URL_SCHEME``.
    - The file should now look like the following:
       - ```
