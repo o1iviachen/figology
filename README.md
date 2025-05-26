@@ -28,7 +28,7 @@ If these are already installed, skip this section.
 7. On the left-side panel, click the Build dropdown and select Authentication.
    - Add Email/Password and Google as authentication methods.
    - Click the Build dropdown again and select Firebase Database.
-   - Create a new Cloud Firestore database with a collection titled "users."
+   - Create a new Cloud Firestore database.
 8. To install CocoaPods dependencies, open the Terminal and navigate to the folder containing the cloned repository using ``cd`` and the file's entire pathway.
    This terminal command may look like ``cd /Users/su/Desktop/figology``. Then, enter ``pod install``. From now on, only open the new .xcworkspace file.
 9. Create a new Configuration Settings File in the project folder titled "Secrets."
