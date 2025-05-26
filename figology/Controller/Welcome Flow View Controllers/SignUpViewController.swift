@@ -24,7 +24,6 @@ class SignUpViewController: UIViewController {
     
     let db = Firestore.firestore()
     let alertManager = AlertManager()
-    let firebaseManager = FirebaseManager()
     
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!

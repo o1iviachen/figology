@@ -27,7 +27,6 @@ class CalculatorViewController: UIViewController {
         - ageLabel (Unwrapped UILabel): Displays the user's age.
      */
     
-    var backButtonShow: Bool = false
     let db = Firestore.firestore()
     let alertManager = AlertManager()
     let firebaseManager = FirebaseManager()
@@ -38,6 +37,7 @@ class CalculatorViewController: UIViewController {
         0.6..<0.8: (1.725, "fairly active"),
         0.8..<1.1: (1.9, "very active")
     ]
+    var backButtonShow: Bool = false
     
     @IBOutlet weak var heightSlider: UISlider!
     @IBOutlet weak var ageSlider: UISlider!

@@ -19,11 +19,11 @@ class SelectorViewController: UIViewController {
         - fibreSlider (Unwrapped UISlider): Allows the user to use a slider to set their daily fibre goal.
      */
     
-    var fibreAmount = 0
     let db = Firestore.firestore()
     let firebaseManager = FirebaseManager()
     let alertManager = AlertManager()
-    
+    var fibreAmount = 0
+
     @IBOutlet weak var fibreLabel: UILabel!
     @IBOutlet weak var fibreSlider: UISlider!
     

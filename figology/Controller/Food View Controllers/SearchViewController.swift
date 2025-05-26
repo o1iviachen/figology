@@ -10,7 +10,7 @@
 import UIKit
 import Firebase
 
-class SearchViewController: UIViewController, UIGestureRecognizerDelegate {
+class SearchViewController: UIViewController {
     /**
      A class that allows the Search View Controller to search for food items. Its features include displaying recently consumed foods, allowing users to search for new foods, and navigating the user to a new View Controller to view more details about a food item.
      

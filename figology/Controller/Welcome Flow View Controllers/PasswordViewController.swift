@@ -19,8 +19,8 @@ class PasswordViewController: UIViewController {
        - emailTextField (Unwrapped UITextField): Displays the user's email and allows the user to edit their email address.
      */
     
-    var email: String? = ""
     let alertManager = AlertManager()
+    var email: String? = ""
     
     @IBOutlet weak var emailTextField: UITextField!
     

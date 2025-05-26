@@ -26,7 +26,6 @@ class CalendarViewController: UIViewController {
          */
         
         super.viewDidLoad()
-        print("CalendarViewController loaded")
         setupSwiftUICalendar()
     }
 
@@ -36,8 +35,6 @@ class CalendarViewController: UIViewController {
          Creates and adds the CalendarUI inside the current Calendar View Controller.
          */
         
-        print("Setting up SwiftUI calendar")
-
         let calendarScene = CalendarScene()
 
         // Adds the Calendar View as a child view controller to link it to the StoryBoard
