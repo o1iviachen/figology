@@ -70,7 +70,11 @@ class PasswordViewController: UIViewController {
                         
                         // Otherwise, notify user to check their email
                         else {
-                            self.alertManager.showAlert(alertMessage: "please check your email to reset your password", viewController: self)
+                            self.alertManager.showAlert(alertMessage: "please check your email to reset your password", viewController: self) {
+                                
+                                // Return to welcome view controller if email is sent
+                                self.navigationController?.popViewController(animated: true)
+                            }
                         }
                     }
                     )

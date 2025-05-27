@@ -38,7 +38,7 @@
 		9F2358AB2D942F3D001B3F1A /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2358AA2D942F3D001B3F1A /* CalendarViewController.swift */; };
 		9F8594A52D88F40200E21AE2 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */; };
 		9F970F442DE0131F00C3F7B8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F970F432DE0131F00C3F7B8 /* GoogleService-Info.plist */; };
-		9FF16E1B2DA431C70043F90D /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF16E1A2DA431C70043F90D /* ErrorManager.swift */; };
+		9FF16E1B2DA431C70043F90D /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF16E1A2DA431C70043F90D /* AlertManager.swift */; };
 		BE6C5A904D6630D896E4D5EC /* Pods_figology.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17AB91BFB78ACA7E57B3FA9 /* Pods_figology.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,7 +77,7 @@
 		9F2358AA2D942F3D001B3F1A /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		9F970F432DE0131F00C3F7B8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		9FF16E1A2DA431C70043F90D /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
+		9FF16E1A2DA431C70043F90D /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		DCCE33F1BA1EE034628BF865 /* Pods-figology.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-figology.debug.xcconfig"; path = "Target Support Files/Pods-figology/Pods-figology.debug.xcconfig"; sourceTree = "<group>"; };
 		F17AB91BFB78ACA7E57B3FA9 /* Pods_figology.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_figology.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF76A31828A91089DCC44A0D /* Pods-figology.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-figology.release.xcconfig"; path = "Target Support Files/Pods-figology/Pods-figology.release.xcconfig"; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 				582BE0F32D9497BF0059A4D1 /* Setting.swift */,
 				582934B12D8A1B9B000033C7 /* FibreCallManager.swift */,
 				58B29EBA2D9D9F96002F6FA0 /* FirebaseManager.swift */,
-				9FF16E1A2DA431C70043F90D /* ErrorManager.swift */,
+				9FF16E1A2DA431C70043F90D /* AlertManager.swift */,
 				5880C36C2DBE1CA100A4B51D /* DateManager.swift */,
 			);
 			path = Model;
@@ -340,7 +340,7 @@
 			files = (
 				58B29EBB2D9D9F96002F6FA0 /* FirebaseManager.swift in Sources */,
 				9F2358AB2D942F3D001B3F1A /* CalendarViewController.swift in Sources */,
-				9FF16E1B2DA431C70043F90D /* ErrorManager.swift in Sources */,
+				9FF16E1B2DA431C70043F90D /* AlertManager.swift in Sources */,
 				582934B22D8A1B9B000033C7 /* FibreCallManager.swift in Sources */,
 				58B29EBD2D9F5CEC002F6FA0 /* PickerViewController.swift in Sources */,
 				582BE1022D94A8340059A4D1 /* SupportViewController.swift in Sources */,

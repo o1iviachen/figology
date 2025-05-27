@@ -111,7 +111,6 @@ class LogInViewController: UIViewController {
                 if err.localizedDescription != "The user canceled the sign-in flow." {
                     self.alertManager.showAlert(alertMessage: err.localizedDescription, viewController: self)
                 }
-                
             } else {
                 if (result?.user) != nil {
                     let user = result?.user
