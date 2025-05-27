@@ -1,6 +1,6 @@
 /**
  Constants.swift
- figology-v2
+ figology
  Emily, Olivia, and Su
  This file stores the constants
  History:

@@ -1,6 +1,6 @@
 /**
  FirebaseManager.swift
- figology-v2
+ figology
  Emily, Olivia, and Su
  This file updates the database
  History:

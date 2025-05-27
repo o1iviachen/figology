@@ -1,6 +1,6 @@
 /**
  SceneDelegate.swift
- figology-v2
+ figology
  Emily, Olivia, and Su
  This file manages the lifecycle and events of a specific instance of the app's UI
  History:

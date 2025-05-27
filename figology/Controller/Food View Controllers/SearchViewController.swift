@@ -1,6 +1,6 @@
 /**
  SearchViewController.swift
- figology-v2
+ figology
  Emily, Olivia, and Su
  This file runs the food searching component
  History:

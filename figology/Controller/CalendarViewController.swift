@@ -1,6 +1,6 @@
 /**
  CalendarViewController.swift
- figology-v2
+ figology
  Emily, Olivia, and Su
  This file runs calendar components
  History:

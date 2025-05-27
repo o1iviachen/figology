@@ -1,6 +1,6 @@
 /**
  PasswordViewController.swift
- figology-v2
+ figology
  Emily, Olivia, and Su
  This file runs the password components of the log in
  History:

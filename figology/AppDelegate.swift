@@ -1,6 +1,6 @@
 /**
  AppDelegate.swift
- figology-v2
+ c
  Emily, Olivia, and Su
  This file configures Firebase related applications, the navigation UI, and the tab bar UI
  History:

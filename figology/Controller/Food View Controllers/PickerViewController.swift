@@ -1,6 +1,6 @@
 /**
  PickerViewController.swift
- figology-v2
+ figology
  Emily, Olivia, and Su
  This file delegates the information from the user's picked foods
  History:

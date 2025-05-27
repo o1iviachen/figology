@@ -1,6 +1,6 @@
 /**
  FoodViewController.swift
- figology-v2
+ figology
  Emily, Olivia, and Su
  This file retrieves the user's logged food
  History:

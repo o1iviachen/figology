@@ -1,6 +1,6 @@
 /**
  SupportViewController.swift
- figology-v2
+ figology
  Emily, Olivia, and Su
  This file runs the email support component
  History:

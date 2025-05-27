@@ -1,6 +1,6 @@
 /**
  Setting.swift
- figology-v2
+ figology
  Emily, Olivia, and Su
  This file initialises the setting structures
  History:

@@ -1,6 +1,6 @@
 /**
  ProfileCell.swift
- figology-v2
+ figology
  Emily, Olivia, and Su
  This file initialises the profile class
  History:

@@ -1,6 +1,6 @@
 /**
  FibreCallManager.swift
- figology-v2
+ figology
  Emily, Olivia, and Su
  This file calls data from the API and formats it
  History:

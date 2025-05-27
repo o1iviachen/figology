@@ -1,6 +1,6 @@
 /**
  ErrorManager.swift
- figology-v2
+ figology
  Emily, Olivia, and Su
  This file runs the app alerts
  History:

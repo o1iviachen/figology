@@ -1,6 +1,6 @@
 /**
  SignUpViewController.swift
- figology-v2
+ figology
  Emily, Olivia, and Su
  This file runs the sign up components
  History:
