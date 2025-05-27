@@ -27,6 +27,7 @@ class FoodViewController: UIViewController {
     let alertManager = AlertManager()
     let dateManager = DateManager()
     let headerTitles = ["breakfast", "lunch", "dinner", "snacks"]
+    var exists = false
     var dateString: String? = nil
     var fibreRequests: [URLRequest?] = []
     var fibreGoal: Int? = nil
@@ -257,10 +258,10 @@ extension FoodViewController: UITableViewDelegate {
          */
         
         // Check if UIHostingController is in navigation stack
-        let exists = navigationController?.viewControllers.contains {
+        exists = navigationController?.viewControllers.contains {
             $0 is UIHostingController<AnyView>
         } == true
-        
+
         // If not, user is not checking the food view controller from the calendar view controller. Therefore, allow user to edit food
         if !exists {
             selectedMeal = headerTitles[indexPath.section]
@@ -270,6 +271,22 @@ extension FoodViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        /**
+         Determines if user can edit a food cell
+
+         - Parameters:
+            - tableView (UITableView): Indicates the row selection.
+            - indexPath (IndexPath): Specifies the selected row.
+         */
+        
+        // Check if UIHostingController is in navigation stack
+        exists = navigationController?.viewControllers.contains {
+            $0 is UIHostingController<AnyView>
+        } == true
+        
+        return !exists
+    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         /**
