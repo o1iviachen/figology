@@ -345,6 +345,7 @@ struct FoodView: UIViewControllerRepresentable {
     
     let date: Date
 
+    
     func updateUIViewController(_ uiViewController: FoodViewController, context: Context) {
         /**
          A required function that is not currently used.
@@ -354,7 +355,8 @@ struct FoodView: UIViewControllerRepresentable {
             - context (Context): Provides information for updating the View Controller.
          */
     }
-        
+       
+    
     func makeUIViewController(context: Context) -> FoodViewController {
         /**
          Creates and instance and configures a FoodViewController from the Storyboard with a given date. .
@@ -372,5 +374,4 @@ struct FoodView: UIViewControllerRepresentable {
         vc.dateString = dateFormatter.string(from: date)
         return vc
     }
-    
 }
