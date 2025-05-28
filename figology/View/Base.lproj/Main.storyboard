@@ -214,7 +214,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hb-Og-Z03">
                                         <rect key="frame" x="146.66666666666666" y="0.0" width="0.0" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="TextColour"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BPP-E8-6a5">
@@ -372,13 +372,13 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6h-J6-Ftj">
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                                <color key="textColor" name="Dark Purple"/>
+                                                <color key="textColor" name="TextColour"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x80-7W-6mX">
                                                 <rect key="frame" x="0.0" y="10" width="50" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" name="Dark Purple"/>
+                                                <color key="textColor" name="TextColour"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -386,7 +386,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yME-de-rq0">
                                         <rect key="frame" x="263" y="10" width="50" height="50"/>
                                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
-                                        <color key="textColor" name="Dark Purple"/>
+                                        <color key="textColor" name="TextColour"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -427,7 +427,7 @@
                                                 </constraints>
                                                 <color key="tintColor" name="TextColour"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="">
-                                                    <color key="baseForegroundColor" name="Dark Purple"/>
+                                                    <color key="baseForegroundColor" name="TextColour"/>
                                                     <color key="baseBackgroundColor" systemColor="systemBackgroundColor"/>
                                                 </buttonConfiguration>
                                                 <connections>
@@ -972,7 +972,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lD6-qs-x2F" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="person.fill" catalog="system" selectedImage="person.fill" id="p3X-pi-sCd">
-                        <color key="badgeColor" name="Dark Purple"/>
+                        <color key="badgeColor" name="TextColour"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zD3-fI-vqW">
@@ -1379,9 +1379,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="5cV-Le-WvS"/>
         <segue reference="4af-VQ-aJX"/>
-        <segue reference="snc-Vg-Qu0"/>
+        <segue reference="59y-vI-ggX"/>
     </inferredMetricsTieBreakers>
-    <color key="tintColor" name="Dark Purple"/>
+    <color key="tintColor" name="TextColour"/>
     <resources>
         <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>
@@ -1390,9 +1390,6 @@
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <namedColor name="AccentColour">
             <color red="0.94901960784313721" green="0.88235294117647056" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Dark Purple">
-            <color red="0.31764705882352939" green="0.18823529411764706" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TextColour">
             <color red="0.31764705882352939" green="0.18823529411764706" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
