@@ -31,13 +31,13 @@
 		58B29EB92D9D9BEC002F6FA0 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B29EB82D9D9BEC002F6FA0 /* ResultViewController.swift */; };
 		58B29EBB2D9D9F96002F6FA0 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B29EBA2D9D9F96002F6FA0 /* FirebaseManager.swift */; };
 		58B29EBD2D9F5CEC002F6FA0 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B29EBC2D9F5CEC002F6FA0 /* PickerViewController.swift */; };
+		58D361792DE74B8E00FCB70E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 58D361782DE74B8E00FCB70E /* GoogleService-Info.plist */; };
 		58FC741E2D91CF500007FC3E /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FC741C2D91CF500007FC3E /* FoodCell.swift */; };
 		58FC741F2D91CF500007FC3E /* FoodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58FC741D2D91CF500007FC3E /* FoodCell.xib */; };
 		90E424722D78D0D900EF8B8C /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E424712D78D0A400EF8B8C /* FoodViewController.swift */; };
 		9F1A2B4C2D7B661600A432CF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A2B4B2D7B661600A432CF /* Constants.swift */; };
 		9F2358AB2D942F3D001B3F1A /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2358AA2D942F3D001B3F1A /* CalendarViewController.swift */; };
 		9F8594A52D88F40200E21AE2 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */; };
-		9F970F442DE0131F00C3F7B8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F970F432DE0131F00C3F7B8 /* GoogleService-Info.plist */; };
 		9FF16E1B2DA431C70043F90D /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF16E1A2DA431C70043F90D /* AlertManager.swift */; };
 		BE6C5A904D6630D896E4D5EC /* Pods_figology.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17AB91BFB78ACA7E57B3FA9 /* Pods_figology.framework */; };
 /* End PBXBuildFile section */
@@ -70,13 +70,13 @@
 		58B29EBA2D9D9F96002F6FA0 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		58B29EBC2D9F5CEC002F6FA0 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		58D1E1602DDFE38300744671 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		58D361782DE74B8E00FCB70E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		58FC741C2D91CF500007FC3E /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		58FC741D2D91CF500007FC3E /* FoodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoodCell.xib; sourceTree = "<group>"; };
 		90E424712D78D0A400EF8B8C /* FoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
 		9F1A2B4B2D7B661600A432CF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9F2358AA2D942F3D001B3F1A /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
-		9F970F432DE0131F00C3F7B8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9FF16E1A2DA431C70043F90D /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		DCCE33F1BA1EE034628BF865 /* Pods-figology.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-figology.debug.xcconfig"; path = "Target Support Files/Pods-figology/Pods-figology.debug.xcconfig"; sourceTree = "<group>"; };
 		F17AB91BFB78ACA7E57B3FA9 /* Pods_figology.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_figology.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,7 +171,7 @@
 				58D1E1602DDFE38300744671 /* Secrets.xcconfig */,
 				589FADFF2D6E34DB007890AB /* Assets.xcassets */,
 				589FAE012D6E34DB007890AB /* LaunchScreen.storyboard */,
-				9F970F432DE0131F00C3F7B8 /* GoogleService-Info.plist */,
+				58D361782DE74B8E00FCB70E /* GoogleService-Info.plist */,
 				589FAE042D6E34DB007890AB /* Info.plist */,
 			);
 			path = figology;
@@ -280,12 +280,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				589FAE032D6E34DB007890AB /* LaunchScreen.storyboard in Resources */,
+				58D361792DE74B8E00FCB70E /* GoogleService-Info.plist in Resources */,
 				58FC741F2D91CF500007FC3E /* FoodCell.xib in Resources */,
 				582BE0F82D9499460059A4D1 /* ProfileCell.xib in Resources */,
 				582BE0FC2D949ADF0059A4D1 /* LogOutCell.xib in Resources */,
 				589FAE002D6E34DB007890AB /* Assets.xcassets in Resources */,
 				589FADFB2D6E34DA007890AB /* Main.storyboard in Resources */,
-				9F970F442DE0131F00C3F7B8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
