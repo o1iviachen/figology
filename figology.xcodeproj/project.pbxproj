@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3034BADD2BF5EC40A22B44D4 /* Pods_figology.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A73578E972D6F4BDF901A76D /* Pods_figology.framework */; };
 		582934AC2D8514E2000033C7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582934AB2D8514E2000033C7 /* SignUpViewController.swift */; };
 		582934AE2D851A4B000033C7 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582934AD2D851A4B000033C7 /* LogInViewController.swift */; };
 		582934B02D89E195000033C7 /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582934AF2D89E195000033C7 /* Measure.swift */; };
@@ -39,10 +40,11 @@
 		9F2358AB2D942F3D001B3F1A /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2358AA2D942F3D001B3F1A /* CalendarViewController.swift */; };
 		9F8594A52D88F40200E21AE2 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */; };
 		9FF16E1B2DA431C70043F90D /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF16E1A2DA431C70043F90D /* AlertManager.swift */; };
-		BE6C5A904D6630D896E4D5EC /* Pods_figology.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17AB91BFB78ACA7E57B3FA9 /* Pods_figology.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		313BB8FDAD0E2D41BA926410 /* Pods-figology.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-figology.debug.xcconfig"; path = "Target Support Files/Pods-figology/Pods-figology.debug.xcconfig"; sourceTree = "<group>"; };
+		40167A4E7122E95A0E1F6745 /* Pods-figology.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-figology.release.xcconfig"; path = "Target Support Files/Pods-figology/Pods-figology.release.xcconfig"; sourceTree = "<group>"; };
 		582934AB2D8514E2000033C7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		582934AD2D851A4B000033C7 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		582934AF2D89E195000033C7 /* Measure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
@@ -78,9 +80,7 @@
 		9F2358AA2D942F3D001B3F1A /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		9F8594A42D88F40200E21AE2 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		9FF16E1A2DA431C70043F90D /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
-		DCCE33F1BA1EE034628BF865 /* Pods-figology.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-figology.debug.xcconfig"; path = "Target Support Files/Pods-figology/Pods-figology.debug.xcconfig"; sourceTree = "<group>"; };
-		F17AB91BFB78ACA7E57B3FA9 /* Pods_figology.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_figology.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FF76A31828A91089DCC44A0D /* Pods-figology.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-figology.release.xcconfig"; path = "Target Support Files/Pods-figology/Pods-figology.release.xcconfig"; sourceTree = "<group>"; };
+		A73578E972D6F4BDF901A76D /* Pods_figology.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_figology.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE6C5A904D6630D896E4D5EC /* Pods_figology.framework in Frameworks */,
+				3034BADD2BF5EC40A22B44D4 /* Pods_figology.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,7 +147,7 @@
 				589FADF22D6E34DA007890AB /* figology */,
 				589FADF12D6E34DA007890AB /* Products */,
 				846CE356C5EB6AFAB1D2EF6D /* Pods */,
-				68A186531B18696D5F0AE868 /* Frameworks */,
+				ECDEFA4A7A1CAF410D1DDABF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -202,21 +202,21 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		68A186531B18696D5F0AE868 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F17AB91BFB78ACA7E57B3FA9 /* Pods_figology.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		846CE356C5EB6AFAB1D2EF6D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				DCCE33F1BA1EE034628BF865 /* Pods-figology.debug.xcconfig */,
-				FF76A31828A91089DCC44A0D /* Pods-figology.release.xcconfig */,
+				313BB8FDAD0E2D41BA926410 /* Pods-figology.debug.xcconfig */,
+				40167A4E7122E95A0E1F6745 /* Pods-figology.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		ECDEFA4A7A1CAF410D1DDABF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A73578E972D6F4BDF901A76D /* Pods_figology.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,11 +226,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 589FAE072D6E34DB007890AB /* Build configuration list for PBXNativeTarget "figology" */;
 			buildPhases = (
-				8FDC0FCDCAC7752EE3AE235E /* [CP] Check Pods Manifest.lock */,
+				FB66443C98D15A7984D1B3DB /* [CP] Check Pods Manifest.lock */,
 				589FADEC2D6E34DA007890AB /* Sources */,
 				589FADED2D6E34DA007890AB /* Frameworks */,
 				589FADEE2D6E34DA007890AB /* Resources */,
-				3677120F32BF3992B120C1D7 /* [CP] Embed Pods Frameworks */,
+				2F0C967C5CB59C160FB74F1F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -292,7 +292,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3677120F32BF3992B120C1D7 /* [CP] Embed Pods Frameworks */ = {
+		2F0C967C5CB59C160FB74F1F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -309,7 +309,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-figology/Pods-figology-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8FDC0FCDCAC7752EE3AE235E /* [CP] Check Pods Manifest.lock */ = {
+		FB66443C98D15A7984D1B3DB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -506,7 +506,7 @@
 		};
 		589FAE082D6E34DB007890AB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DCCE33F1BA1EE034628BF865 /* Pods-figology.debug.xcconfig */;
+			baseConfigurationReference = 313BB8FDAD0E2D41BA926410 /* Pods-figology.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColour;
@@ -535,7 +535,7 @@
 		};
 		589FAE092D6E34DB007890AB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FF76A31828A91089DCC44A0D /* Pods-figology.release.xcconfig */;
+			baseConfigurationReference = 40167A4E7122E95A0E1F6745 /* Pods-figology.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColour;
