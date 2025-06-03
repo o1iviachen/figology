@@ -29,7 +29,6 @@ class SearchViewController: UIViewController {
     var tapGesture: UITapGestureRecognizer?
     var swipeGesture: UISwipeGestureRecognizer?
     
-    @IBOutlet weak var resultsTableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var loadingAnimation: UIActivityIndicatorView!
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
@@ -51,12 +50,7 @@ class SearchViewController: UIViewController {
             // Fetch user's recently consumed foods
             self.firebaseManager.fetchRecentFoods(document: document) { recentFoods in
                 self.searchList = recentFoods
-                
-                // Adjust results table view height to fit recent foods; learned why to use DispatchQueue.main.async using https://medium.com/@prabhatkasera/dispatch-async-in-ios-bd32295b042f
-                DispatchQueue.main.async {
-                    self.resultsTableViewHeightConstraint.constant = CGFloat(62*self.searchList.count)
-                }
-                
+                                
                 // Hide loading animation and display recent foods
                 self.loadingAnimation.isHidden = true
                 self.resultsTableView.reloadData()
@@ -214,7 +208,7 @@ extension SearchViewController: UITextFieldDelegate {
          Performs the search, retrieves fibre data, and adjusts the Results Table View accordingly.
          
          - Parameters:
-            - textField (UITextField): Contains the user's food item to search for.
+         - textField (UITextField): Contains the user's food item to search for.
          */
         
         if let food = searchTextField.text {
@@ -228,13 +222,8 @@ extension SearchViewController: UITextFieldDelegate {
                     self.alertManager.showAlert(alertMessage: "no foods were found.", viewController: self)
                 }
                 
-                // Otherwise, adjust results table view height and reload results table view data
-                else {
-                    DispatchQueue.main.async {
-                        self.resultsTableViewHeightConstraint.constant = CGFloat(62*self.searchList.count)
-                    }
-                    self.resultsTableView.reloadData()
-                }
+                // Otherwise, reload results table view data
+                self.resultsTableView.reloadData()
             }
         }
         
